@@ -1,0 +1,297 @@
+{
+  "IsRegenerate": false,
+  "MenuPosition": "main",
+  "RelativeNamespace": "EccpBaseElevators",
+  "EntityName": "EccpBaseElevator",
+  "EntityNamePlural": "EccpBaseElevators",
+  "TableName": "EccpBaseElevators",
+  "PrimaryKeyType": "Guid",
+  "BaseClass": "FullAuditedEntity",
+  "AutoMigration": true,
+  "UpdateDatabase": true,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": true,
+  "PagePermission": {
+    "Host": true,
+    "Tenant": true
+  },
+  "Properties": [
+    {
+      "Name": "Name",
+      "Type": "string",
+      "MaxLength": 20,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "CertificateNum",
+      "Type": "string",
+      "MaxLength": 50,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "MachineNum",
+      "Type": "string",
+      "MaxLength": 50,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "InstallationAddress",
+      "Type": "string",
+      "MaxLength": 255,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "InstallationDatetime",
+      "Type": "DateTime",
+      "MaxLength": 0,
+      "MinLength": 0,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": true,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Longitude",
+      "Type": "string",
+      "MaxLength": 64,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Latitude",
+      "Type": "string",
+      "MaxLength": 64,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    }
+  ],
+  "NavigationProperties": [
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpDict",
+      "ForeignEntityName": "EccpDictPlaceType",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "EccpDictPlaceTypeId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpDictElevatorTypes",
+      "ForeignEntityName": "EccpDictElevatorType",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "EccpDictElevatorTypeId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPDict",
+      "ForeignEntityName": "ECCPDictElevatorStatus",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "ECCPDictElevatorStatusId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseCommunities",
+      "ForeignEntityName": "ECCPBaseCommunity",
+      "IdType": "long",
+      "IsNullable": true,
+      "PropertyName": "ECCPBaseCommunityId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseMaintenanceCompanies",
+      "ForeignEntityName": "ECCPBaseMaintenanceCompany",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "ECCPBaseMaintenanceCompanyId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAnnualInspectionUnits",
+      "ForeignEntityName": "ECCPBaseAnnualInspectionUnit",
+      "IdType": "long",
+      "IsNullable": true,
+      "PropertyName": "ECCPBaseAnnualInspectionUnitId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseRegisterCompanies",
+      "ForeignEntityName": "ECCPBaseRegisterCompany",
+      "IdType": "long",
+      "IsNullable": true,
+      "PropertyName": "ECCPBaseRegisterCompanyId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseProductionCompanies",
+      "ForeignEntityName": "ECCPBaseProductionCompany",
+      "IdType": "long",
+      "IsNullable": true,
+      "PropertyName": "ECCPBaseProductionCompanyId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpBaseElevatorBrands",
+      "ForeignEntityName": "EccpBaseElevatorBrand",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "EccpBaseElevatorBrandId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpBaseElevatorModels",
+      "ForeignEntityName": "EccpBaseElevatorModel",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "EccpBaseElevatorModelId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "ProvinceId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "CityId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 2,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "DistrictId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 3,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "StreetId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 4,
+      "RelationType": "single"
+    }
+  ],
+  "EnumDefinitions": []
+}

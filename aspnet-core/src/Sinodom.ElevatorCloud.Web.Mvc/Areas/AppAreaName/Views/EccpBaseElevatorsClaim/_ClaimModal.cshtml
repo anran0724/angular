@@ -1,0 +1,51 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Editions.ECCPEdition
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("ClaimModal"))))
+
+
+<div class="modal-body">
+    <form name="EccpBaseElevatorsClaimForm" role="form" novalidate class="form-validation">
+        @if (Model.ECCPEditionsTypeId == 3)
+        {
+            <!--维保公司-->
+            <div class="form-group m-form__group">
+                <label for="ECCPBaseMaintenanceCompanyName">@L("ECCPBaseMaintenanceCompany")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBaseMaintenanceCompanyName" name="eCCPBaseMaintenanceCompanyName" value="" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBaseMaintenanceCompanyLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBaseMaintenanceCompanyNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <input class="form-control" value="0" type="text" name="eCCPBaseMaintenanceCompanyId" hidden/>
+            </div>
+        }
+        @if (Model.ECCPEditionsTypeId == 2)
+        {
+            <!--物业公司-->
+            <div class="form-group m-form__group">
+                <label for="ECCPBasePropertyCompanyName">@L("ECCPBasePropertyCompany")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBasePropertyCompanyName" name="eCCPBasePropertyCompanyName" value="" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBasePropertyCompanyLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBasePropertyCompanyNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <input class="form-control" value="0" type="text" name="propertyCompanyId" required hidden/>
+            </div>
+        }
+    </form>
+</div>
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

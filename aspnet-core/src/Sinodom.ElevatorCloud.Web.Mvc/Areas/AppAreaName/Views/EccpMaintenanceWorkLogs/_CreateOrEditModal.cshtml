@@ -1,0 +1,42 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceWorks
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkLogs.CreateOrEditEccpMaintenanceWorkLogViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceWorkLog") : L("CreateNewEccpMaintenanceWorkLog")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceWorkLogInformationsTab">
+        <form name="EccpMaintenanceWorkLogInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceWorkLog.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkLog_MaintenanceItemsName">@L("MaintenanceItemsName")</label>
+                <input class="form-control" id="EccpMaintenanceWorkLog_MaintenanceItemsName" value="@Model.EccpMaintenanceWorkLog.MaintenanceItemsName" type="text" name="maintenanceItemsName" maxlength="@EccpMaintenanceWorkLogConsts.MaxMaintenanceItemsNameLength" minlength="@EccpMaintenanceWorkLogConsts.MinMaintenanceItemsNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkLog_Remark">@L("Remark")</label>
+                <input class="form-control" id="EccpMaintenanceWorkLog_Remark" value="@Model.EccpMaintenanceWorkLog.Remark" type="text" name="remark" maxlength="@EccpMaintenanceWorkLogConsts.MaxRemarkLength" minlength="@EccpMaintenanceWorkLogConsts.MinRemarkLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkLog_MaintenanceWorkFlowId">@L("MaintenanceWorkFlowId")</label>
+                <input class="form-control m-input" id="EccpMaintenanceWorkLog_MaintenanceWorkFlowId" value="@Model.EccpMaintenanceWorkLog.MaintenanceWorkFlowId" type="number" name="maintenanceWorkFlowId"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkLog_MaintenanceWorkFlowName">@L("MaintenanceWorkFlowName")</label>
+                <input class="form-control" id="EccpMaintenanceWorkLog_MaintenanceWorkFlowName" value="@Model.EccpMaintenanceWorkLog.MaintenanceWorkFlowName" type="text" name="maintenanceWorkFlowName" required maxlength="@EccpMaintenanceWorkLogConsts.MaxMaintenanceWorkFlowNameLength" minlength="@EccpMaintenanceWorkLogConsts.MinMaintenanceWorkFlowNameLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

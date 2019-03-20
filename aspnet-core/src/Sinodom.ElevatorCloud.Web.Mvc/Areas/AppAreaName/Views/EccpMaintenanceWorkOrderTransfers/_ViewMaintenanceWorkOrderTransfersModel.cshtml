@@ -1,0 +1,57 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.MaintenanceWorkOrderTransfers.MaintenanceWorkOrderTransfersViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("ViewMaintenanceWorkOrderTransfersModel"))))
+
+
+<div class="modal-body">
+    <div id="EccpMaintenanceWorkOrderTransfersInformationsTab">
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("IsApproved") :</h6>
+                <label> @Model.IsApproved</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Title") :</h6>
+                <label> @Model.Title</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Category") :</h6>
+                <label> @Model.Category</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("OrderTypeName") :</h6>
+                <label> @Model.OrderTypeName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("EccpMaintenancePlan")):</h6>
+                <label> @Model.OrderCreationTime</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("ApplicationTransferName")):</h6>
+                <label> @Model.ApplicationTransferName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("ApplicationTransferCreationTime")) :</h6>
+                <label> @Model.ApplicationTransferCreationTime</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("TransferUserName") :</h6>
+                <label> @Model.TransferUserName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+        </div>
+
+
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

@@ -1,0 +1,60 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpElevatorQrCodes.EccpElevatorQrCodeViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <div id="EccpElevatorQrCodeInformationsTab">
+
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("AreaName") :</h6>
+                <label> @Model.EccpElevatorQrCode.AreaName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("ElevatorNum") :</h6>
+                <label> @Model.EccpElevatorQrCode.ElevatorNum</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("ImgPicture") :</h6>
+
+                <label>
+                    <img class="double-border" style="width: 15%" src="@Url.Action("GetProfilePictureById", "EccpElevatorQrCodes", new { id = Model.EccpElevatorQrCode.ImgPicture })">
+                </label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("IsInstall") :</h6>
+                <label> @Model.IsInstallName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("IsGrant") :</h6>
+                <label> @Model.IsGrantName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("InstallDateTime") :</h6>
+                <label> @Model.EccpElevatorQrCode.InstallDateTime</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("GrantDateTime") :</h6>
+                <label> @Model.EccpElevatorQrCode.GrantDateTime</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("EccpBaseElevator")) @L("Name") :</h6>
+                <label> @Model.EccpBaseElevatorName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+        </div>
+
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

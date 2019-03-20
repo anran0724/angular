@@ -1,0 +1,327 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenancePlans.CreateOrEditEccpMaintenancePlanViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenancePlan") : L("GuideCreateNewEccpMaintenancePlan")))
+
+<div class="modal-body">
+    <div id="EccpMaintenancePlanInformationTab">
+        <!--begin: Form Wizard-->
+        <div class="m-wizard m-wizard--5 m-wizard--success" id="m_wizard">
+            <!--begin: Form Wizard Head -->
+            <div class="m-wizard__head m-portlet__padding-x">
+                <div class="row">
+                    <div class="col-xl-10 offset-xl-1">
+                        <!--begin: Form Wizard Nav -->
+                        <div class="m-wizard__nav">
+                            <div class="m-wizard__steps" style="margin-top: auto;">
+                                <div class="m-wizard__step m-wizard__step--current" m-wizard-target="m_wizard_form_step_1">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span class="m-wizard__step-seq">1.</span>
+                                            <span class="m-wizard__step-label">
+                                                @L("EssentialInformation")
+                                            </span>
+                                            <span class="m-wizard__step-icon">
+                                                <i class="la la-check"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_2">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span class="m-wizard__step-seq">2.</span>
+                                            <span class="m-wizard__step-label">
+                                                @L("Staffing")
+                                            </span>
+                                            <span class="m-wizard__step-icon">
+                                                <i class="la la-check"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_3">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span class="m-wizard__step-seq">3.</span>
+                                            <span class="m-wizard__step-label">
+                                                @L("MaintenancePeriod")
+                                            </span>
+                                            <span class="m-wizard__step-icon">
+                                                <i class="la la-check"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                @if (false)
+                                {
+                                    <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_4">
+                                        <div class="m-wizard__step-info">
+                                            <a href="#" class="m-wizard__step-number">
+                                                <span class="m-wizard__step-seq">4.</span>
+                                                <span class="m-wizard__step-label">
+                                                    @L("MaintenancePeriodRules")
+                                                </span>
+                                                <span class="m-wizard__step-icon">
+                                                    <i class="la la-check"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                @if (false)
+                                {
+                                    <div class="m-wizard__step" m-wizard-target="m_wizard_form_step_5">
+                                        <div class="m-wizard__step-info">
+                                            <a href="#" class="m-wizard__step-number">
+                                                <span class="m-wizard__step-seq">5.</span>
+                                                <span class="m-wizard__step-label">
+                                                    @L("TemplateSelection")
+                                                </span>
+                                                <span class="m-wizard__step-icon">
+                                                    <i class="la la-check"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Nav -->
+                    </div>
+                </div>
+            </div>
+            <!--end: Form Wizard Head -->
+            <!--begin: Form Wizard Form-->
+            <div class="m-wizard__form">
+                <!--
+                1) Use m-form--label-align-left class to alight the form input lables to the right
+                2) Use m-form--state class to highlight input control borders on form validation
+                -->
+                <form name="EccpMaintenancePlanInformationsForm" class="m-form m-form--label-align-left m-form--state" id="m_form">
+                    <!--begin: Form Body -->
+                    <div class="m-portlet__body">
+                        <!--begin: Form Wizard Step 1-->
+                        <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                            <div class="row">
+                                <div class="col-xl-10 offset-xl-1">
+                                    <div class="m-form__section m-form__section--first">
+                                        @if (Model.IsEditMode)
+                                        {
+                                            <input type="hidden" name="id" value="@Model.EccpMaintenancePlan.Id" />
+                                            <input type="hidden" name="planGroupGuid" value="@Model.EccpMaintenancePlan.PlanGroupGuid" />
+                                        }
+
+                                        <div class="form-group m-form__group">
+                                            <label for="EccpBaseElevatorName">@L("EccpBaseElevatorOne")</label>
+                                            <div class="input-group">
+                                                <input class="form-control" id="elevatorName" name="elevatorName" value="@Model.EccpBaseElevatorName" type="text" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary blue" id="OpenEccpBaseElevatorLookupTableButton" type="button">
+                                                        <i class="fa fa-search"></i> @L("Pick")
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @if (Model.IsEditMode)
+                                        {
+                                            <input class="form-control" value="@Model.EccpMaintenancePlan.ElevatorId" type="text" name="elevatorId" required hidden />
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" value="" type="text" name="elevatorId" required hidden />
+                                        }
+
+                                        <div class="form-group m-form__group">
+                                            <label for="EccpBaseElevatorNames">@L("EccpBaseElevator")</label>
+                                            <div class="input-group">
+                                                <input class="form-control" id="elevatorNames" name="elevatorNames" value="@Model.ElevatorNames" type="text" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary blue" id="OpenEccpBaseElevatorsLookupTableButton" type="button" disabled="disabled">
+                                                        <i class="fa fa-search"></i> @L("Pick")
+                                                    </button>
+                                                </div>
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorsNameButton">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @if (Model.IsEditMode)
+                                        {
+                                            <input class="form-control" value="@Model.ElevatorIds" type="text" name="elevatorIds" required hidden />
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" value="" type="text" name="elevatorIds" required hidden />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Step 1-->
+                        <!--begin: Form Wizard Step 2-->
+                        <div class="m-wizard__form-step" id="m_wizard_form_step_2">
+                            <div class="row">
+                                <div class="col-xl-10 offset-xl-1">
+                                    <div class="m-form__section m-form__section--first">
+                                        @*<div class="form-group m-form__group">
+                                            <label for="PropertyUserNames">@L("PropertyUserName")</label>
+                                            <div class="input-group">
+                                                <input class="form-control" id="PropertyUserNames" name="propertyUserNames" value="@Model.PropertyUserNames" required="required" type="text" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary blue" id="OpenPropertyUserLookupTableButton" type="button">
+                                                        <i class="fa fa-search"></i> @L("Pick")
+                                                    </button>
+                                                </div>
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-danger" type="button" id="ClearPropertyUserNameButton">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                <label for="PropertyUserNames">@L("PropertyUserName")</label>
+                                                <div class="input-group">
+                                                    <input class="form-control" id="PropertyUserNames" name="propertyUserNames" value="@Model.PropertyUserNames" required="required" type="text" disabled>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-primary blue" id="OpenPropertyUserLookupTableButton" type="button">
+                                                            <i class="fa fa-search"></i> @L("Pick")
+                                                        </button>
+                                                    </div>
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-danger" type="button" id="ClearPropertyUserNameButton">
+                                                            <i class="fa fa-close"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @if (Model.IsEditMode)
+                                            {
+                                                <input class="form-control" value="@Model.PropertyUserIds" type="text" name="propertyUserIds" required hidden />
+                                            }
+                                            else
+                                            {
+                                                <input class="form-control" value="" type="text" name="propertyUserIds" required hidden />
+                                            }*@
+
+                                        <div class="form-group m-form__group">
+                                            <label for="MaintenanceUserNames">@L("MaintenanceUserName")</label>
+                                            <div class="input-group">
+                                                <input class="form-control" id="MaintenanceUserNames" name="maintenanceUserNames" value="@Model.MaintenanceUserNames" type="text" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary blue" id="OpenMaintenanceUserLookupTableButton" type="button">
+                                                        <i class="fa fa-search"></i> @L("Pick")
+                                                    </button>
+                                                </div>
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-danger" type="button" id="ClearMaintenanceUserNameButton">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input class="form-control" value="@Model.MaintenanceUserIds" type="text" name="maintenanceUserIds" required hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Step 2-->
+                        <!--begin: Form Wizard Step 3-->
+                        <div class="m-wizard__form-step" id="m_wizard_form_step_3">
+                            <div class="row">
+                                <div class="col-xl-10 offset-xl-1">
+                                    <div class="m-form__section m-form__section--first">
+                                        <div class="form-group">
+                                            <label for="EccpMaintenancePlan_PollingPeriod">@L("PollingPeriod")</label>
+                                            <input class="form-control m-input" id="EccpMaintenancePlan_PollingPeriod" value="@Model.EccpMaintenancePlan.PollingPeriod" type="number" name="pollingPeriod" required="required" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="EccpMaintenancePlan_RemindHour">@L("RemindHour")</label>
+                                            <input class="form-control m-input" id="EccpMaintenancePlan_RemindHour" value="@Model.EccpMaintenancePlan.RemindHour" type="number" name="remindHour" required="required" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Step 3-->
+                        <!--begin: Form Wizard Step 4-->
+                        <div class="m-wizard__form-step" id="m_wizard_form_step_4">
+                            <div class="row">
+                                <div class="col-xl-10 offset-xl-1">
+                                    <div class="m-form__section m-form__section--first">
+                                        <input class="form-control" value="1" type="text" name="isSkip" required hidden />
+                                        <div class="form-group">
+                                            <label for="QuarterPollingPeriod">@L("QuarterPollingPeriod")</label>
+                                            <input class="form-control m-input" id="QuarterPollingPeriod" value="@(Model.QuarterPollingPeriod > 0 ? Model.QuarterPollingPeriod : 2)" type="number" name="quarterPollingPeriod" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="HalfYearPollingPeriod">@L("HalfYearPollingPeriod")</label>
+                                            <input class="form-control m-input" id="HalfYearPollingPeriod" value="@(Model.HalfYearPollingPeriod > 0 ? Model.HalfYearPollingPeriod : 5)" type="number" name="halfYearPollingPeriod" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="YearPollingPeriod">@L("YearPollingPeriod")</label>
+                                            <input class="form-control m-input" id="YearPollingPeriod" value="@(Model.YearPollingPeriod > 0 ? Model.YearPollingPeriod : 11)" type="number" name="yearPollingPeriod" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Step 4-->
+                        <!--begin: Form Wizard Step 5-->
+                        <div class="m-wizard__form-step" id="m_wizard_form_step_5">
+                            <div class="row">
+                                <div class="col-xl-10 offset-xl-1">
+                                    @foreach (var item in Model.MaintenanceTypes)
+                                    {
+                                        <div class="form-group m-form__group">
+                                            <label for="@item.EccpDictMaintenanceType.Name">@item.EccpDictMaintenanceType.Name</label>
+                                            <div class="input-group">
+                                                <input class="form-control" id="MaintenanceTemplateName_@item.EccpDictMaintenanceType.Id" name="maintenanceTemplateName_@item.EccpDictMaintenanceType.Id" value="@item.MaintenanceTemplateName" type="text" disabled>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary blue" id="OpenMaintenanceTemplateLookupTableButton" data-id="@item.EccpDictMaintenanceType.Id" type="button">
+                                                        <i class="fa fa-search"></i> @L("Pick")
+                                                    </button>
+                                                </div>
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-danger" type="button" id="ClearMaintenanceTemplateNameButton" data-id="@item.EccpDictMaintenanceType.Id">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        if (item.MaintenanceTemplateId > 0)
+                                        {
+                                            <input class="form-control" value="@item.MaintenanceTemplateId" data-val="@item.EccpDictMaintenanceType.Id" type="text" name="maintenanceTemplateId_@item.EccpDictMaintenanceType.Id" required hidden />
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control" value="" type="text" name="maintenanceTemplateId_@item.EccpDictMaintenanceType.Id" required hidden />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Step 5-->
+                    </div>
+                    <!--end: Form Body -->
+                    <!--begin: Form Actions -->
+                    @(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithStep.cshtml"))
+                    <!--end: Form Actions -->
+                </form>
+            </div>
+            <!--end: Form Wizard Form-->
+        </div>
+        <!--end: Form Wizard-->
+    </div>
+</div>

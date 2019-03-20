@@ -1,0 +1,110 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceWorks
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkFlows.CreateOrEditEccpMaintenanceWorkFlowViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceWorkFlow") : L("CreateNewEccpMaintenanceWorkFlow")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceWorkFlowInformationsTab">
+        <form name="EccpMaintenanceWorkFlowInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceWorkFlow.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpMaintenanceTemplateNodeNodeName">@L("EccpMaintenanceTemplateNode")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpMaintenanceTemplateNodeNodeName" name="eccpMaintenanceTemplateNodeNodeName" value="@Model.EccpMaintenanceTemplateNodeNodeName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpMaintenanceTemplateNodeLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpMaintenanceTemplateNodeNodeNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceWorkFlow.MaintenanceTemplateNodeId" type="text" name="maintenanceTemplateNodeId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenanceTemplateNodeId" required hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpMaintenanceWorkTaskName">@L("EccpMaintenanceWork")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpMaintenanceWorkTaskName" name="eccpMaintenanceWorkTaskName" value="@Model.EccpMaintenanceWorkTaskName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpMaintenanceWorkLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpMaintenanceWorkTaskNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceWorkFlow.MaintenanceWorkId" type="text" name="maintenanceWorkId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenanceWorkId" required hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpDictMaintenanceWorkFlowStatusName">@L("EccpDictMaintenanceWorkFlowStatus")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictMaintenanceWorkFlowStatusName" name="eccpDictMaintenanceWorkFlowStatusName" value="@Model.EccpDictMaintenanceWorkFlowStatusName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictMaintenanceWorkFlowStatusLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictMaintenanceWorkFlowStatusNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceWorkFlow.DictMaintenanceWorkFlowStatusId" type="text" name="dictMaintenanceWorkFlowStatusId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="dictMaintenanceWorkFlowStatusId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkFlow_ActionCodeValue">@L("ActionCodeValue")</label>
+                <input class="form-control" id="EccpMaintenanceWorkFlow_ActionCodeValue" value="@Model.EccpMaintenanceWorkFlow.ActionCodeValue" type="text" name="actionCodeValue" maxlength="@EccpMaintenanceWorkFlowConsts.MaxActionCodeValueLength" minlength="@EccpMaintenanceWorkFlowConsts.MinActionCodeValueLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkFlow_Remark">@L("Remark")</label>
+                <input class="form-control" id="EccpMaintenanceWorkFlow_Remark" value="@Model.EccpMaintenanceWorkFlow.Remark" type="text" name="remark" maxlength="@EccpMaintenanceWorkFlowConsts.MaxRemarkLength" minlength="@EccpMaintenanceWorkFlowConsts.MinRemarkLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

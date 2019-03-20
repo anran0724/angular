@@ -1,0 +1,63 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceWorkOrders
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTroubledWorkOrders.CreateOrEditEccpMaintenanceTroubledWorkOrderViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceTroubledWorkOrder") : L("CreateNewEccpMaintenanceTroubledWorkOrder")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceTroubledWorkOrderInformationsTab">
+        <form name="EccpMaintenanceTroubledWorkOrderInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceTroubledWorkOrder.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpMaintenanceWorkOrderRemark">@L("EccpMaintenanceWorkOrder")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpMaintenanceWorkOrderRemark" name="eccpMaintenanceWorkOrderRemark" value="@Model.EccpMaintenanceWorkOrderRemark" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpMaintenanceWorkOrderLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpMaintenanceWorkOrderRemarkButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTroubledWorkOrder.MaintenanceWorkOrderId" type="text" name="maintenanceWorkOrderId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenanceWorkOrderId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTroubledWorkOrder_WorkOrderStatusName">@L("WorkOrderStatusName")</label>
+                <input class="form-control" id="EccpMaintenanceTroubledWorkOrder_WorkOrderStatusName" value="@Model.EccpMaintenanceTroubledWorkOrder.WorkOrderStatusName" type="text" name="workOrderStatusName" maxlength="@EccpMaintenanceTroubledWorkOrderConsts.MaxWorkOrderStatusNameLength" minlength="@EccpMaintenanceTroubledWorkOrderConsts.MinWorkOrderStatusNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTroubledWorkOrder_TroubledDesc">@L("TroubledDesc")</label>
+                <input class="form-control" id="EccpMaintenanceTroubledWorkOrder_TroubledDesc" value="@Model.EccpMaintenanceTroubledWorkOrder.TroubledDesc" type="text" name="troubledDesc" maxlength="@EccpMaintenanceTroubledWorkOrderConsts.MaxTroubledDescLength" minlength="@EccpMaintenanceTroubledWorkOrderConsts.MinTroubledDescLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTroubledWorkOrder_IsAudit">@L("IsAudit")</label>
+                <input class="form-control m-input" id="EccpMaintenanceTroubledWorkOrder_IsAudit" value="@Model.EccpMaintenanceTroubledWorkOrder.IsAudit" type="number" name="isAudit"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

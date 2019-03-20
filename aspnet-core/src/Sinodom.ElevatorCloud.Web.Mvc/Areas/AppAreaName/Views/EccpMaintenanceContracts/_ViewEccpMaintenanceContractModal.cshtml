@@ -1,0 +1,65 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceContracts.EccpMaintenanceContractViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+<div class="modal-body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+        <li class="nav-item m-tabs__item">
+            <a href="#EccpMaintenanceContractInformationsTab" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#EccpMaintenanceContractSubsidiaryInfoTab" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorSubsidiaryInfo")
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="EccpMaintenanceContractInformationsTab" class="tab-pane active" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("StartDate") :</h6>
+                    <label> @Model.EccpMaintenanceContract.StartDate</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EndDate") :</h6>
+                    <label> @Model.EccpMaintenanceContract.EndDate</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("ContractPicture") :</h6>
+                    <label><img id="ContractPictureIdResize" style="width: 100%;" class="img-responsive" src="/Profile/GetProfilePictureById?id=@Model.EccpMaintenanceContract.ContractPictureId" /> </label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("ContractPictureDesc") :</h6>
+                    <label> @Model.EccpMaintenanceContract.ContractPictureDesc</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+            </div>
+        </div>
+        <div class="tab-pane" id="EccpMaintenanceContractSubsidiaryInfoTab" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EccpElevatorName") :</h6>
+                    <label id="EccpElevatorName"> @Model.GetEccpMaintenanceContractForEdit.EccpBaseElevatorsNames</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBaseMaintenanceCompany")) @L("Name") :</h6>
+                    <label> @Model.ECCPBaseMaintenanceCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBasePropertyCompany")) @L("Name") :</h6>
+                    <label> @Model.ECCPBasePropertyCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

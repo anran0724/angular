@@ -1,0 +1,128 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceWorkOrders
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkOrders.CreateOrEditEccpMaintenanceWorkOrderViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceWorkOrder") : L("CreateNewEccpMaintenanceWorkOrder")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceWorkOrderInformationsTab">
+        <form name="EccpMaintenanceWorkOrderInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceWorkOrder.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpMaintenancePlanPollingPeriod">@L("EccpMaintenancePlan")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpMaintenancePlanPollingPeriod" name="eccpMaintenancePlanPollingPeriod" value="@Model.EccpMaintenancePlanPollingPeriod" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpMaintenancePlanLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpMaintenancePlanPollingPeriodButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceWorkOrder.MaintenancePlanId" type="text" name="maintenancePlanId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenancePlanId" required hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpDictMaintenanceTypeName">@L("EccpDictMaintenanceType")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictMaintenanceTypeName" name="eccpDictMaintenanceTypeName" value="@Model.EccpDictMaintenanceTypeName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictMaintenanceTypeLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictMaintenanceTypeNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceWorkOrder.MaintenanceTypeId" type="text" name="maintenanceTypeId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenanceTypeId" required hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpDictMaintenanceStatusName">@L("EccpDictMaintenanceStatus")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictMaintenanceStatusName" name="eccpDictMaintenanceStatusName" value="@Model.EccpDictMaintenanceStatusName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictMaintenanceStatusLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictMaintenanceStatusNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceWorkOrder.MaintenanceStatusId" type="text" name="maintenanceStatusId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenanceStatusId" required hidden/>
+            }
+
+
+            <div class="m-checkbox-list">
+                <label for="EccpMaintenanceWorkOrder_IsPassed" class="m-checkbox">
+                    <input id="EccpMaintenanceWorkOrder_IsPassed" type="checkbox" name="isPassed" value="true" @Html.Raw(Model.EccpMaintenanceWorkOrder.IsPassed ? "checked=\"checked\"" : string.Empty)/>
+                    @L("IsPassed")
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkOrder_Remark">@L("Remark")</label>
+                <input class="form-control" id="EccpMaintenanceWorkOrder_Remark" value="@Model.EccpMaintenanceWorkOrder.Remark" type="text" name="remark" maxlength="@EccpMaintenanceWorkOrderConsts.MaxRemarkLength" minlength="@EccpMaintenanceWorkOrderConsts.MinRemarkLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkOrder_Longitude">@L("Longitude")</label>
+                <input class="form-control m-input" id="EccpMaintenanceWorkOrder_Longitude" value="@Model.EccpMaintenanceWorkOrder.Longitude" type="number" name="longitude"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkOrder_Latitude">@L("Latitude")</label>
+                <input class="form-control m-input" id="EccpMaintenanceWorkOrder_Latitude" value="@Model.EccpMaintenanceWorkOrder.Latitude" type="number" name="latitude"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceWorkOrder_PlanCheckDate">@L("PlanCheckDate")</label>
+                <input class="form-control m-input date-picker" id="EccpMaintenanceWorkOrder_PlanCheckDate" type="text" name="planCheckDate" value="@Model.EccpMaintenanceWorkOrder.PlanCheckDate"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

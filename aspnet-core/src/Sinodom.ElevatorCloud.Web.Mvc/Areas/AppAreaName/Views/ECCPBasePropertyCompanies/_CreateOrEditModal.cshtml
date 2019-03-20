@@ -1,0 +1,230 @@
+@using Sinodom.ElevatorCloud.ECCPBasePropertyCompanies
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.MultiTenancy
+@using Sinodom.ElevatorCloud
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ECCPBasePropertyCompanies.CreateOrEditECCPBasePropertyCompanyViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditECCPBasePropertyCompany") : L("CreateNewECCPBasePropertyCompany")))
+
+<div class="modal-body">
+    <div id="ECCPBasePropertyCompanyInformationsTab">
+        <form name="ECCPBasePropertyCompanyInformationsForm" role="form" novalidate class="m-login__form m-form register-form">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBasePropertyCompany.Id" />
+            }
+            <input type="hidden" name="BusinessLicenseIdFileToken" value="BusinessLicenseId" />
+            <input type="hidden" name="AptitudePhotoIdFileToken" value="AptitudePhotoId" />
+
+            <div class="form-group m-form__group">
+                <label for="ProvinceName">@L("Province")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ProvinceName" name="provinceName" value="@Model.ProvinceName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenProvinceNameLookupTableButton" type="button" data-child="OpenCityNameLookupTableButton">
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearProvinceNameButton" data-child="OpenCityNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBasePropertyCompany.ProvinceId" type="text" name="provinceId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="provinceId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="CityName">@L("City")</label>
+                <div class="input-group">
+                    <input class="form-control" id="CityName" name="cityName" value="@Model.CityName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenCityNameLookupTableButton" type="button"
+                                data-child="OpenDistrictNameLookupTableButton" @(Model.IsEditMode && Model.EccpBasePropertyCompany.ProvinceId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearCityNameButton" data-child="OpenDistrictNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBasePropertyCompany.CityId" type="text" name="cityId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="cityId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="DistrictName">@L("Area")</label>
+                <div class="input-group">
+                    <input class="form-control" id="DistrictName" name="districtName" value="@Model.DistrictName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenDistrictNameLookupTableButton" type="button" data-child="OpenStreetNameLookupTableButton" @(Model.IsEditMode && Model.EccpBasePropertyCompany.CityId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearDistrictNameButton" data-child="OpenStreetNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBasePropertyCompany.DistrictId" type="text" name="districtId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="districtId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="StreetName">@L("Street")</label>
+                <div class="input-group">
+                    <input class="form-control" id="StreetName" name="streetName" value="@Model.StreetName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenStreetNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBasePropertyCompany.DistrictId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearStreetNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBasePropertyCompany.StreetId" type="text" name="streetId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="streetId" hidden />
+            }
+            <div class="form-group">
+                <label for="ECCPBasePropertyCompany_Name">@L("Name")</label>
+                <input class="form-control" id="ECCPBasePropertyCompany_Name" value="@Model.EccpBasePropertyCompany.Name" type="text" name="name" required maxlength="@ECCPBasePropertyCompanyConsts.MaxNameLength" minlength="@ECCPBasePropertyCompanyConsts.MinNameLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBasePropertyCompany_Addresse">@L("Addresse")</label>
+                <input class="form-control" id="ECCPBasePropertyCompany_Addresse" value="@Model.EccpBasePropertyCompany.Addresse" type="text" name="addresse" required maxlength="@ECCPBasePropertyCompanyConsts.MaxAddresseLength" minlength="@ECCPBasePropertyCompanyConsts.MinAddresseLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBasePropertyCompany_Longitude">@L("Longitude")</label>
+                <input class="form-control" id="ECCPBasePropertyCompany_Longitude" value="@Model.EccpBasePropertyCompany.Longitude" type="text" name="longitude" required maxlength="@ECCPBasePropertyCompanyConsts.MaxLongitudeLength" minlength="@ECCPBasePropertyCompanyConsts.MinLongitudeLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBasePropertyCompany_Latitude">@L("Latitude")</label>
+                <input class="form-control" id="ECCPBasePropertyCompany_Latitude" value="@Model.EccpBasePropertyCompany.Latitude" type="text" name="latitude" required maxlength="@ECCPBasePropertyCompanyConsts.MaxLatitudeLength" minlength="@ECCPBasePropertyCompanyConsts.MinLatitudeLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBasePropertyCompany_Telephone">@L("Telephone")</label>
+                <input class="form-control" id="ECCPBasePropertyCompany_Telephone" value="@Model.EccpBasePropertyCompany.Telephone" type="text" name="telephone" required maxlength="@ECCPBasePropertyCompanyConsts.MaxTelephoneLength" minlength="@ECCPBasePropertyCompanyConsts.MinTelephoneLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBasePropertyCompany_Summary">@L("Summary")</label>
+                <input class="form-control" id="ECCPBasePropertyCompany_Summary" value="@Model.EccpBasePropertyCompany.Summary" type="text" name="summary" />
+            </div>
+            <div class="form-group">
+                <label for="ECCPBasePropertyCompany_OrgOrganizationalCode">@L("OrgOrganizationalCode")</label>
+                <input class="form-control" id="ECCPBasePropertyCompany_OrgOrganizationalCode" value="@Model.EccpBasePropertyCompany.OrgOrganizationalCode" type="text" name="orgOrganizationalCode" required />
+            </div>
+
+            @if (!Model.IsEditMode)
+            {
+                <h5 class="m-login__title">
+                    @L("TenantInformations")
+                </h5>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="text" placeholder="@L("TenancyName")" name="TenancyName" required maxlength="@Tenant.MaxTenancyNameLength" />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="text" placeholder="@L("LegalPerson")" name="LegalPerson" required maxlength="10" />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="text" placeholder="@L("Mobile")" name="Mobile" required maxlength="11" />
+                </div>
+
+                <h5 class="m-login__title m--margin-top-20">
+                    @L("AccountSettings")
+                </h5>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="email" placeholder="@L("AdminEmailAddress")" name="AdminEmailAddress" required maxlength="@Sinodom.ElevatorCloud.Authorization.Users.User.MaxEmailAddressLength" />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="password" autocomplete="off" id="AdminPassword" placeholder="@L("AdminPassword")" name="AdminPassword" required />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="password" autocomplete="off" placeholder="@L("AdminPasswordRepeat")" name="AdminPasswordRepeat" required />
+                </div>
+            }
+
+        </form>
+
+        <form id="businessLicenseForm" method="post" action="@(ApplicationPath + "Profile/UploadProfilePicture")">
+            <h5 class="m-login__title m--margin-top-20">
+                @L("CompanyPicture")
+            </h5>
+            <div class="form-group m-form__group">
+                <label class="col-form-label" for="EccpMaintenanceCompanyExtensions_BusinessLicenseId">@L("BusinessLicenseId")</label>
+                <input type="file" name="BusinessLicenseId" />
+                <span class="help-block m-b-none">@L("BusinessLicenseId_Change_Info", AppConsts.MaxProfilPictureBytesUserFriendlyValue)</span>
+            </div>
+            <img id="BusinessLicenseIdResize" class="img-responsive" style="width: 100%" src="/Profile/GetProfilePictureById?id=@Model.BusinessLicenseId" />
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.BusinessLicenseId" type="text" name="_BusinessLicenseId" required hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="_BusinessLicenseId" required hidden />
+            }
+        </form>
+        <form id="aptitudePhotoForm" method="post" action="@(ApplicationPath + "Profile/UploadProfilePicture")">
+            <div class="form-group m-form__group">
+                <label class="col-form-label" for="EccpMaintenanceCompanyExtensions_AptitudePhotoId">@L("AptitudePhotoId")</label>
+                <input type="file" name="AptitudePhotoId" />
+                <span class="help-block m-b-none">@L("AptitudePhotoId_Change_Info", AppConsts.MaxProfilPictureBytesUserFriendlyValue)</span>
+            </div>
+            <img id="AptitudePhotoIdResize" class="img-responsive" style="width: 100%" src="/Profile/GetProfilePictureById?id=@Model.AptitudePhotoId" />
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.AptitudePhotoId" type="text" name="_AptitudePhotoId" required hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="_AptitudePhotoId" required hidden />
+            }
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

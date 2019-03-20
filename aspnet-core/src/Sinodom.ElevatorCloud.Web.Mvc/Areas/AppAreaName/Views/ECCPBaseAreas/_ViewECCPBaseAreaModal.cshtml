@@ -1,0 +1,37 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ECCPBaseAreas.ECCPBaseAreaViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <div id="ECCPBaseAreaInformationsTab">
+
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("ParentId") :</h6>
+                <label> @Model.ECCPBaseArea.ParentId</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Code") :</h6>
+                <label> @Model.ECCPBaseArea.Code</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Name") :</h6>
+                <label> @Model.ECCPBaseArea.Name</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Level") :</h6>
+                <label> @Model.ECCPBaseArea.Level</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

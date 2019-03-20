@@ -1,0 +1,49 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTemplates.EccpMaintenanceTemplateViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+
+    <div id="NodeInfoTab">
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("TempName") :</h6>
+                <label> @Model.EccpMaintenanceTemplate.TempName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("TempAllow") :</h6>
+                <label> @Model.EccpMaintenanceTemplate.TempAllow</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("TempDeny") :</h6>
+                <label> @Model.EccpMaintenanceTemplate.TempDeny</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("TempNodeCount") :</h6>
+                <label> @Model.EccpMaintenanceTemplate.TempNodeCount</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("EccpDictMaintenanceType")) @L("Name") :</h6>
+                <label> @Model.EccpDictMaintenanceTypeName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("EccpDictElevatorType")) @L("Name") :</h6>
+                <label> @Model.EccpDictElevatorTypeName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

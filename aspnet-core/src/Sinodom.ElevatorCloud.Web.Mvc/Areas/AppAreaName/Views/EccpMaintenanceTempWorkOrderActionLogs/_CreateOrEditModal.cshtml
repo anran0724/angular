@@ -1,0 +1,84 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceTempWorkOrderActionLogs
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTempWorkOrderActionLogs.CreateOrEditEccpMaintenanceTempWorkOrderActionLogViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceTempWorkOrderActionLog") : L("CreateNewEccpMaintenanceTempWorkOrderActionLog")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceTempWorkOrderActionLogInformationsTab">
+        <form name="EccpMaintenanceTempWorkOrderActionLogInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceTempWorkOrderActionLog.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpMaintenanceTempWorkOrderTitle">@L("EccpMaintenanceTempWorkOrder")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpMaintenanceTempWorkOrderTitle" name="eccpMaintenanceTempWorkOrderTitle" value="@Model.EccpMaintenanceTempWorkOrderTitle" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpMaintenanceTempWorkOrderLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpMaintenanceTempWorkOrderTitleButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTempWorkOrderActionLog.TempWorkOrderId" type="text" name="tempWorkOrderId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="tempWorkOrderId" required hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="UserName">@L("User")</label>
+                <div class="input-group">
+                    <input class="form-control" id="UserName" name="userName" value="@Model.UserName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenUserLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearUserNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTempWorkOrderActionLog.UserId" type="text" name="userId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="userId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTempWorkOrderActionLog_Remarks">@L("Remarks")</label>
+                <input class="form-control" id="EccpMaintenanceTempWorkOrderActionLog_Remarks" value="@Model.EccpMaintenanceTempWorkOrderActionLog.Remarks" type="text" name="remarks" maxlength="@EccpMaintenanceTempWorkOrderActionLogConsts.MaxRemarksLength" minlength="@EccpMaintenanceTempWorkOrderActionLogConsts.MinRemarksLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTempWorkOrderActionLog_CheckState">@L("CheckState")</label>
+                <input class="form-control m-input" id="EccpMaintenanceTempWorkOrderActionLog_CheckState" value="@Model.EccpMaintenanceTempWorkOrderActionLog.CheckState" type="number" name="checkState"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

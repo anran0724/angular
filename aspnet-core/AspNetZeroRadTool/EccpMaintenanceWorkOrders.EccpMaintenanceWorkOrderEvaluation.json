@@ -1,0 +1,72 @@
+{
+  "IsRegenerate": false,
+  "MenuPosition": "admin",
+  "RelativeNamespace": "EccpMaintenanceWorkOrders",
+  "EntityName": "EccpMaintenanceWorkOrderEvaluation",
+  "EntityNamePlural": "EccpMaintenanceWorkOrderEvaluations",
+  "TableName": "EccpMaintenanceWorkOrderEvaluations",
+  "PrimaryKeyType": "int",
+  "BaseClass": "FullAuditedEntity",
+  "AutoMigration": true,
+  "UpdateDatabase": true,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": false,
+  "PagePermission": {
+    "Host": true,
+    "Tenant": false
+  },
+  "Properties": [
+    {
+      "Name": "Rank",
+      "Type": "int",
+      "MaxLength": 0,
+      "MinLength": 0,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Remarks",
+      "Type": "string",
+      "MaxLength": 500,
+      "MinLength": 0,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    }
+  ],
+  "NavigationProperties": [
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpMaintenanceWorkOrders",
+      "ForeignEntityName": "EccpMaintenanceWorkOrder",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "WorkOrderId",
+      "DisplayPropertyName": "Remark",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    }
+  ],
+  "EnumDefinitions": []
+}

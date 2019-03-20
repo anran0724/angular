@@ -1,0 +1,527 @@
+@using Sinodom.ElevatorCloud.EccpBaseElevators
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseElevators.CreateOrEditEccpBaseElevatorViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpBaseElevator") : L("CreateNewEccpBaseElevator")))
+
+<style type="text/css">
+    .BMap_cpyCtrl {
+        display: none;
+    }
+</style>
+
+<div class="modal-body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab1" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo1")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab2" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo2")
+            </a>
+        </li>
+
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab3" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo3")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab4" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo4")
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div id="ElevatorInformationsTab1" class="tab-pane active" role="tabpanel">
+            <form name="ElevatorInformationsForm1" role="form" novalidate class="form-validation">
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.EccpBaseElevator.Id" />
+                }
+
+
+                <!--物业公司-->
+                @if (ViewBag.type != 3)
+                {
+                    <div class="form-group m-form__group">
+                        <label for="ECCPBasePropertyCompanyName">@L("ECCPBasePropertyCompany")</label>
+                        <div class="input-group">
+                            <input class="form-control" id="ECCPBasePropertyCompanyName" name="eCCPBasePropertyCompanyName"  value="@Model.EccpBasePropertyCompanyName" type="text" disabled>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" id="OpenECCPBasePropertyCompanyLookupTableButton" type="button">
+                                    <i class="fa fa-search"></i> @L("Pick")
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" id="ClearECCPBasePropertyCompanyNameButton">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ECCPBasePropertyCompanyId" type="text" name="eCCPBasePropertyCompanyId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eCCPBasePropertyCompanyId" hidden />
+                }
+                @if (ViewBag.type != 2)
+                {
+                    <!--维保公司-->
+                    <div class="form-group m-form__group">
+                        <label for="ECCPBaseMaintenanceCompanyName">@L("ECCPBaseMaintenanceCompany")</label>
+                        <div class="input-group">
+                            <input class="form-control" id="ECCPBaseMaintenanceCompanyName" name="eCCPBaseMaintenanceCompanyName" value="@Model.EccpBaseMaintenanceCompanyName" type="text" disabled>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" id="OpenECCPBaseMaintenanceCompanyLookupTableButton" type="button">
+                                    <i class="fa fa-search"></i> @L("Pick")
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger" type="button" id="ClearECCPBaseMaintenanceCompanyNameButton">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ECCPBaseMaintenanceCompanyId" type="text" name="eCCPBaseMaintenanceCompanyId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eCCPBaseMaintenanceCompanyId" hidden />
+                }
+
+                <!--省-->
+                <div class="form-group m-form__group">
+                    <label for="ProvinceName">@L("Province")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="ProvinceName" name="provinceName" value="@Model.ProvinceName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenProvinceNameLookupTableButton" type="button" data-child="OpenCityNameLookupTableButton">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearProvinceNameButton" data-child="OpenCityNameLookupTableButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ProvinceId" type="text" name="provinceId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="provinceId" hidden />
+                }
+
+                <!--市-->
+                <div class="form-group m-form__group">
+                    <label for="CityName">@L("City")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="CityName" name="cityName" value="@Model.CityName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenCityNameLookupTableButton" type="button" data-child="OpenDistrictNameLookupTableButton" @(Model.IsEditMode && Model.EccpBaseElevator.ProvinceId.HasValue ? string.Empty : "disabled")>
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearCityNameButton" data-child="OpenDistrictNameLookupTableButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.CityId" type="text" name="cityId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="cityId" hidden />
+                }
+
+                <!--区-->
+                <div class="form-group m-form__group">
+                    <label for="DistrictName">@L("Area")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="DistrictName" name="districtName" value="@Model.DistrictName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenDistrictNameLookupTableButton" type="button" data-child="OpenECCPBaseCommunityLookupTableButton" @(Model.IsEditMode && Model.EccpBaseElevator.CityId.HasValue ? string.Empty : "disabled")>
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearDistrictNameButton" data-child="OpenECCPBaseCommunityLookupTableButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.DistrictId" type="text" name="districtId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="districtId" hidden />
+                }
+                <!--街道-->
+                @*<div class="form-group m-form__group">
+                    <label for="StreetName">@L("Street")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="StreetName" name="streetName" value="@Model.StreetName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenStreetNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseElevator.DistrictId.HasValue ? string.Empty : "disabled") data-child="OpenECCPBaseCommunityLookupTableButton">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearStreetNameButton" data-child="OpenECCPBaseCommunityLookupTableButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.StreetId" type="text" name="streetId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="streetId" hidden />
+                }*@
+                <!--园区-->
+                <div class="form-group m-form__group">
+                    <label for="ECCPBaseCommunityName">@L("ECCPBaseCommunity")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="ECCPBaseCommunityName" name="eCCPBaseCommunityName" value="@Model.EccpBaseCommunityName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenECCPBaseCommunityLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseElevator.DistrictId.HasValue ? string.Empty : "disabled")>
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearECCPBaseCommunityNameButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ECCPBaseCommunityId" type="text" name="eCCPBaseCommunityId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eCCPBaseCommunityId" hidden />
+                }
+
+                <div class="form-group">
+                    <label for="EccpBaseElevator_CertificateNum">@L("CertificateNum")</label>
+                    <input class="form-control" id="EccpBaseElevator_CertificateNum" value="@Model.EccpBaseElevator.CertificateNum"  type="text" name="certificateNum" required maxlength="@EccpBaseElevatorConsts.MaxCertificateNumLength" minlength="@EccpBaseElevatorConsts.MinCertificateNumLength" />
+                </div>
+
+            </form>
+        </div>
+
+        <div class="tab-pane" id="ElevatorInformationsTab2" role="tabpanel">
+            <form name="ElevatorInformationsForm2" role="form" novalidate class="form-validation">
+                <div class="form-group">
+                    <label for="EccpBaseElevator_InstallationAddress">@L("InstallationAddress")</label>
+                    <input class="form-control" id="EccpBaseElevator_InstallationAddress" value="@Model.EccpBaseElevator.InstallationAddress" type="text" name="installationAddress" maxlength="@EccpBaseElevatorConsts.MaxInstallationAddressLength" minlength="@EccpBaseElevatorConsts.MinInstallationAddressLength" />
+                </div>
+                <div class="form-group">
+                    <label for="EccpBaseElevator_Longitude">@L("Longitude")</label>
+                    <input class="form-control" id="EccpBaseElevator_Longitude" value="@Model.EccpBaseElevator.Longitude" type="text" name="longitude" required maxlength="@EccpBaseElevatorConsts.MaxLongitudeLength" minlength="@EccpBaseElevatorConsts.MinLongitudeLength" />
+                </div>
+                <div class="form-group">
+                    <label for="EccpBaseElevator_Latitude">@L("Latitude")</label>
+                    <input class="form-control" id="EccpBaseElevator_Latitude" value="@Model.EccpBaseElevator.Latitude" type="text" name="latitude" required maxlength="@EccpBaseElevatorConsts.MaxLatitudeLength" minlength="@EccpBaseElevatorConsts.MinLatitudeLength" />
+                </div>
+
+                <div id="baiduMap" style="height:430px;"></div>
+            </form>
+        </div>
+
+        <div class="tab-pane" id="ElevatorInformationsTab3" role="tabpanel">
+            <form name="ElevatorInformationsForm3" role="form" novalidate class="form-validation">
+                <!--年检单位-->
+                <div class="form-group m-form__group">
+                    <label for="ECCPBaseAnnualInspectionUnitName">@L("ECCPBaseAnnualInspectionUnit")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="ECCPBaseAnnualInspectionUnitName" name="eCCPBaseAnnualInspectionUnitName" value="@Model.EccpBaseAnnualInspectionUnitName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenECCPBaseAnnualInspectionUnitLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearECCPBaseAnnualInspectionUnitNameButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ECCPBaseAnnualInspectionUnitId" type="text" name="eCCPBaseAnnualInspectionUnitId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eCCPBaseAnnualInspectionUnitId" hidden />
+                }
+
+                <!--注册单位-->
+                <div class="form-group m-form__group">
+                    <label for="ECCPBaseRegisterCompanyName">@L("ECCPBaseRegisterCompany")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="ECCPBaseRegisterCompanyName" name="eCCPBaseRegisterCompanyName" value="@Model.EccpBaseRegisterCompanyName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenECCPBaseRegisterCompanyLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearECCPBaseRegisterCompanyNameButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ECCPBaseRegisterCompanyId" type="text" name="eCCPBaseRegisterCompanyId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eCCPBaseRegisterCompanyId" hidden />
+                }
+
+                <!--生产企业-->
+                <div class="form-group m-form__group">
+                    <label for="ECCPBaseProductionCompanyName">@L("ECCPBaseProductionCompany")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="ECCPBaseProductionCompanyName" name="eCCPBaseProductionCompanyName" value="@Model.EccpBaseProductionCompanyName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenECCPBaseProductionCompanyLookupTableButton" type="button" data-child="OpenEccpBaseElevatorBrandLookupTableButton">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearECCPBaseProductionCompanyNameButton" data-child="OpenEccpBaseElevatorBrandLookupTableButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ECCPBaseProductionCompanyId" type="text" name="eCCPBaseProductionCompanyId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eCCPBaseProductionCompanyId" hidden />
+                }
+
+                <!--使用场所-->
+                <div class="form-group m-form__group">
+                    <label for="EccpDictPlaceTypeName">@L("EccpDictPlaceType")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="EccpDictPlaceTypeName" name="eccpDictPlaceTypeName" value="@Model.EccpDictPlaceTypeName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenEccpDictPlaceTypeLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearEccpDictPlaceTypeNameButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.EccpDictPlaceTypeId" type="text" name="eccpDictPlaceTypeId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eccpDictPlaceTypeId" hidden />
+                }
+
+                <!--电梯类型-->
+                <div class="form-group m-form__group">
+                    <label for="EccpDictElevatorTypeName">@L("EccpDictElevatorType")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="EccpDictElevatorTypeName" name="eccpDictElevatorTypeName" value="@Model.EccpDictElevatorTypeName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenEccpDictElevatorTypeLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearEccpDictElevatorTypeNameButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.EccpDictElevatorTypeId" type="text" name="eccpDictElevatorTypeId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eccpDictElevatorTypeId" hidden />
+                }
+
+                <!--电梯状态-->
+                <div class="form-group m-form__group">
+                    <label for="ECCPDictElevatorStatusName">@L("ECCPDictElevatorStatus")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="ECCPDictElevatorStatusName" name="eCCPDictElevatorStatusName" value="@Model.EccpDictElevatorStatusName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenECCPDictElevatorStatusLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearECCPDictElevatorStatusNameButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.ECCPDictElevatorStatusId" type="text" name="eCCPDictElevatorStatusId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eCCPDictElevatorStatusId" hidden />
+                }
+
+                <!--生产品牌-->
+                <div class="form-group m-form__group">
+                    <label for="EccpBaseElevatorBrandName">@L("EccpBaseElevatorBrand")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="EccpBaseElevatorBrandName" name="eccpBaseElevatorBrandName" value="@Model.EccpBaseElevatorBrandName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenEccpBaseElevatorBrandLookupTableButton" type="button" data-child="OpenEccpBaseElevatorModelLookupTableButton" @(Model.IsEditMode && Model.EccpBaseElevator.ECCPBaseProductionCompanyId.HasValue ? string.Empty : "disabled")>
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorBrandNameButton" data-child="OpenEccpBaseElevatorModelLookupTableButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.EccpBaseElevatorBrandId" type="text" name="eccpBaseElevatorBrandId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eccpBaseElevatorBrandId" hidden />
+                }
+
+                <!--电梯型号-->
+                <div class="form-group m-form__group">
+                    <label for="EccpBaseElevatorModelName">@L("EccpBaseElevatorModel")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="EccpBaseElevatorModelName" name="eccpBaseElevatorModelName" value="@Model.EccpBaseElevatorModelName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenEccpBaseElevatorModelLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseElevator.EccpBaseElevatorBrandId.HasValue ? string.Empty : "disabled")>
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorModelNameButton">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpBaseElevator.EccpBaseElevatorModelId" type="text" name="eccpBaseElevatorModelId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="eccpBaseElevatorModelId" hidden />
+                }
+            </form>
+        </div>
+
+        <div class="tab-pane" id="ElevatorInformationsTab4" role="tabpanel">
+            <form name="ElevatorInformationsForm4" role="form" novalidate class="form-validation">
+                <div class="form-group">
+                    <label for="EccpBaseElevator_Name">@L("Name")</label>
+                    <input class="form-control" id="EccpBaseElevator_Name" value="@Model.EccpBaseElevator.Name" type="text" name="name" maxlength="@EccpBaseElevatorConsts.MaxNameLength" minlength="@EccpBaseElevatorConsts.MinNameLength" />
+                </div>
+                <div class="form-group">
+                    <label for="EccpBaseElevator_InstallationDatetime">@L("InstallationDatetime")</label>
+                    <input class="form-control m-input date-picker" id="EccpBaseElevator_InstallationDatetime" type="text" name="installationDatetime" value="@Model.EccpBaseElevator.InstallationDatetime" />
+                </div>
+                <div class="form-group">
+                    <label for="EccpBaseElevator_MachineNum">@L("MachineNum")</label>
+                    <input class="form-control" id="EccpBaseElevator_MachineNum" value="@Model.EccpBaseElevator.MachineNum" type="text" name="machineNum" maxlength="@EccpBaseElevatorConsts.MaxMachineNumLength" minlength="@EccpBaseElevatorConsts.MinMachineNumLength" />
+                </div>
+                <div class="form-group">
+                    <label for="ElevatorSubsidiaryInfo_CustomNum">@L("CustomNum")</label>
+                    <input class="form-control" id="ElevatorSubsidiaryInfo_CustomNum" type="text" name="CustomNum" required maxlength="50" minlength="1" value="@Model.EccpBaseElevatorSubsidiaryInfo.CustomNum" />
+                </div>
+                <div class="form-group">
+                    <label for="ElevatorSubsidiaryInfo_ManufacturingLicenseNumber">@L("ManufacturingLicenseNumber")</label>
+                    <input class="form-control" id="ElevatorSubsidiaryInfo_ManufacturingLicenseNumber" type="text" name="ManufacturingLicenseNumber" value="@Model.EccpBaseElevatorSubsidiaryInfo.ManufacturingLicenseNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="ElevatorSubsidiaryInfo_FloorNumber">@L("FloorNumber")</label>
+                    <input class="form-control" id="ElevatorSubsidiaryInfo_FloorNumber" type="text" name="FloorNumber" value="@Model.EccpBaseElevatorSubsidiaryInfo.FloorNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="ElevatorSubsidiaryInfo_GateNumber">@L("GateNumber")</label>
+                    <input class="form-control" id="ElevatorSubsidiaryInfo_GateNumber" type="text" name="GateNumber" value="@Model.EccpBaseElevatorSubsidiaryInfo.GateNumber" />
+                </div>
+                <div class="form-group">
+                    <label for="ElevatorSubsidiaryInfo_RatedSpeed">@L("RatedSpeed")</label>
+                    <input class="form-control" id="ElevatorSubsidiaryInfo_RatedSpeed" type="text" name="RatedSpeed" value="@Model.EccpBaseElevatorSubsidiaryInfo.RatedSpeed" />
+                </div>
+                <div class="form-group">
+                    <label for="ElevatorSubsidiaryInfo_Deadweight">@L("Deadweight")</label>
+                    <input class="form-control" id="ElevatorSubsidiaryInfo_Deadweight" type="text" name="Deadweight" value="@Model.EccpBaseElevatorSubsidiaryInfo.Deadweight" />
+                </div>
+            </form>
+            @(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))
+        </div>
+    </div>
+</div>

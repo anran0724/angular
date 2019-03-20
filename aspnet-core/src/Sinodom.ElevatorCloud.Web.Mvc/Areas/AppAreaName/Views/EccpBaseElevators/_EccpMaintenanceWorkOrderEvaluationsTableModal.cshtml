@@ -1,0 +1,35 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkOrderEvaluations.EccpMaintenanceWorkOrderEvaluationsViewModel
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Host.EccpMaintenanceWorkOrderEvaluations;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpBaseElevators/_EccpMaintenanceWorkOrderEvaluationsTableModal.js" asp-append-version="true"></script>
+}
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="row align-items-center">
+                <table id="EccpMaintenanceWorkOrderEvaluationsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>@L("Actions")</th>
+                        <th>@L("EccpDictMaintenanceTypeName")</th>
+                        <th>@L("EccpMaintenanceWorkOrderComplateDate")</th>
+                        <th>@L("Rank")</th>
+                        <th>@L("Remarks")</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

@@ -1,0 +1,79 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpCompanyAudits.EditCompanyAuditViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("AuditEccpCompany"))))
+
+<div class="modal-body">
+    <div id="EccpCompanyAuditsTab">
+        <form name="EccpCompanyInfoInformationsForm" role="form" novalidate class="form-validation">
+
+            <input type="hidden" name="id" value="@Model.Id"/>
+
+            <div class="form-group">
+                <label for="EccpCompanyInfo_Name">@L("Name")</label>
+                <input class="form-control" id="EccpCompanyInfo_Name" value="@Model.EccpCompanyInfo.Name" type="text" name="name" readonly="readonly"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EditionTypeName">@L("EditionTypeName")</label>
+                <input class="form-control" id="EditionTypeName" value="@Model.EditionTypeName" type="text" name="editionTypeName" readonly="readonly"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpCompanyInfo_Addresse">@L("Addresse")</label>
+                <input class="form-control" id="EccpCompanyInfo_Addresse" value="@Model.EccpCompanyInfo.Addresse" type="text" name="addresse" readonly="readonly"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpCompanyInfoExtension_LegalPerson">@L("LegalPerson")</label>
+                <input class="form-control" id="EccpCompanyInfoExtension_LegalPerson" value="@Model.EccpCompanyInfoExtension.LegalPerson" type="text" name="legalPerson" readonly="readonly"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpCompanyInfoExtension_Mobile">@L("Mobile")</label>
+                <input class="form-control" id="EccpCompanyInfoExtension_Mobile" value="@Model.EccpCompanyInfoExtension.Mobile" type="text" name="mobile" readonly="readonly"/>
+            </div>
+
+            <div class="m-checkbox-list">
+                <label class="m-checkbox">
+                    <input id="EccpCompanyInfoExtension_IsMember" type="checkbox" disabled="disabled" name="IsMember" value="true" @Html.Raw(Model.EccpCompanyInfoExtension.IsMember ? "checked=\"checked\"" : string.Empty)>
+                    @L("IsMember")
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpCompanyInfoExtension_BusinessLicenseId">@L("BusinessLicenseId")</label>
+                <img id="EccpCompanyInfoExtension_BusinessLicenseId" src="@Url.Action("GetProfilePictureById", "Profile", new { area = string.Empty, id = Model.EccpCompanyInfoExtension.BusinessLicenseId })" class="img-responsive" width="100%"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpCompanyInfoExtension_AptitudePhotoId">@L("AptitudePhotoId")</label>
+                <img id="EccpCompanyInfoExtension_AptitudePhotoId" src="@Url.Action("GetProfilePictureById", "Profile", new { area = string.Empty, id = Model.EccpCompanyInfoExtension.AptitudePhotoId })" class="img-responsive" width="100%"/>
+            </div>
+
+            <div class="m-form__group form-group">
+                <label for="">@L("CompanyAudit")</label>
+                <div class="m-radio-inline">
+                    <label class="m-radio">
+                        <input type="radio" name="checkState" value="true" required> @L("AdoptAudit")
+                        <span></span>
+                    </label>
+                    <label class="m-radio">
+                        <input type="radio" name="checkState" value="false" required> @L("RefuseAudit")
+                        <span></span>
+                    </label>
+                </div>
+                <span class="m-form__help">@L("CompanyAuditHelp")</span>
+            </div>
+
+            <div class="form-group m-form__group">
+                <label for="remarks">@L("Remarks")</label>
+                <textarea class="form-control m-input" id="remarks" name="remarks" required rows="3"></textarea>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

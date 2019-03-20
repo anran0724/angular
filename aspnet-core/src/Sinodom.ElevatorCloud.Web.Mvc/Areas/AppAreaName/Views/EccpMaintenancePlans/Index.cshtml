@@ -1,0 +1,122 @@
+@using Sinodom.ElevatorCloud.Authorization
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenancePlans.EccpMaintenancePlansViewModel
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Tenant.EccpMaintenancePlans;
+}
+
+@section Scripts
+    {
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpMaintenancePlans/Index.js" asp-append-version="true"></script>
+}
+
+<div class="m-subheader">
+    <div class="row align-items-center">
+        <div class="mr-auto col-sm-12 col-md-6">
+            <h3 class="m-subheader__title m-subheader__title--separator">
+                <span>@L("EccpMaintenancePlans")</span>
+            </h3>
+            <span class="m-section__sub">
+                @L("EccpMaintenancePlansHeaderInfo")
+            </span>
+        </div>
+        <div class="col-sm-12 col-md-6 text-right">
+            @if (IsGranted(AppPermissions.Pages_EccpMaintenance_EccpMaintenancePlans_Create))
+            {
+                <button id="CreateNewEccpMaintenancePlanButton" class="btn btn-primary blue">
+                    <i class="fa fa-plus"></i> @L("CreateNewEccpMaintenancePlan")
+                </button>
+                <button id="GuideCreateNewEccpMaintenancePlanButton" class="btn btn-primary blue">
+                    <i class="fa fa-plus"></i> @L("GuideCreateNewEccpMaintenancePlan")
+                </button>
+            }
+        </div>
+    </div>
+</div>
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="m-form m-form--label-align-right">
+                <div class="row align-items-center m--margin-bottom-10">
+                    <div class="col-xl-12">
+                        <div class="form-group m-form__group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="EccpMaintenancePlansTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetEccpMaintenancePlansButton" class="btn btn-primary" type="submit">
+                                        <i class="flaticon-search-1"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row m--margin-bottom-10">
+                <div class="col-md-12">
+                    <div class="m-separator m-separator--dashed"></div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="MinPollingPeriodFilterId">@L("MinMax") @L("PollingPeriod")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input" placeholder="@L("MinValue")" name="minPollingPeriodFilter" id="MinPollingPeriodFilterId" />
+                            <input type="number" class="form-control m-input" placeholder="@L("MaxValue")" name="maxPollingPeriodFilter" id="MaxPollingPeriodFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="MinRemindHourFilterId">@L("MinMax") @L("RemindHour")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input" placeholder="@L("MinValue")" name="minRemindHourFilter" id="MinRemindHourFilterId" />
+                            <input type="number" class="form-control m-input" placeholder="@L("MaxValue")" name="maxRemindHourFilter" id="MaxRemindHourFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="MinElevatorNumFilterId">@L("MinMax") @L("EccpBaseElevator") @L("Num")</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control m-input" placeholder="@L("MinValue")" name="minElevatorNumFilter" id="MinElevatorNumFilterId" />
+                            <input type="number" class="form-control m-input" placeholder="@L("MaxValue")" name="maxElevatorNumFilter" id="MaxElevatorNumFilterId" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="IsCloseFilterId">@L("IsClose")</label>
+                    <select class="form-control" name="IsCloseFilter" id="IsCloseFilterId">
+                        <option value="-1">@L("All")</option>
+                        <option value="0">@L("No")</option>
+                        <option value="1">@L("Yes")</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row m--margin-bottom-10">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                        <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")
+                    </span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                        <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")
+                    </span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="EccpMaintenancePlansTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th>@L("Actions")</th>
+                            <th>@L("PollingPeriod")</th>
+                            <th>@L("RemindHour")</th>
+                            <th>@L("EccpBaseElevatorNum")</th>
+                            <th>@L("IsClose")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

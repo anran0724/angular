@@ -1,0 +1,211 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkOrders.EccpMaintenanceWorkOrderViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+        <li class="nav-item m-tabs__item">
+            <a href="#EccpMaintenanceWorkOrderInformationsTab" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                @L("WorkOrderInfo")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#EccpMaintenanceElevatorsInfomationsTab" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("WorkOrderElevatorsInfo")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#EccpMaintenanceWorkOrderTimeTab" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("WorkOrderTimeInfo")
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="EccpMaintenanceWorkOrderInformationsTab" class="tab-pane active" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpDictMaintenanceType")) @L("Name") :</h6>
+                    <label> @Model.EccpDictMaintenanceTypeName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpMaintenanceUserNameList")) @L("Name") :</h6>
+                    <label> @(string.Join(",", Model.EccpMaintenanceUserNameList))</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("PlanCheckDate") :</h6>
+                    <label> @Model.EccpMaintenanceWorkOrder.PlanCheckDate</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpMaintenancePlan")) @L("PollingPeriod") :</h6>
+                    <label> @Model.EccpMaintenancePlanPollingPeriod</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpDictMaintenanceStatus")) @L("Name") :</h6>
+                    <label> @Model.EccpDictMaintenanceStatusName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("IsClose") :</h6>
+                    <label> @(Model.EccpMaintenanceWorkOrder.IsClosed ? L("Yes") : L("No"))</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+            </div>
+        </div>
+        <div id="EccpMaintenanceElevatorsInfomationsTab" class="tab-pane" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EccpElevatorName") :</h6>
+                    <label> @Model.EccpElevatorName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("LastMaintenanceTime") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.LastMaintenanceTime</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("LastMaintenanceUserNames") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.LastMaintenanceUserNames</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("CertificateNum") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.CertificateNum</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("MachineNum") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.MachineNum</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("InstallationAddress") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.InstallationAddress</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                @*<div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>@L("Longitude") :</h6>
+                        <label> @Model.EccpBaseElevatorsInfo.Longitude</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>
+                    <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                        <h6>@L("Latitude") :</h6>
+                        <label> @Model.EccpBaseElevatorsInfo.Latitude</label>
+                    </div>
+                    <div class="m-separator m-separator--dashed"></div>*@
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <img src="http://api.map.baidu.com/staticimage/v2?ak=nSRkLovUkrPf8Nxv8ESy0L83&width=900&height=400&center=@Model.EccpBaseElevatorsInfo.Longitude,@Model.EccpBaseElevatorsInfo.Latitude&markers=@Model.EccpBaseElevatorsInfo.Longitude,@Model.EccpBaseElevatorsInfo.Latitude&zoom=15&markerStyles=l,,#f58220" />
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EccpDictPlaceTypeName") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.EccpDictPlaceTypeName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EccpDictElevatorTypeName") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.EccpDictElevatorTypeName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("ECCPBasePropertyCompanyName") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.ECCPBasePropertyCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("ECCPBaseMaintenanceCompanyName") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.ECCPBaseMaintenanceCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("ECCPBaseAnnualInspectionUnitName") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.ECCPBaseAnnualInspectionUnitName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EccpBaseElevatorBrandName") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.EccpBaseElevatorBrandName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EccpBaseElevatorModelName") :</h6>
+                    <label> @Model.EccpBaseElevatorsInfo.EccpBaseElevatorModelName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+            </div>
+        </div>
+        <div id="EccpMaintenanceWorkOrderTimeTab" class="tab-pane" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="tab-pane active" id="m_widget2_tab1_content">
+                    <div class="m-timeline-3">
+                        <div class="m-timeline-3__items">
+                            @{
+                                int i = 1;
+                                string[] styles = { "info", "warning", "brand", "success", "danger" };
+                                foreach (var eccpMaintenanceWorkFlows in Model.EccpMaintenanceWorkFlowsList)
+                                {
+                                    int index = new Random().Next(0, styles.Length);
+                                    <div class="m-timeline-3__item m-timeline-3__item--@styles[index]">
+                                        <span class="m-timeline-3__item-time">
+                                            @if (eccpMaintenanceWorkFlows.MaintenanceLastModificationTime != null)
+                                            {
+                                                @eccpMaintenanceWorkFlows.MaintenanceLastModificationTime.Value.ToShortTimeString()
+                                            }
+                                        </span>
+                                        <div class="m-timeline-3__item-desc">
+                                            <span class="m-timeline-3__item-text">
+                                                @(i++). @eccpMaintenanceWorkFlows.TemplateNodeName @eccpMaintenanceWorkFlows.DictMaintenanceWorkFlowStatusName
+                                            </span><br>
+                                            <span class="m-timeline-3__item-user-name m-list-pics m-list-pics--sm">
+                                                <a>
+                                                    <img src="/Profile/GetProfilePictureById?id=@eccpMaintenanceWorkFlows.ProfilePictureId" title="">
+                                                    @eccpMaintenanceWorkFlows.MaintenanceUserName
+                                                </a>
+                                            </span><br>
+                                            <span class="m-timeline-3__item-text">
+                                                @eccpMaintenanceWorkFlows.NodeDesc
+                                            </span><br>
+                                            <span class="m-timeline-3__item-text">
+                                                @switch (eccpMaintenanceWorkFlows.ActionCode)
+                                                {
+                                                    case "100002":
+                                                        <img style="width: 50%;" src="/Profile/GetProfilePictureById?id=@eccpMaintenanceWorkFlows.ActionCodeValue">
+                                                        break;
+                                                    case "100003":
+                                                        @L("LabelName") @Html.Raw(" : ") @eccpMaintenanceWorkFlows.LabelName<br />
+                                                        @L("InstallationAddress") @Html.Raw(" : ") @eccpMaintenanceWorkFlows.InstallationAddress
+                                                        break;
+                                                    case "100001":
+                                                        if (eccpMaintenanceWorkFlows.JObjActionCodeValue != null)
+                                                        {
+                                                            @L("key") @Html.Raw(" : ") @eccpMaintenanceWorkFlows.JObjActionCodeValue["key"].ToString()<br />
+                                                            @L("UserName") @Html.Raw(" : ") @eccpMaintenanceWorkFlows.JObjActionCodeValue["userName"].ToString()<br />
+                                                            @L("DateTime") @Html.Raw(" : ") @eccpMaintenanceWorkFlows.JObjActionCodeValue["createTime"].ToString()<br />
+                                                            <input type="hidden" id="Longitude1" value="@eccpMaintenanceWorkFlows.JObjActionCodeValue["longitude"].ToString()" />
+                                                            <input type="hidden" id="Latitude1" value="@eccpMaintenanceWorkFlows.JObjActionCodeValue["latitude"].ToString()" />
+                                                            <img src="http://api.map.baidu.com/staticimage/v2?ak=nSRkLovUkrPf8Nxv8ESy0L83&width=800&height=400&center=@eccpMaintenanceWorkFlows.JObjActionCodeValue["longitude"].ToString(),@eccpMaintenanceWorkFlows.JObjActionCodeValue["latitude"].ToString()&markers=@eccpMaintenanceWorkFlows.JObjActionCodeValue["longitude"].ToString(),@eccpMaintenanceWorkFlows.JObjActionCodeValue["latitude"].ToString()&zoom=15&markerStyles=l,,#f58220" /><br />
+                                                            @L("Longitude") @Html.Raw(" : ") @eccpMaintenanceWorkFlows.JObjActionCodeValue["longitude"].ToString()
+                                                            @L("Latitude") @Html.Raw(" : ") @eccpMaintenanceWorkFlows.JObjActionCodeValue["latitude"].ToString()
+                                                        }
+                                                        break;
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

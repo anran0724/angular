@@ -1,0 +1,27 @@
+@using Sinodom.ElevatorCloud.EccpDict
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpDictWorkOrderTypes.CreateOrEditEccpDictWorkOrderTypeViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpDictWorkOrderType") : L("CreateNewEccpDictWorkOrderType")))
+
+<div class="modal-body">
+    <div id="EccpDictWorkOrderTypeInformationsTab">
+        <form name="EccpDictWorkOrderTypeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpDictWorkOrderType.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpDictWorkOrderType_Name">@L("Name")</label>
+                <input class="form-control" id="EccpDictWorkOrderType_Name" value="@Model.EccpDictWorkOrderType.Name" type="text" name="name" required maxlength="@EccpDictWorkOrderTypeConsts.MaxNameLength" minlength="@EccpDictWorkOrderTypeConsts.MinNameLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

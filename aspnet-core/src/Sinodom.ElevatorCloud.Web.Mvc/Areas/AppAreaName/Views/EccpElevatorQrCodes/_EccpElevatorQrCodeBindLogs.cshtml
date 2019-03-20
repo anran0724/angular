@@ -1,0 +1,27 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpElevatorQrCodes.EccpElevatorQrCodeBindLogTableViewModel;
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("BindingQrCodeJournal"))))
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpElevatorQrCodes/_EccpElevatorQrCodeBindLogs.js" asp-append-version="true"></script>
+}
+
+<div class="m-content">
+    <div class="row align-items-center">
+        <table id="EccpElevatorQrCodeBindLogsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+            <thead>
+            <tr>
+
+                <th>@L("NewElevatorId")</th>
+                <th>@L("OldElevatorId")</th>
+                <th>@L("NewQrCodeId")</th>
+                <th>@L("OldQrCodeId")</th>
+                <th>@L("Actions")</th>
+
+
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>

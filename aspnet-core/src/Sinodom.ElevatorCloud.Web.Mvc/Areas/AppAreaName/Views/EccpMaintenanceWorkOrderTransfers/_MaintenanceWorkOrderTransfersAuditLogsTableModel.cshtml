@@ -1,0 +1,35 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpMaintenanceWorkOrderTransfers/_MaintenanceWorkOrderTransfersAuditLogsTableModel.js" asp-append-version="true"></script>
+}
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("MaintenanceWorkOrderTransfersAuditLogsTableModel")))
+
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="row align-items-center">
+                <table id="MaintenanceWorkOrderTransfersAuditLogsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>@L("workOrderTransferAuditState")</th>
+                        <th>@L("AuditUserName")</th>
+                        <th>@L("auditTime")</th>
+                        <th>@L("Title")</th>
+                        <th>@L("WorkOrderTransferType")</th>
+                        <th>@L("OrderTypeName")</th>
+                        <th>@L("OrderCreationTime")</th>
+                        <th>@L("ApplicationTransferName")</th>
+                        <th>@L("ApplicationTransferCreationTime")</th>
+                        <th>@L("TransferUserName")</th>
+
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

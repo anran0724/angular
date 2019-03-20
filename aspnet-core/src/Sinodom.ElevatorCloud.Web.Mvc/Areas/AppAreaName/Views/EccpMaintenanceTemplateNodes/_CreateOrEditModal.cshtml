@@ -1,0 +1,187 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceTemplateNodes
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTemplateNodes.CreateOrEditEccpMaintenanceTemplateNodeViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceTemplateNode") : L("CreateNewEccpMaintenanceTemplateNode")))
+
+<div class="modal-body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+        <li class="nav-item m-tabs__item">
+            <a href="#NodeInfoTab" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                @L("NodeInfo")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#MaintenanceItemsTab" data-toggle="tab" role="tab" class="nav-link m-tabs__link">
+                @L("MaintenanceItems")
+                <b class="badge badge-primary">
+                    <span id="assigned-item-count">@Model.EccpDictMaintenanceItemDtos.Where(e => e.IsAssigned).Count()</span>
+                </b>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="NodeInfoTab" role="tabpanel">
+            <form name="EccpMaintenanceTemplateNodeInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.EccpMaintenanceTemplateNode.Id" />
+                }
+                <input class="form-control" value="@ViewBag.ParentNodeId" type="text" name="parentNodeId" required hidden />
+                <input class="form-control" value="@ViewBag.MaintenanceTemplateId" type="text" name="maintenanceTemplateId" required hidden />
+
+                <div class="form-group m-form__group">
+                    <label for="EccpDictNodeTypeName">@L("EccpDictNodeType")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="EccpDictNodeTypeName" name="eccpDictNodeTypeName" value="@Model.EccpDictNodeTypeName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenEccpDictNodeTypeLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearEccpDictNodeTypeNameButton">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpMaintenanceTemplateNode.DictNodeTypeId" type="text" name="dictNodeTypeId" required hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="dictNodeTypeId" required hidden />
+                }
+
+                <div class="form-group">
+                    <label for="EccpMaintenanceTemplateNode_NodeName">@L("NodeName")</label>
+                    <input class="form-control" id="EccpMaintenanceTemplateNode_NodeName" value="@Model.EccpMaintenanceTemplateNode.TemplateNodeName" type="text" name="templateNodeName" required maxlength="@EccpMaintenanceTemplateNodeConsts.MaxTemplateNodeNameLength" minlength="@EccpMaintenanceTemplateNodeConsts.MinTemplateNodeNameLength" />
+                </div>
+
+                <div class="form-group">
+                    <label for="EccpMaintenanceTemplateNode_NodeDesc">@L("NodeDesc")</label>
+                    <input class="form-control" id="EccpMaintenanceTemplateNode_NodeDesc" value="@Model.EccpMaintenanceTemplateNode.NodeDesc" type="text" name="nodeDesc" maxlength="@EccpMaintenanceTemplateNodeConsts.MaxNodeDescLength" minlength="@EccpMaintenanceTemplateNodeConsts.MinNodeDescLength" />
+                </div>
+
+                <div class="form-group">
+                    <label for="EccpMaintenanceTemplateNode_NodeIndex">@L("NodeIndex")</label>
+                    <input class="form-control m-input" id="EccpMaintenanceTemplateNode_NodeIndex" value="@Model.EccpMaintenanceTemplateNode.NodeIndex" type="number" name="nodeIndex" />
+                </div>
+                <div class="form-group">
+                    <label for="EccpMaintenanceTemplateNode_ActionCode">@L("ActionCode")</label>
+                    <input class="form-control" id="EccpMaintenanceTemplateNode_ActionCode" value="@Model.EccpMaintenanceTemplateNode.ActionCode" type="text" name="actionCode" maxlength="@EccpMaintenanceTemplateNodeConsts.MaxActionCodeLength" minlength="@EccpMaintenanceTemplateNodeConsts.MinActionCodeLength" />
+                </div>
+                <div class="form-group m-form__group">
+                    <label for="EccpNextNodeName">@L("NextNode")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="nextNode" name="nextNodeName" value="@Model.EccpMaintenanceNextNodeName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenNextNodeLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearNextNodeNameButton">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpMaintenanceTemplateNode.NextNodeId" type="text" name="nextNodeId" required hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="nextNodeId" required hidden />
+                }
+
+                <div class="form-group m-form__group">
+                    <label for="EccpMaintenanceTemplateNode_NodeIndex">@L("MustDo")</label>
+                    <div class="input-group">
+                        <div class="m-radio-list m--margin-bottom-20">
+                            @if (Model.IsEditMode)
+                            {
+                                <label class="m-radio" for="Theme_True">
+                                    <input id="Theme_True" name="MustDo" @(Model.EccpMaintenanceTemplateNode.MustDo ? "checked=\"checked\"" : "") type="radio" value="true">
+                                    @L("No")
+                                    <span></span>
+                                </label>
+                                <label class="m-radio" for="Theme_False">
+                                    <input id="Theme_False" name="MustDo" @(Model.EccpMaintenanceTemplateNode.MustDo ? "" : "checked=\"checked\"") type="radio" value="false">
+                                    @L("Yes")
+                                    <span></span>
+                                </label>
+                            }
+                            else
+                            {
+                                <label class="m-radio" for="Theme_True">
+                                    <input id="Theme_True" name="MustDo"  type="radio" value="true">
+                                    @L("No")
+                                    <span></span>
+                                </label>
+                                <label class="m-radio" for="Theme_False">
+                                    <input id="Theme_False" name="MustDo"  checked="checked" type="radio" value="false">
+                                    @L("Yes")
+                                    <span></span>
+                                </label>
+                            }                     
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group m-form__group">
+                    <label for="EccpSpareNodeName">@L("SpareNode")</label>
+                    <div class="input-group">
+                        <input class="form-control" id="spareNode" name="spareNodeName" value="@Model.EccpMaintenanceSpareNodeName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenSpareNodeLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger" type="button" id="ClearSpareNodeNameButton">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpMaintenanceTemplateNode.SpareNodeId" type="text" name="spareNodeId" required hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="spareNodeId" required hidden />
+                }
+
+            </form>
+        </div>
+
+
+        <div class="tab-pane" id="MaintenanceItemsTab" role="tabpanel">
+            <div class="user-role-checkbox-list">
+                @foreach (var item in Model.EccpDictMaintenanceItemDtos)
+                {
+                    <div class="m-checkbox-list">
+                        <label for="EditUser_@(item.DictMaintenanceItemID)" class="m-checkbox">
+                            <input id="EditUser_@(item.DictMaintenanceItemID)" type="checkbox" name="@(item.DictMaintenanceItemID)" value="true" @Html.Raw(item.IsAssigned ? "checked=\"checked\"" : string.Empty)>
+                            @item.Name
+                            <span></span>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

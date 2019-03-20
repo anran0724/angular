@@ -1,0 +1,213 @@
+﻿@using Abp.Json
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Users.CreateOrEditUserModalViewModel
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("AuditUser"))))
+
+<script>
+    window.passwordComplexitySetting = @Html.Raw(Model.PasswordComplexitySetting.ToJsonString(indented: true));
+</script>
+
+<div class="modal-body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+        <li class="nav-item m-tabs__item">
+            <a href="#UserInformationsTab" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                @L("UserInformations")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item" style="display: none">
+            <a href="#RolesTab" data-toggle="tab" role="tab" class="nav-link m-tabs__link">
+                @L("Roles")
+                <b class="badge badge-primary">
+                    <span id="assigned-role-count">@Model.AssignedRoleCount</span>
+                </b>
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item" style="display: none">
+            <a href="#OrganizationUnitsTab" data-toggle="tab" role="tab" class="nav-link m-tabs__link">
+                @L("OrganizationUnits")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#UserExtensionsTab" data-toggle="tab" role="tab" class="nav-link m-tabs__link">
+                @L("EccpCompanyUserExtensionsL")
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="UserInformationsTab" role="tabpanel">
+            <form name="UserInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="Id" value="@Model.User.Id"/>
+                }
+
+                <div class="row">
+                    <div class="col-sm-3 text-center margin-top-15 margin-bottom-15">
+                        @if (Model.ProfilePictureId.HasValue)
+                        {
+                            <img src="@Url.Action("GetProfilePictureById", "Profile", new { area = string.Empty })?id=@(Model.ProfilePictureId.Value)" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image"/>
+                        }
+                        else
+                        {
+                            <img src="@Url.Content("~/Common/Images/default-profile-picture.png")" width="128" height="128" class="img-thumbnail img-rounded user-edit-dialog-profile-image"/>
+                        }
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-group">
+                            <label for="Name">@L("Name")</label>
+                            <label for="Name" class="form-control">@Model.User.Name</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Surname">@L("Surname")</label>
+                            <label for="Surname" class="form-control">@Model.User.Surname</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="EmailAddress">@L("EmailAddress")</label>
+                    <label for="EmailAddress" class="form-control">@Model.User.EmailAddress</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="PhoneNumber">@L("PhoneNumber")</label>
+                    <label for="PhoneNumber" class="form-control">@Model.CompanyUser.Mobile</label>
+                </div>
+
+                <div class="form-group form-md-line-input form-md-floating-label">
+                    <label for="UserName">@L("UserName")</label>
+
+                    <label for="UserName" class="form-control">@Model.User.UserName</label>
+
+                </div>
+
+                @*<div class="m-checkbox-list">
+                        <label for="EditUser_ShouldChangePasswordOnNextLogin" class="m-checkbox">
+                            <input id="EditUser_ShouldChangePasswordOnNextLogin" type="checkbox" name="ShouldChangePasswordOnNextLogin" value="true" @Html.Raw(Model.User.ShouldChangePasswordOnNextLogin ? "checked=\"checked\"" : "")>
+                            @L("ShouldChangePasswordOnNextLogin")
+                            <span></span>
+                        </label>
+                        <label for="EditUser_SendActivationEmail" class="m-checkbox">
+                            <input id="EditUser_SendActivationEmail" type="checkbox" name="SendActivationEmail" value="true" @Html.Raw(Model.IsEditMode ? "" : "checked=\"checked\"")>
+                            @L("SendActivationEmail")
+                            <span></span>
+                        </label>
+                        <label for="EditUser_IsActive" class="m-checkbox">
+                            <input id="EditUser_IsActive" type="checkbox" name="IsActive" value="true" @Html.Raw(Model.User.IsActive ? "checked=\"checked\"" : "")>
+                            @L("Active")
+                            <span></span>
+                        </label>
+                        @if (SettingManager.GetSettingValue<bool>(AbpZeroSettingNames.UserManagement.TwoFactorLogin.IsEnabled))
+                        {
+                            <label for="EditUser_IsTwoFactorEnabled" class="m-checkbox">
+                                <input id="EditUser_IsTwoFactorEnabled" type="checkbox" name="IsTwoFactorEnabled" value="true" @Html.Raw(Model.User.IsTwoFactorEnabled ? "checked=\"checked\"" : "")>
+                                @L("IsTwoFactorEnabled")
+                                <span></span>
+                            </label>
+                        }
+                        @if (SettingManager.GetSettingValue<bool>(AbpZeroSettingNames.UserManagement.UserLockOut.IsEnabled))
+                        {
+                            <label for="EditUser_IsLockoutEnabled" data-toggle="tooltip" title="@L("IsLockoutEnabled_Hint")" class="m-checkbox">
+                                <input id="EditUser_IsLockoutEnabled" type="checkbox" name="IsLockoutEnabled" value="true" @Html.Raw(Model.User.IsLockoutEnabled ? "checked=\"checked\"" : "")>
+                                @L("IsLockoutEnabled")
+                                <span></span>
+                            </label>
+                        }
+                    </div>*@
+
+            </form>
+        </div>
+        <div class="tab-pane" id="RolesTab" role="tabpanel">
+            <div class="user-role-checkbox-list">
+                @foreach (var role in Model.Roles)
+                {
+                    <div class="m-checkbox-list">
+                        <label for="EditUser_@(role.RoleName)" class="m-checkbox">
+                            <input id="EditUser_@(role.RoleName)" type="checkbox" name="@(role.RoleName)" value="true" @Html.Raw(role.IsAssigned ? "checked=\"checked\"" : string.Empty)>
+                            @role.RoleDisplayName
+                            <span></span>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="tab-pane" id="OrganizationUnitsTab" role="tabpanel">
+            <div class="list-group">
+                @(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/_OrganizationTree.cshtml", Model))
+            </div>
+        </div>
+        <div class="tab-pane" id="UserExtensionsTab" role="tabpanel">
+
+            <form name="UserCompanyInformationsForm" id="UserCompanyInformationsForm" role="form" novalidate class="form-validation" action="@(ApplicationPath + "Profile/UploadProfilePicture")" method="post">
+                <div class="form-group">
+                    <label for="IdCard">@L("IdCard")</label>
+
+                    <label for="IdCard" class="form-control">@Model.CompanyUser.IdCard</label>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="Mobile">@L("Mobile")</label>
+
+                    <label for="Mobile" class="form-control">@Model.CompanyUser.Mobile</label>
+                </div>
+                <div class="form-group">
+                    <label for="SignPictureId">@L("SignPictureId")</label>
+                    @if (Model.CompanyUser != null)
+                    {
+                        <input type="hidden" name="SignPictureId" value="@Model.CompanyUser.SignPictureId"/>
+                        <img id="SignPictureImg" class="img-responsive" style="width: 100%" src="@Url.Action("GetProfilePictureById", "Profile", new { area = string.Empty })?id=@(Model.CompanyUser.SignPictureId)"/>
+                    }
+                    else
+                    {
+                        <input type="hidden" name="SignPictureId" value=""/>
+                        <img id="SignPictureImg" class="img-responsive" style="width: 100%" src=""/>
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="CertificateBackPictureId">@L("CertificateBackPictureId")</label>
+                    @if (Model.CompanyUser != null)
+                    {
+                        <input type="hidden" name="CertificateBackPictureId" value="@Model.CompanyUser.CertificateBackPictureId"/>
+                        <img id="CertificateBackPictureImg" class="img-responsive" style="width: 100%" src="@Url.Action("GetProfilePictureById", "Profile", new { area = string.Empty })?id=@(Model.CompanyUser.CertificateBackPictureId)"/>
+                    }
+                    else
+                    {
+                        <input type="hidden" name="CertificateBackPictureId" value=""/>
+                        <img id="CertificateBackPictureImg" class="img-responsive" style="width: 100%" src=""/>
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="CertificateFrontPictureId">@L("CertificateFrontPictureId")</label>
+                    @if (Model.CompanyUser != null)
+                    {
+                        <input type="hidden" name="CertificateFrontPictureId" value="@Model.CompanyUser.CertificateFrontPictureId"/>
+                        <img id="CertificateFrontPictureImg" class="img-responsive" style="width: 100%" src="@Url.Action("GetProfilePictureById", "Profile", new { area = string.Empty })?id=@(Model.CompanyUser.CertificateFrontPictureId)"/>
+                    }
+                    else
+                    {
+                        <input type="hidden" name="CertificateFrontPictureId" value=""/>
+                        <img id="CertificateFrontPictureImg" class="img-responsive" style="width: 100%" src=""/>
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="ExpirationDate">@L("ExpirationDate")</label>
+
+                    <label for="ExpirationDate" class="form-control">@Model.CompanyUser.ExpirationDate</label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">@L("Cancel")</button>
+    <button type="button" class="btn btn-primary through-button">
+        <i class="fa fa-save"></i> <span>@L("Through")</span>
+    </button>
+    <button type="button" class="btn btn-primary noThrough-button">
+        <i class="fa fa-save"></i> <span>@L("NoThrough")</span>
+    </button>
+</div>

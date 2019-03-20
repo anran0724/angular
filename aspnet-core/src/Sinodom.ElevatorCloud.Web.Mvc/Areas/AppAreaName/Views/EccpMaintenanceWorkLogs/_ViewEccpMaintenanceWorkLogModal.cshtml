@@ -1,0 +1,32 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkLogs.EccpMaintenanceWorkLogViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceWorkLogInformationsTab">
+
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("MaintenanceItemsName") :</h6>
+                <label> @Model.EccpMaintenanceWorkLog.MaintenanceItemsName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Remark") :</h6>
+                <label> @Model.EccpMaintenanceWorkLog.Remark</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("MaintenanceWorkFlowName") :</h6>
+                <label> @Model.EccpMaintenanceWorkLog.MaintenanceWorkFlowName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

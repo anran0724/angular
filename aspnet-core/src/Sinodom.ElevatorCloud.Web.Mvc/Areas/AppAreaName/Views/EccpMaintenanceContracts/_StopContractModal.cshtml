@@ -1,0 +1,22 @@
+@using Sinodom.ElevatorCloud
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceContracts.CreateOrEditEccpMaintenanceContractViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("StopContractEccpMaintenanceContract")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceContractInformationsTab">
+        <form id="EccpMaintenanceContractInformationsForm" role="form" novalidate class="form-validation" method="post">
+
+
+            <input type="hidden" name="id" value="@Model.EccpMaintenanceContract.Id" />
+
+            <div class="form-group">
+                <label for="EccpMaintenanceContract_StopContractRemarks">@L("StopContractRemarks")</label>
+                <input class="form-control" id="EccpMaintenanceContract_StopContractRemarks" type="text" name="stopContractRemarks" required="required" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

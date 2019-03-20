@@ -1,0 +1,48 @@
+@using Sinodom.ElevatorCloud.Authorization
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.LanFlowStatusActions
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model LanFlowSchemeLookupTableViewModel
+
+@section Scripts
+    {
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/LanFlowStatusActions/_LanFlowSchemeLookupTableModal.js" asp-append-version="true"></script>
+}
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("PickLanFlowScheme")))
+
+
+
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="m-form m-form--label-align-right">
+                <div class="row align-items-center m--margin-bottom-10">
+                    <div class="col-xl-12">
+                        <div class="form-group m-form__group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="LanFlowSchemeTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetLanFlowSchemeButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="LanFlowSchemeTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th>@L("Actions")</th>
+                            <th>@L("SchemeName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml")

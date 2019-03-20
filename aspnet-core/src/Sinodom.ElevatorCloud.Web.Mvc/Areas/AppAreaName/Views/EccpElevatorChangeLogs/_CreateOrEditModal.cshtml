@@ -1,0 +1,63 @@
+@using Sinodom.ElevatorCloud.EccpBaseElevators
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpElevatorChangeLogs.CreateOrEditEccpElevatorChangeLogViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpElevatorChangeLog") : L("CreateNewEccpElevatorChangeLog")))
+
+<div class="modal-body">
+    <div id="EccpElevatorChangeLogInformationsTab">
+        <form name="EccpElevatorChangeLogInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpElevatorChangeLog.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpBaseElevatorName">@L("EccpBaseElevator")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpBaseElevatorName" name="eccpBaseElevatorName" value="@Model.EccpBaseElevatorName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpBaseElevatorLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpElevatorChangeLog.ElevatorId" type="text" name="elevatorId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpElevatorChangeLog_FieldName">@L("FieldName")</label>
+                <input class="form-control" id="EccpElevatorChangeLog_FieldName" value="@Model.EccpElevatorChangeLog.FieldName" type="text" name="fieldName" required maxlength="@EccpElevatorChangeLogConsts.MaxFieldNameLength" minlength="@EccpElevatorChangeLogConsts.MinFieldNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpElevatorChangeLog_OldValue">@L("OldValue")</label>
+                <input class="form-control" id="EccpElevatorChangeLog_OldValue" value="@Model.EccpElevatorChangeLog.OldValue" type="text" name="oldValue" required maxlength="@EccpElevatorChangeLogConsts.MaxOldValueLength" minlength="@EccpElevatorChangeLogConsts.MinOldValueLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpElevatorChangeLog_NewValue">@L("NewValue")</label>
+                <input class="form-control" id="EccpElevatorChangeLog_NewValue" value="@Model.EccpElevatorChangeLog.NewValue" type="text" name="newValue" required maxlength="@EccpElevatorChangeLogConsts.MaxNewValueLength" minlength="@EccpElevatorChangeLogConsts.MinNewValueLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

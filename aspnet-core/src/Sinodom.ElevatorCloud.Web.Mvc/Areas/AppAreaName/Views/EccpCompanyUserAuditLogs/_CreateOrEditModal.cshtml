@@ -1,0 +1,61 @@
+@using Sinodom.ElevatorCloud.MultiTenancy.EccpUserExtensions
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpCompanyUserAuditLogs.CreateOrEditEccpCompanyUserAuditLogViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpCompanyUserAuditLog") : L("CreateNewEccpCompanyUserAuditLog")))
+
+<div class="modal-body">
+    <div id="EccpCompanyUserAuditLogInformationsTab">
+        <form name="EccpCompanyUserAuditLogInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpCompanyUserAuditLog.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="UserName">@L("User")</label>
+                <div class="input-group">
+                    <input class="form-control" id="UserName" name="userName" value="@Model.UserName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenUserLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearUserNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpCompanyUserAuditLog.UserId" type="text" name="userId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="userId" required hidden/>
+            }
+
+
+            <div class="m-checkbox-list">
+                <label for="EccpCompanyUserAuditLog_CheckState" class="m-checkbox">
+                    <input id="EccpCompanyUserAuditLog_CheckState" type="checkbox" name="checkState" value="true" @Html.Raw(Model.EccpCompanyUserAuditLog.CheckState ? "checked=\"checked\"" : string.Empty)/>
+                    @L("CheckState")
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpCompanyUserAuditLog_Remarks">@L("Remarks")</label>
+                <input class="form-control" id="EccpCompanyUserAuditLog_Remarks" value="@Model.EccpCompanyUserAuditLog.Remarks" type="text" name="remarks" required maxlength="@EccpCompanyUserAuditLogConsts.MaxRemarksLength" minlength="@EccpCompanyUserAuditLogConsts.MinRemarksLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

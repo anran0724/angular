@@ -1,0 +1,80 @@
+
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.LanFlowStatusActions
+@model LanFlowStatusActionViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(""))
+
+<div class="modal-body">
+    <div id="LanFlowStatusActionInformationsTab">
+        
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("StatusValue") :</h6>
+                <label> @Model.LanFlowStatusAction.StatusValue</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("StatusName") :</h6>
+                <label> @Model.LanFlowStatusAction.StatusName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("ActionName") :</h6>
+                <label> @Model.LanFlowStatusAction.ActionName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("ActionDesc") :</h6>
+                <label> @Model.LanFlowStatusAction.ActionDesc</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("ActionCode") :</h6>
+                <label> @Model.LanFlowStatusAction.ActionCode</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("UserRoleCode") :</h6>
+                <label> @Model.LanFlowStatusAction.UserRoleCode</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("ArgumentValue") :</h6>
+                <label> @Model.LanFlowStatusAction.ArgumentValue</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("IsStartProcess") :</h6>
+                <label> @Model.LanFlowStatusAction.IsStartProcess</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("IsEndProcess") :</h6>
+                <label> @Model.LanFlowStatusAction.IsEndProcess</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("IsAdopt") :</h6>
+                <label> @Model.LanFlowStatusAction.IsAdopt</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("SortCode") :</h6>
+                <label> @Model.LanFlowStatusAction.SortCode</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("LanFlowScheme")) @L("SchemeName") :</h6>
+                <label> @Model.LanFlowSchemeSchemeName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

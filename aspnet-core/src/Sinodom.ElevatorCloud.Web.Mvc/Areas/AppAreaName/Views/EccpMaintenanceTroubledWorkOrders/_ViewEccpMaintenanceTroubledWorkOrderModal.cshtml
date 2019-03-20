@@ -1,0 +1,44 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTroubledWorkOrders.EccpMaintenanceTroubledWorkOrderViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceTroubledWorkOrderInformationsTab">
+
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("WorkOrderStatusName") :</h6>
+                <label> @Model.EccpMaintenanceTroubledWorkOrder.WorkOrderStatusName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("TroubledDesc") :</h6>
+                <label> @Model.EccpMaintenanceTroubledWorkOrder.TroubledDesc</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("IsAudit") :</h6>
+                <label> @(Model.EccpMaintenanceTroubledWorkOrder.IsAudit == 1 ? L("Through") : Model.EccpMaintenanceTroubledWorkOrder.IsAudit == 2 ? L("NoThrough") : L("NotAudit"))</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("EccpMaintenanceWorkOrder")) @L("Remark") :</h6>
+                <label> @Model.EccpMaintenanceWorkOrderRemark</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            @if (Model.EccpMaintenanceTroubledWorkOrder.IsAudit == 2)
+            {
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6> @L("Remarks") :</h6>
+                    <label> @Model.EccpMaintenanceTroubledWorkOrder.Remarks</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+            }
+        </div>
+
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

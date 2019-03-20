@@ -1,0 +1,96 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkLogs.EccpMaintenanceWorkLogsViewModel
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Tenant.EccpMaintenanceWorkLogs;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpMaintenanceWorkLogs/Index.js" asp-append-version="true"></script>
+}
+
+<div class="m-subheader">
+    <div class="row align-items-center">
+        <div class="mr-auto col-sm-12 col-md-6">
+            <h3 class="m-subheader__title m-subheader__title--separator">
+                <span>@L("EccpMaintenanceWorkLogs")</span>
+            </h3>
+            <span class="m-section__sub">
+                @L("EccpMaintenanceWorkLogsHeaderInfo")
+            </span>
+        </div>
+    </div>
+</div>
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="m-form m-form--label-align-right">
+                <div class="row align-items-center m--margin-bottom-10">
+                    <div class="col-xl-12">
+                        <div class="form-group m-form__group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="EccpMaintenanceWorkLogsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetEccpMaintenanceWorkLogsButton" class="btn btn-primary" type="submit">
+                                        <i class="flaticon-search-1"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row m--margin-bottom-10">
+                <div class="col-md-12">
+                    <div class="m-separator m-separator--dashed"></div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EccpMaintenanceUserNameFilterId">EccpMaintenanceUserName</label>
+                        <input type="text" class="form-control" name="eccpMaintenanceUserNameFilter" id="EccpMaintenanceUserNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EccpMaintenanceCompanyNameFilterId">EccpMaintenanceCompanyName</label>
+                        <input type="text" class="form-control" name="eccpMaintenanceCompanyNameFilter" id="EccpMaintenanceCompanyNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EccpPropertyCompanyNameFilterId">EccpPropertyCompanyName</label>
+                        <input type="text" class="form-control" name="eccpPropertyCompanyNameFilter" id="EccpPropertyCompanyNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EccpElevatorNumFilterId">EccpElevatorNum</label>
+                        <input type="text" class="form-control" name="eccpElevatorNumFilter" id="EccpElevatorNumFilterId">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row m--margin-bottom-10">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                        <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                        <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="EccpMaintenanceWorkLogsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>@L("Actions")</th>
+                        <th>@L("MaintenanceItemsName")</th>
+                        <th>@L("Remark")</th>
+                        <th>@L("MaintenanceWorkFlowName")</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

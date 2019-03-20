@@ -1,0 +1,176 @@
+
+@using Sinodom.ElevatorCloud.MultiTenancy
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseSaicUnits
+@model CreateOrEditEccpBaseSaicUnitModalViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditEccpBaseSaicUnit")) : L("CreateNewEccpBaseSaicUnit")))
+
+<div class="modal-body">
+    <div id="EccpBaseSaicUnitInformationsTab">
+        <form name="EccpBaseSaicUnitInformationsForm" role="form" novalidate class="m-login__form m-form register-form">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBaseSaicUnit.Id" />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBaseAreaName">@L("Province")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBaseAreaName" name="eccpBaseAreaName" value="@Model.ECCPBaseAreaName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBaseAreaLookupTableButton" data-child="OpenECCPBaseArea2LookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBaseAreaNameButton" data-child="OpenECCPBaseArea2LookupTableButton"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseSaicUnit.ProvinceId" type="text" name="provinceId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="provinceId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBaseAreaName2">@L("City")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBaseAreaName2" name="eccpBaseAreaName2" value="@Model.ECCPBaseAreaName2" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBaseArea2LookupTableButton" data-child="OpenECCPBaseArea3LookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseSaicUnit.ProvinceId.HasValue ? string.Empty : "disabled")><i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBaseAreaName2Button" data-child="OpenECCPBaseArea3LookupTableButton"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseSaicUnit.CityId" type="text" name="cityId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="cityId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBaseAreaName3">@L("Area")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBaseAreaName3" name="eccpBaseAreaName3" value="@Model.ECCPBaseAreaName3" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBaseArea3LookupTableButton" data-child="OpenECCPBaseArea4LookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseSaicUnit.CityId.HasValue ? string.Empty : "disabled")><i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBaseAreaName3Button" data-child="OpenECCPBaseArea4LookupTableButton"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseSaicUnit.DistrictId" type="text" name="districtId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="districtId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBaseAreaName4">@L("Street")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBaseAreaName4" name="eccpBaseAreaName4" value="@Model.ECCPBaseAreaName4" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBaseArea4LookupTableButton" data-child="OpenECCPBaseArea2LookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseSaicUnit.DistrictId.HasValue ? string.Empty : "disabled")><i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBaseAreaName4Button" data-child="OpenECCPBaseArea2LookupTableButton"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseSaicUnit.StreetId" type="text" name="streetId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="streetId" hidden />
+            }
+
+
+
+
+            <div class="form-group">
+                <label for="EccpBaseSaicUnit_Name">@L("Name")</label>
+                <input class="form-control" id="EccpBaseSaicUnit_Name" value="@Model.EccpBaseSaicUnit.Name" type="text" name="name" required maxlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MaxNameLength" minlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MinNameLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseSaicUnit_Address">@L("Address")</label>
+                <input class="form-control" id="EccpBaseSaicUnit_Address" value="@Model.EccpBaseSaicUnit.Address" type="text" name="address" required maxlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MaxAddressLength" minlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MinAddressLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseSaicUnit_Telephone">@L("Telephone")</label>
+                <input class="form-control" id="EccpBaseSaicUnit_Telephone" value="@Model.EccpBaseSaicUnit.Telephone" type="text" name="telephone" required maxlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MaxTelephoneLength" minlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MinTelephoneLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseSaicUnit_Summary">@L("Summary")</label>
+                <input class="form-control" id="EccpBaseSaicUnit_Summary" value="@Model.EccpBaseSaicUnit.Summary" type="text" name="summary" maxlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MaxSummaryLength" minlength="@Sinodom.ElevatorCloud.EccpBaseSaicUnits.EccpBaseSaicUnitConsts.MinSummaryLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseSaicUnit_Longitude">@L("Longitude")</label>
+                <input class="form-control m-input" id="EccpBaseSaicUnit_Longitude" value="@Model.EccpBaseSaicUnit.Longitude" type="number" name="longitude" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseSaicUnit_Latitude">@L("Latitude")</label>
+                <input class="form-control m-input" id="EccpBaseSaicUnit_Latitude" value="@Model.EccpBaseSaicUnit.Latitude" type="number" name="latitude" />
+            </div>
+
+            @if (!Model.IsEditMode)
+            {
+                <h5 class="m-login__title">
+                    @L("TenantInformations")
+                </h5>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="text" placeholder="@L("TenancyName")" name="TenancyName" required maxlength="@Tenant.MaxTenancyNameLength" />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="text" placeholder="@L("LegalPerson")" name="LegalPerson" required maxlength="10" />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="text" placeholder="@L("Mobile")" name="Mobile" required maxlength="11" />
+                </div>
+
+                <h5 class="m-login__title m--margin-top-20">
+                    @L("AccountSettings")
+                </h5>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="email" placeholder="@L("AdminEmailAddress")" name="AdminEmailAddress" required maxlength="@Sinodom.ElevatorCloud.Authorization.Users.User.MaxEmailAddressLength" />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="password" autocomplete="off" id="AdminPassword" placeholder="@L("AdminPassword")" name="AdminPassword" required />
+                </div>
+                <div class="form-group m-form__group">
+                    <input class="form-control form-control m-input" type="password" autocomplete="off" placeholder="@L("AdminPasswordRepeat")" name="AdminPasswordRepeat" required />
+                </div>
+            }
+
+        </form>
+    </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,55 @@
+
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.LanFlowSchemes
+@model CreateOrEditLanFlowSchemeModalViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLanFlowScheme")) : L("CreateNewLanFlowScheme")))
+
+<div class="modal-body">
+        <div id="LanFlowSchemeInformationsTab">
+            <form name="LanFlowSchemeInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.LanFlowScheme.Id" />
+                }
+
+				
+
+				
+								<div class="form-group">
+									<label for="LanFlowScheme_SchemeName">@L("SchemeName")</label>
+									<input class="form-control" id="LanFlowScheme_SchemeName" value="@Model.LanFlowScheme.SchemeName" type="text" name="schemeName"  required  maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MaxSchemeNameLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MinSchemeNameLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowScheme_SchemeType">@L("SchemeType")</label>
+									<input class="form-control" id="LanFlowScheme_SchemeType" value="@Model.LanFlowScheme.SchemeType" type="text" name="schemeType"   maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MaxSchemeTypeLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MinSchemeTypeLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowScheme_SchemeContent">@L("SchemeContent")</label>
+									<input class="form-control" id="LanFlowScheme_SchemeContent" value="@Model.LanFlowScheme.SchemeContent" type="text" name="schemeContent"  required  maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MaxSchemeContentLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MinSchemeContentLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowScheme_TableName">@L("TableName")</label>
+									<input class="form-control" id="LanFlowScheme_TableName" value="@Model.LanFlowScheme.TableName" type="text" name="tableName"  required  maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MaxTableNameLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowSchemeConsts.MinTableNameLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowScheme_AuthorizeType">@L("AuthorizeType")</label>
+									<input class="form-control m-input" id="LanFlowScheme_AuthorizeType" value="@Model.LanFlowScheme.AuthorizeType" type="number" name="authorizeType"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowScheme_SortCode">@L("SortCode")</label>
+									<input class="form-control m-input" id="LanFlowScheme_SortCode" value="@Model.LanFlowScheme.SortCode" type="number" name="sortCode"  />
+								</div>
+					
+
+            </form>
+        </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

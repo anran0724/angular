@@ -1,0 +1,114 @@
+@using Sinodom.ElevatorCloud.ECCPBaseAreas
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ECCPBaseAreas.CreateOrEditECCPBaseAreaViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditECCPBaseArea") : L("CreateNewECCPBaseArea")))
+
+<div class="modal-body">
+    <div id="ECCPBaseAreaInformationsTab">
+        <form name="ECCPBaseAreaInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBaseArea.Id"/>
+            }
+
+            <div class="form-group m-form__group">
+                <label for="ProvinceName">@L("Province")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ProvinceName" name="provinceName" value="@Model.ProvinceName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenProvinceNameLookupTableButton" data-child="OpenCityNameLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearProvinceNameButton" data-child="OpenCityNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" id="provinceId" value="@Model.ProvinceId" type="text" name="provinceId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" id="provinceId" value="" type="text" name="provinceId" hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="CityName">@L("City")</label>
+                <div class="input-group">
+                    <input class="form-control" id="CityName" name="cityName" value="@Model.CityName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenCityNameLookupTableButton" data-child="OpenDistrictNameLookupTableButton" type="button" @(Model.IsEditMode && Model.ProvinceId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearCityNameButton" data-child="OpenDistrictNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" id="cityId" value="@Model.CityId" type="text" name="cityId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" id="cityId" value="" type="text" name="cityId" hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="DistrictName">@L("Area")</label>
+                <div class="input-group">
+                    <input class="form-control" id="DistrictName" name="districtName" value="@Model.DistrictName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenDistrictNameLookupTableButton" data-child="OpenStreetNameLookupTableButton" type="button" @(Model.IsEditMode && Model.CityId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearDistrictNameButton" data-child="OpenStreetNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.DistrictId" type="text" name="districtId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="districtId" hidden/>
+            }
+
+            <input id="ECCPBaseArea_ParentId" name="parentId" value="@Model.EccpBaseArea.ParentId" type="hidden"/>
+
+            <div class="form-group">
+                <label for="ECCPBaseArea_Code">@L("Code")</label>
+                <input class="form-control" id="ECCPBaseArea_Code" value="@Model.EccpBaseArea.Code" type="text" name="code" maxlength="@ECCPBaseAreaConsts.MaxCodeLength" minlength="@ECCPBaseAreaConsts.MinCodeLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseArea_Name">@L("Name")</label>
+                <input class="form-control" id="ECCPBaseArea_Name" value="@Model.EccpBaseArea.Name" type="text" name="name" required maxlength="@ECCPBaseAreaConsts.MaxNameLength" minlength="@ECCPBaseAreaConsts.MinNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseArea_Level">@L("Level")</label>
+                <input class="form-control m-input" id="ECCPBaseArea_Level" value="@Model.EccpBaseArea.Level" type="number" name="level" disabled="disabled"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

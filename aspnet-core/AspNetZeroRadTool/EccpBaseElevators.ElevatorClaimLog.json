@@ -1,0 +1,33 @@
+{
+  "IsRegenerate": false,
+  "MenuPosition": "admin",
+  "RelativeNamespace": "EccpBaseElevators",
+  "EntityName": "ElevatorClaimLog",
+  "EntityNamePlural": "ElevatorClaimLogs",
+  "TableName": "ElevatorClaimLogs",
+  "PrimaryKeyType": "long",
+  "BaseClass": "FullAuditedEntity",
+  "AutoMigration": true,
+  "UpdateDatabase": true,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": false,
+  "PagePermission": {
+    "Host": false,
+    "Tenant": true
+  },
+  "Properties": [],
+  "NavigationProperties": [
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpBaseElevators",
+      "ForeignEntityName": "EccpBaseElevator",
+      "IdType": "Guid",
+      "IsNullable": false,
+      "PropertyName": "ElevatorId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    }
+  ],
+  "EnumDefinitions": []
+}

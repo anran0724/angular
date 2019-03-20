@@ -1,0 +1,27 @@
+@using Sinodom.ElevatorCloud.EccpDict
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpDictNodeTypes.CreateOrEditEccpDictNodeTypeViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpDictNodeType") : L("CreateNewEccpDictNodeType")))
+
+<div class="modal-body">
+    <div id="EccpDictNodeTypeInformationsTab">
+        <form name="EccpDictNodeTypeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpDictNodeType.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpDictNodeType_Name">@L("Name")</label>
+                <input class="form-control" id="EccpDictNodeType_Name" value="@Model.EccpDictNodeType.Name" type="text" name="name" required maxlength="@EccpDictNodeTypeConsts.MaxNameLength" minlength="@EccpDictNodeTypeConsts.MinNameLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

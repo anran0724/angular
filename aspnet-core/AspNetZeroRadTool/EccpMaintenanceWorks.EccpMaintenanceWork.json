@@ -1,0 +1,82 @@
+{
+  "IsRegenerate": false,
+  "MenuPosition": "admin",
+  "RelativeNamespace": "EccpMaintenanceWorks",
+  "EntityName": "EccpMaintenanceWork",
+  "EntityNamePlural": "EccpMaintenanceWorks",
+  "TableName": "EccpMaintenanceWorks",
+  "PrimaryKeyType": "int",
+  "BaseClass": "FullAuditedEntity",
+  "AutoMigration": true,
+  "UpdateDatabase": true,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": false,
+  "PagePermission": {
+    "Host": false,
+    "Tenant": true
+  },
+  "Properties": [
+    {
+      "Name": "TaskName",
+      "Type": "string",
+      "MaxLength": 50,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Remark",
+      "Type": "string",
+      "MaxLength": 250,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": false,
+        "CreateOrUpdate": true
+      }
+    }
+  ],
+  "NavigationProperties": [
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpMaintenanceWorkOrders",
+      "ForeignEntityName": "EccpMaintenanceWorkOrder",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "MaintenanceWorkOrderId",
+      "DisplayPropertyName": "PlanCheckDate",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpMaintenanceTemplateNodes",
+      "ForeignEntityName": "EccpMaintenanceTemplateNode",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "MaintenanceTemplateNodeId",
+      "DisplayPropertyName": "NodeName",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    }
+  ],
+  "EnumDefinitions": []
+}

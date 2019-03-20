@@ -1,0 +1,149 @@
+@using Sinodom.ElevatorCloud.ECCPBaseCommunities
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ECCPBaseCommunities.CreateOrEditECCPBaseCommunityViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditECCPBaseCommunity") : L("CreateNewECCPBaseCommunity")))
+
+<div class="modal-body">
+    <div id="ECCPBaseCommunityInformationsTab">
+        <form name="ECCPBaseCommunityInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBaseCommunity.Id" />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ProvinceName">@L("Province")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ProvinceName" name="provinceName" value="@Model.ProvinceName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenProvinceNameLookupTableButton" data-child="OpenCityNameLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearProvinceNameButton" data-child="OpenCityNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseCommunity.ProvinceId" type="text" name="provinceId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="provinceId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="CityName">@L("City")</label>
+                <div class="input-group">
+                    <input class="form-control" id="CityName" name="cityName" value="@Model.CityName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenCityNameLookupTableButton" data-child="OpenDistrictNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseCommunity.DistrictId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearCityNameButton" data-child="OpenDistrictNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseCommunity.CityId" type="text" name="cityId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="cityId" hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="DistrictName">@L("Area")</label>
+                <div class="input-group">
+                    <input class="form-control" id="DistrictName" name="districtName" value="@Model.DistrictName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenDistrictNameLookupTableButton" data-child="OpenStreetNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseCommunity.DistrictId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearDistrictNameButton" data-child="OpenStreetNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseCommunity.DistrictId" type="text" name="districtId" hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="districtId" hidden />
+            }
+
+
+            @*<div class="form-group m-form__group">
+            <label for="StreetName">@L("Street")</label>
+            <div class="input-group">
+                <input class="form-control" id="StreetName" name="streetName" value="@Model.StreetName" type="text" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-primary blue" id="OpenStreetNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseCommunity.DistrictId.HasValue ? string.Empty : "disabled")>
+                        <i class="fa fa-search"></i> @L("Pick")</button>
+                </div>
+                <div class="input-group-prepend">
+                    <button class="btn btn-danger" type="button" id="ClearStreetNameButton">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.IsEditMode)
+        {
+            <input class="form-control" value="@Model.EccpBaseCommunity.StreetId" type="text" name="streetId" hidden/>
+        }
+        else
+        {
+            <input class="form-control" value="" type="text" name="streetId" hidden/>
+        }*@
+
+
+            <div class="form-group">
+                <label for="ECCPBaseCommunity_Name">@L("Name")</label>
+                <input class="form-control" id="ECCPBaseCommunity_Name" value="@Model.EccpBaseCommunity.Name" type="text" name="name" required maxlength="@ECCPBaseCommunityConsts.MaxNameLength" minlength="@ECCPBaseCommunityConsts.MinNameLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseCommunity_Address">@L("Addresse")</label>
+                <input class="form-control" id="ECCPBaseCommunity_Address" value="@Model.EccpBaseCommunity.Address" type="text" name="address" required maxlength="@ECCPBaseCommunityConsts.MaxAddressLength" minlength="@ECCPBaseCommunityConsts.MinAddressLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseCommunity_Longitude">@L("Longitude")</label>
+                <input class="form-control" id="ECCPBaseCommunity_Longitude" value="@Model.EccpBaseCommunity.Longitude" type="text" name="longitude" required maxlength="@ECCPBaseCommunityConsts.MaxLongitudeLength" minlength="@ECCPBaseCommunityConsts.MinLongitudeLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseCommunity_Latitude">@L("Latitude")</label>
+                <input class="form-control" id="ECCPBaseCommunity_Latitude" value="@Model.EccpBaseCommunity.Latitude" type="text" name="latitude" required maxlength="@ECCPBaseCommunityConsts.MaxLatitudeLength" minlength="@ECCPBaseCommunityConsts.MinLatitudeLength" />
+            </div>
+
+            <div id="baiduMap" style="height:430px;"></div>
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

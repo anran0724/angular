@@ -1,0 +1,117 @@
+
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.LanFlowStatusActions
+@model CreateOrEditLanFlowStatusActionModalViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLanFlowStatusAction")) : L("CreateNewLanFlowStatusAction")))
+
+<div class="modal-body">
+        <div id="LanFlowStatusActionInformationsTab">
+            <form name="LanFlowStatusActionInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.LanFlowStatusAction.Id" />
+                }
+
+				            
+								<div class="form-group m-form__group">
+										<label for="LanFlowSchemeSchemeName">@L("LanFlowScheme")</label>
+									<div class="input-group">
+											<input class="form-control" id="LanFlowSchemeSchemeName" name="lanFlowSchemeSchemeName" value="@Model.LanFlowSchemeSchemeName" type="text" disabled>
+										<div class="input-group-append">
+											<button class="btn btn-primary blue" id="OpenLanFlowSchemeLookupTableButton" type="button"><i class="fa fa-search"></i> @L("Pick")</button>
+										</div> 
+										<div class="input-group-prepend">
+											<button class="btn btn-danger" type="button" id="ClearLanFlowSchemeSchemeNameButton"><i class="fa fa-close"></i></button>
+										</div>
+									</div>
+								</div>
+
+								@if (Model.IsEditMode)
+								{
+									<input class="form-control" value="@Model.LanFlowStatusAction.SchemeId" type="text" name="schemeId" required hidden/>
+								}
+								 else
+								{ 
+									<input class="form-control" value="" type="text" name="schemeId" required hidden/>
+								}
+
+
+
+				
+								<div class="form-group">
+									<label for="LanFlowStatusAction_StatusValue">@L("StatusValue")</label>
+									<input class="form-control m-input" id="LanFlowStatusAction_StatusValue" value="@Model.LanFlowStatusAction.StatusValue" type="number" name="statusValue"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_StatusName">@L("StatusName")</label>
+									<input class="form-control" id="LanFlowStatusAction_StatusName" value="@Model.LanFlowStatusAction.StatusName" type="text" name="statusName"  required  maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MaxStatusNameLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MinStatusNameLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_ActionName">@L("ActionName")</label>
+									<input class="form-control" id="LanFlowStatusAction_ActionName" value="@Model.LanFlowStatusAction.ActionName" type="text" name="actionName"  required  maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MaxActionNameLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MinActionNameLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_ActionDesc">@L("ActionDesc")</label>
+									<input class="form-control" id="LanFlowStatusAction_ActionDesc" value="@Model.LanFlowStatusAction.ActionDesc" type="text" name="actionDesc"   maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MaxActionDescLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MinActionDescLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_ActionCode">@L("ActionCode")</label>
+									<input class="form-control" id="LanFlowStatusAction_ActionCode" value="@Model.LanFlowStatusAction.ActionCode" type="text" name="actionCode"  required  maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MaxActionCodeLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MinActionCodeLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_UserRoleCode">@L("UserRoleCode")</label>
+									<input class="form-control" id="LanFlowStatusAction_UserRoleCode" value="@Model.LanFlowStatusAction.UserRoleCode" type="text" name="userRoleCode"   maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MaxUserRoleCodeLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MinUserRoleCodeLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_ArgumentValue">@L("ArgumentValue")</label>
+									<input class="form-control" id="LanFlowStatusAction_ArgumentValue" value="@Model.LanFlowStatusAction.ArgumentValue" type="text" name="argumentValue"  required />
+								</div>
+					
+								<div class="m-checkbox-list">
+									<label for="LanFlowStatusAction_IsStartProcess" class="m-checkbox">
+										<input id="LanFlowStatusAction_IsStartProcess" type="checkbox" name="isStartProcess" value="true" @Html.Raw(Model.LanFlowStatusAction.IsStartProcess ?"checked=\"checked\"":"") />
+										@L("IsStartProcess")
+										<span></span>
+									</label>
+								</div>
+					
+								<div class="m-checkbox-list">
+									<label for="LanFlowStatusAction_IsEndProcess" class="m-checkbox">
+										<input id="LanFlowStatusAction_IsEndProcess" type="checkbox" name="isEndProcess" value="true" @Html.Raw(Model.LanFlowStatusAction.IsEndProcess ?"checked=\"checked\"":"") />
+										@L("IsEndProcess")
+										<span></span>
+									</label>
+								</div>
+					
+								<div class="m-checkbox-list">
+									<label for="LanFlowStatusAction_IsAdopt" class="m-checkbox">
+										<input id="LanFlowStatusAction_IsAdopt" type="checkbox" name="isAdopt" value="true" @Html.Raw(Model.LanFlowStatusAction.IsAdopt ?"checked=\"checked\"":"") />
+										@L("IsAdopt")
+										<span></span>
+									</label>
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_ApiAction">@L("ApiAction")</label>
+									<input class="form-control" id="LanFlowStatusAction_ApiAction" value="@Model.LanFlowStatusAction.ApiAction" type="text" name="apiAction"   maxlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MaxApiActionLength"  minlength="@Sinodom.ElevatorCloud.LanFlows.LanFlowStatusActionConsts.MinApiActionLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="LanFlowStatusAction_SortCode">@L("SortCode")</label>
+									<input class="form-control m-input" id="LanFlowStatusAction_SortCode" value="@Model.LanFlowStatusAction.SortCode" type="number" name="sortCode"  />
+								</div>
+					
+
+            </form>
+        </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

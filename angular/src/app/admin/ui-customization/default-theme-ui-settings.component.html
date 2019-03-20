@@ -1,0 +1,140 @@
+<tabset class="tab-container tabbable-line" *ngIf="settings">
+    <tab heading="{{l('UiCustomization_Layout')}}" customClass="m-tabs__item">
+        <form id="LayoutSettingsForm">
+            <div class="m-radio-list m--margin-bottom-20">
+                <label>{{l("UiCustomization_Theme")}}</label>
+                <label class="m-radio" for="Theme_Default">
+                    <input id="Theme_Default" name="ThemeColor" [(ngModel)]="settings.layout.themeColor" value="default" type="radio" [checked]="settings.layout.themeColor === 'default'">
+                    {{l("Default")}}
+                    <span></span>
+                </label>
+                <label class="m-radio m-radio--solid m-radio--state-info" for="Theme_Blue">
+                    <input id="Theme_Blue" name="ThemeColor" [(ngModel)]="settings.layout.themeColor" value="blue" type="radio" [checked]="settings.layout.themeColor === 'blue'">
+                    {{l("Blue")}}
+                    <span></span>
+                </label>
+                <label class="m-radio m-radio--solid m-radio--state-success" for="Theme_Green">
+                    <input id="Theme_Green" name="ThemeColor" [(ngModel)]="settings.layout.themeColor" value="green" type="radio" [checked]="settings.layout.themeColor === 'green'">
+                    {{l("Green")}}
+                    <span></span>
+                </label>
+                <label class="m-radio m-radio--solid m-radio--state-danger" for="Theme_Pink">
+                    <input id="Theme_Pink" name="ThemeColor" [(ngModel)]="settings.layout.themeColor" value="pink" type="radio" [checked]="settings.layout.themeColor === 'pink'">
+                    {{l("Pink")}}
+                    <span></span>
+                </label>
+                <label class="m-radio m-radio--solid m-radio--state-warning" for="Theme_Yellow">
+                    <input id="Theme_Yellow" name="ThemeColor" [(ngModel)]="settings.layout.themeColor" value="yellow" type="radio" [checked]="settings.layout.themeColor === 'yellow'">
+                    {{l("Yellow")}}
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="form-group m-form__group">
+                <label for="LayoutType">{{l("UiCustomization_LayoutType")}}</label>
+                <select id="LayoutType" name="LayoutType" class="form-control" required [(ngModel)]="settings.layout.layoutType">
+                    <option value="fluid">{{l("UiCustomization_Fluid")}}</option>
+                    <option value="boxed">{{l("UiCustomization_Boxed")}}</option>
+                </select>
+            </div>
+            <div class="form-group m-form__group">
+                <label for="ContentSkin">{{l("UiCustomization_ContentSkin")}}</label>
+                <select id="ContentSkin" name="ContentSkin" class="form-control" required [(ngModel)]="settings.layout.contentSkin">
+                    <option value="light2">{{l("UiCustomization_LightGrey")}}</option>
+                    <option value="light">{{l("UiCustomization_White")}}</option>
+                </select>
+            </div>
+        </form>
+    </tab>
+    <tab heading="{{l('UiCustomization_Header')}}" customClass="m-tabs__item">
+        <form id="HeaderSettingsForm">
+            <h5>{{l('UiCustomization_Desktop')}}</h5>
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="DesktopFixedHeader" [(ngModel)]="settings.header.desktopFixedHeader">
+                    {{l("UiCustomization_DesktopFixedHeader")}}
+                    <span></span>
+                </label>
+            </div>
+            <div class="form-group m-form__group">
+                <label for="HeaderSkin">{{l("UiCustomization_HeaderSkin")}}</label>
+                <select id="HeaderSkin" name="HeaderSkin" class="form-control" [(ngModel)]="settings.header.headerSkin">
+                    <option value="light">{{l("UiCustomization_Light")}}</option>
+                    <option value="dark">{{l("UiCustomization_Dark")}}</option>
+                </select>
+            </div>
+
+            <h5>{{l('UiCustomization_Mobile')}}</h5>
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="MobileFixedHeader" [(ngModel)]="settings.header.mobileFixedHeader">
+                    {{l("UiCustomization_MobileFixedHeader")}}
+                    <span></span>
+                </label>
+            </div>
+        </form>
+    </tab>
+    <tab heading="{{l('UiCustomization_Menu')}}" customClass="m-tabs__item">
+        <form id="MenuSettingsForm">
+            <div class="form-group m-form__group">
+                <label for="AsideSkin">{{l("UiCustomization_MenuSkin")}}</label>
+                <select id="AsideSkin" name="AsideSkin" class="form-control" [(ngModel)]="settings.menu.asideSkin">
+                    <option value="light">{{l("UiCustomization_Light")}}</option>
+                    <option value="dark">{{l("UiCustomization_Dark")}}</option>
+                </select>
+            </div>
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="FixedAside" [(ngModel)]="settings.menu.fixedAside">
+                    {{l("UiCustomization_FixedMenu")}}
+                    <span></span>
+                </label>
+            </div>
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="AllowAsideMinimizing" [(ngModel)]="settings.menu.allowAsideMinimizing" (ngModelChange)="allowAsideMinimizingChange($event)">
+                    {{l("UiCustomization_AllowAsideMinimizing")}}
+                    <span></span>
+                </label>
+            </div>
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="DefaultMinimizedAside" [(ngModel)]="settings.menu.defaultMinimizedAside" [(disabled)]="!settings.menu.allowAsideMinimizing">
+                    {{l("UiCustomization_DefaultMinimizedAside")}}
+                    <span></span>
+                </label>
+            </div>
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="AllowAsideHiding" [(ngModel)]="settings.menu.allowAsideHiding" [(disabled)]="settings.menu.allowAsideMinimizing" (ngModelChange)="allowAsideHidingChange($event)">
+                    {{l("UiCustomization_AllowAsideHiding")}}
+                    <span></span>
+                </label>
+            </div>
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="DefaultHiddenAside" [(ngModel)]="settings.menu.defaultHiddenAside" [(disabled)]="!settings.menu.allowAsideHiding">
+                    {{l("UiCustomization_DefaultHiddenAside")}}
+                    <span></span>
+                </label>
+            </div>
+        </form>
+    </tab>
+    <tab heading="{{l('UiCustomization_Footer')}}" customClass="m-tabs__item">
+        <form id="FooterSettingsForm">
+            <div class="form-group m-form__group">
+                <label class="m-checkbox col-lg-12">
+                    <input type="checkbox" name="FixedFooter" [(ngModel)]="settings.footer.fixedFooter">
+                    {{l("UiCustomization_FixedFooter")}}
+                    <span></span>
+                </label>
+            </div>
+        </form>
+    </tab>
+</tabset>
+
+<div class="m--margin-top-40">
+    <button *ngIf="isGranted('Pages.Administration.UiCustomization')" (click)="updateDefaultUiManagementSettings()" class="btn btn-primary"><i class="fa fa-save"></i> {{l("SaveAsSystemDefault")}}</button>
+    <button *ngIf="!isGranted('Pages.Administration.UiCustomization')" (click)="updateUiManagementSettings()" class="btn btn-primary"><i class="fa fa-save"></i> {{l("Save")}}</button>
+    <button *ngIf="!isGranted('Pages.Administration.UiCustomization')" (click)="useSystemDefaultSettings()" class="btn btn-metal"> {{l("UseSystemDefaults")}}</button>
+</div>

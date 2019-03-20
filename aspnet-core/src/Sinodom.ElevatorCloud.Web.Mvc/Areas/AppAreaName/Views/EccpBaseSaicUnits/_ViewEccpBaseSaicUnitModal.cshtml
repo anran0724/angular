@@ -1,0 +1,55 @@
+
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseSaicUnits
+@model EccpBaseSaicUnitViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(""))
+
+<div class="modal-body">
+    <div id="EccpBaseSaicUnitInformationsTab">
+        
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Name") :</h6>
+                @Model.EccpBaseSaicUnit.Name
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Address") :</h6>
+                @Model.EccpBaseSaicUnit.Address
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("Telephone") :</h6>
+                @Model.EccpBaseSaicUnit.Telephone
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("Province")) @L("Name") :</h6>
+                @Model.ECCPBaseAreaName
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("City")) @L("Name") :</h6>
+                @Model.ECCPBaseAreaName2
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("Area")) @L("Name") :</h6>
+                @Model.ECCPBaseAreaName3
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("Street")) @L("Name") :</h6>
+                @Model.ECCPBaseAreaName4
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

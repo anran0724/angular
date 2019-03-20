@@ -1,0 +1,259 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseElevators.EccpBaseElevatorViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab1" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo1")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab2" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo2")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab3" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo3")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab4" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo4")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#ElevatorInformationsTab5" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorsInfoUpdateTimeLine")
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="ElevatorInformationsTab1" class="tab-pane active" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBasePropertyCompany")) @L("Name") :</h6>
+                    <label> @Model.ECCPBasePropertyCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBaseMaintenanceCompany")) @L("Name") :</h6>
+                    <label> @Model.ECCPBaseMaintenanceCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("Province") :</h6>
+                    <label> @Model.ProvinceName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("City") :</h6>
+                    <label> @Model.CityName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("Area") :</h6>
+                    <label> @Model.DistrictName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("Street") :</h6>
+                    <label> @Model.StreetName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBaseCommunity")) @L("Name") :</h6>
+                    <label> @Model.ECCPBaseCommunityName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("CertificateNum") :</h6>
+                    <label> @Model.EccpBaseElevator.CertificateNum</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane" id="ElevatorInformationsTab2" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("InstallationAddress") :</h6>
+                    <label> @Model.EccpBaseElevator.InstallationAddress</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("Longitude") :</h6>
+                    <label> @Model.EccpBaseElevator.Longitude</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("Latitude") :</h6>
+                    <label> @Model.EccpBaseElevator.Latitude</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <img src="http://api.map.baidu.com/staticimage/v2?ak=nSRkLovUkrPf8Nxv8ESy0L83&width=750&height=400&center=@Model.EccpBaseElevator.Longitude,@Model.EccpBaseElevator.Latitude&markers=@Model.EccpBaseElevator.Longitude,@Model.EccpBaseElevator.Latitude&zoom=15&markerStyles=l,,#f58220" />
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="ElevatorInformationsTab3" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBaseAnnualInspectionUnit")) @L("Name") :</h6>
+                    <label> @Model.ECCPBaseAnnualInspectionUnitName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBaseRegisterCompany")) @L("Name") :</h6>
+                    <label> @Model.ECCPBaseRegisterCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPBaseProductionCompany")) @L("Name") :</h6>
+                    <label> @Model.ECCPBaseProductionCompanyName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpDictPlaceType")) @L("Name") :</h6>
+                    <label> @Model.EccpDictPlaceTypeName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpDictElevatorType")) @L("Name") :</h6>
+                    <label> @Model.EccpDictElevatorTypeName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("ECCPDictElevatorStatus")) @L("Name") :</h6>
+                    <label> @Model.ECCPDictElevatorStatusName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpBaseElevatorBrand")) @L("Name") :</h6>
+                    <label> @Model.EccpBaseElevatorBrandName</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpBaseElevatorModel")) @L("Name") :</h6>
+                    <label> @Model.EccpBaseElevatorModelName</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="ElevatorInformationsTab4" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("Name") :</h6>
+                    <label> @Model.EccpBaseElevator.Name</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("InstallationDatetime") :</h6>
+                    <label> @Model.EccpBaseElevator.InstallationDatetime</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("MachineNum") :</h6>
+                    <label> @Model.EccpBaseElevator.MachineNum</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("CustomNum") :</h6>
+                    @if (Model.EccpBaseElevatorSubsidiaryInfo != null)
+                    {
+                        <label>@Model.EccpBaseElevatorSubsidiaryInfo.CustomNum</label>
+                    }
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("ManufacturingLicenseNumber") :</h6>
+                    @if (Model.EccpBaseElevatorSubsidiaryInfo != null)
+                    {
+                        <label> @Model.EccpBaseElevatorSubsidiaryInfo.ManufacturingLicenseNumber</label>
+                    }
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("FloorNumber") :</h6>
+                    @if (Model.EccpBaseElevatorSubsidiaryInfo != null)
+                    {
+                        <label> @Model.EccpBaseElevatorSubsidiaryInfo.FloorNumber</label>
+                    }
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("GateNumber") :</h6>
+                    @if (Model.EccpBaseElevatorSubsidiaryInfo != null)
+                    {
+                        <label> @Model.EccpBaseElevatorSubsidiaryInfo.GateNumber</label>
+                    }
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("RatedSpeed") :</h6>
+                    @if (Model.EccpBaseElevatorSubsidiaryInfo != null)
+                    {
+                        <label> @Model.EccpBaseElevatorSubsidiaryInfo.RatedSpeed</label>
+                    }
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("Deadweight") :</h6>
+                    @if (Model.EccpBaseElevatorSubsidiaryInfo != null)
+                    {
+                        <label> @Model.EccpBaseElevatorSubsidiaryInfo.Deadweight</label>
+                    }
+                </div>                
+            </div>
+        </div>
+
+        <div class="tab-pane" id="ElevatorInformationsTab5" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="tab-pane active" id="m_widget2_tab1_content">
+                    <div class="m-timeline-3">
+                        <div class="m-timeline-3__items">
+                            @{
+                                int i = 1;
+                                string[] styles = { "info", "warning", "brand", "success", "danger" };
+                                foreach (var eccpBaseElevatorChangeLog in Model.EccpBaseElevatorChangeLogList)
+                                {
+                                    int index = new Random().Next(0, styles.Length);
+                                    <div class="m-timeline-3__item m-timeline-3__item--@styles[index]">
+                                        <span class="m-timeline-3__item-time">
+                                            @if (eccpBaseElevatorChangeLog.CreationTime != null)
+                                            {
+                                                @eccpBaseElevatorChangeLog.CreationTime.Value.ToShortTimeString()
+                                            }
+                                        </span>
+                                        <div class="m-timeline-3__item-desc">
+                                            <span class="m-timeline-3__item-text">
+                                                @(i++).  @eccpBaseElevatorChangeLog.FieldName
+                                            </span><br>
+                                            <span class="m-timeline-3__item-user-name m-list-pics m-list-pics--sm">
+                                                <a>
+                                                    @eccpBaseElevatorChangeLog.TenantName    
+                                                    <img src="/Profile/GetProfilePictureById?id=@eccpBaseElevatorChangeLog.ProfilePictureId" title="">
+                                                    @eccpBaseElevatorChangeLog.CreatorUserName
+                                                </a>
+                                            </span><br>
+                                            <span class="m-timeline-3__item-text">
+                                                @L("OldValue"): @eccpBaseElevatorChangeLog.OldValue        @L("NewValue"): @eccpBaseElevatorChangeLog.NewValue
+                                            </span><br>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

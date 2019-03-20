@@ -1,0 +1,98 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceTemplates
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTemplates.CreateOrEditEccpMaintenanceTemplateViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceTemplate") : L("CreateNewEccpMaintenanceTemplate")))
+
+<div class="modal-body">
+    <div id="NodeInfoTab">
+        <form name="EccpMaintenanceTemplateInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceTemplate.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpDictMaintenanceTypeName">@L("EccpDictMaintenanceType")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictMaintenanceTypeName" name="eccpDictMaintenanceTypeName" value="@Model.EccpDictMaintenanceTypeName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictMaintenanceTypeLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictMaintenanceTypeNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTemplate.MaintenanceTypeId" type="text" name="maintenanceTypeId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenanceTypeId" required hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpDictElevatorTypeName">@L("EccpDictElevatorType")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictElevatorTypeName" name="eccpDictElevatorTypeName" value="@Model.EccpDictElevatorTypeName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictElevatorTypeLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictElevatorTypeNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTemplate.ElevatorTypeId" type="text" name="elevatorTypeId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorTypeId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTemplate_TempName">@L("TempName")</label>
+                <input class="form-control" id="EccpMaintenanceTemplate_TempName" value="@Model.EccpMaintenanceTemplate.TempName" type="text" name="tempName" required maxlength="@EccpMaintenanceTemplateConsts.MaxTempNameLength" minlength="@EccpMaintenanceTemplateConsts.MinTempNameLength"/>
+            </div>
+            <div class="form-group">
+                <label for="EccpMaintenanceTemplate_TempDesc">@L("TempDesc")</label>
+                <input class="form-control" id="EccpMaintenanceTemplate_TempDesc" value="@Model.EccpMaintenanceTemplate.TempDesc" type="text" name="tempDesc" maxlength="@EccpMaintenanceTemplateConsts.MaxTempDescLength" minlength="@EccpMaintenanceTemplateConsts.MinTempDescLength"/>
+            </div>
+            <div class="form-group">
+                <label for="EccpMaintenanceTemplate_TempAllow">@L("TempAllow")</label>
+                <input class="form-control" id="EccpMaintenanceTemplate_TempAllow" value="@Model.EccpMaintenanceTemplate.TempAllow" type="text" name="tempAllow" maxlength="@EccpMaintenanceTemplateConsts.MaxTempAllowLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTemplate_TempDeny">@L("TempDeny")</label>
+                <input class="form-control" id="EccpMaintenanceTemplate_TempDeny" value="@Model.EccpMaintenanceTemplate.TempDeny" type="text" name="tempDeny" maxlength="@EccpMaintenanceTemplateConsts.MaxTempDenyLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTemplate_TempCondition">@L("TempCondition")</label>
+                <input class="form-control" id="EccpMaintenanceTemplate_TempCondition" value="@Model.EccpMaintenanceTemplate.TempCondition" type="text" name="tempCondition" maxlength="@EccpMaintenanceTemplateConsts.MaxTempConditionLength"/>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

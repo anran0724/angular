@@ -1,0 +1,50 @@
+
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.LanFlowSchemes
+@model LanFlowSchemeViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(""))
+
+<div class="modal-body">
+    <div id="LanFlowSchemeInformationsTab">
+        
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("SchemeName") :</h6>
+                <label> @Model.LanFlowScheme.SchemeName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("SchemeType") :</h6>
+                <label> @Model.LanFlowScheme.SchemeType</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("SchemeContent") :</h6>
+                <label> @Model.LanFlowScheme.SchemeContent</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("TableName") :</h6>
+                <label> @Model.LanFlowScheme.TableName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("AuthorizeType") :</h6>
+                <label> @Model.LanFlowScheme.AuthorizeType</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("SortCode") :</h6>
+                <label> @Model.LanFlowScheme.SortCode</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

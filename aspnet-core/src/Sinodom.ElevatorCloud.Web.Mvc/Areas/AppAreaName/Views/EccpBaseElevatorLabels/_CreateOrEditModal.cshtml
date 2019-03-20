@@ -1,0 +1,125 @@
+@using Sinodom.ElevatorCloud.EccpBaseElevatorLabels
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseElevatorLabels.CreateOrEditEccpBaseElevatorLabelViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpBaseElevatorLabel") : L("CreateNewEccpBaseElevatorLabel")))
+
+<div class="modal-body">
+    <div id="EccpBaseElevatorLabelInformationsTab">
+        <form name="EccpBaseElevatorLabelInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBaseElevatorLabel.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpBaseElevatorName">@L("EccpBaseElevator")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpBaseElevatorName" name="eccpBaseElevatorName" value="@Model.EccpBaseElevatorName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpBaseElevatorLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseElevatorLabel.ElevatorId" type="text" name="elevatorId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorId" hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpDictLabelStatusName">@L("EccpDictLabelStatus")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictLabelStatusName" name="eccpDictLabelStatusName" value="@Model.EccpDictLabelStatusName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictLabelStatusLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictLabelStatusNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseElevatorLabel.LabelStatusId" type="text" name="labelStatusId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="labelStatusId" required hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="UserName">@L("User")</label>
+                <div class="input-group">
+                    <input class="form-control" id="UserName" name="userName" value="@Model.UserName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenUserLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearUserNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseElevatorLabel.UserId" type="text" name="userId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="userId" hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabel_LabelName">@L("LabelName")</label>
+                <input class="form-control" id="EccpBaseElevatorLabel_LabelName" value="@Model.EccpBaseElevatorLabel.LabelName" type="text" name="labelName" required maxlength="@EccpBaseElevatorLabelConsts.MaxLabelNameLength" minlength="@EccpBaseElevatorLabelConsts.MinLabelNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabel_UniqueId">@L("UniqueId")</label>
+                <input class="form-control" id="EccpBaseElevatorLabel_UniqueId" value="@Model.EccpBaseElevatorLabel.UniqueId" type="text" name="uniqueId" required maxlength="@EccpBaseElevatorLabelConsts.MaxUniqueIdLength" minlength="@EccpBaseElevatorLabelConsts.MinUniqueIdLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabel_LocalInformation">@L("LocalInformation")</label>
+                <input class="form-control" id="EccpBaseElevatorLabel_LocalInformation" value="@Model.EccpBaseElevatorLabel.LocalInformation" type="text" name="localInformation" maxlength="@EccpBaseElevatorLabelConsts.MaxLocalInformationLength" minlength="@EccpBaseElevatorLabelConsts.MinLocalInformationLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabel_BindingTime">@L("BindingTime")</label>
+                <input class="form-control m-input date-picker" id="EccpBaseElevatorLabel_BindingTime" type="text" name="bindingTime" value="@Model.EccpBaseElevatorLabel.BindingTime"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabel_BinaryObjectsId">@L("BinaryObjectsId")</label>
+                <input class="form-control" id="EccpBaseElevatorLabel_BinaryObjectsId" value="@Model.EccpBaseElevatorLabel.BinaryObjectsId" type="text" name="binaryObjectsId"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

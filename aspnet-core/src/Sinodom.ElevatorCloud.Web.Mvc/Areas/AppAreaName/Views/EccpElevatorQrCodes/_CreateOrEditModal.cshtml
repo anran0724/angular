@@ -1,0 +1,62 @@
+@using Sinodom.ElevatorCloud.EccpElevatorQrCodes
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpElevatorQrCodes.CreateOrEditEccpElevatorQrCodeViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpElevatorQrCode") : L("CreateNewEccpElevatorQrCode")))
+
+<div class="modal-body">
+    <div id="EccpElevatorQrCodeInformationsTab">
+        <form name="EccpElevatorQrCodeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpElevatorQrCode.Id"/>
+            }
+
+
+
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpElevatorQrCode.ElevatorId" type="text" name="elevatorId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpElevatorQrCode_AreaName">@L("AreaName")</label>
+                <input class="form-control" id="EccpElevatorQrCode_AreaName" value="@Model.EccpElevatorQrCode.AreaName" type="text" name="areaName" required maxlength="@EccpElevatorQrCodeConsts.MaxAreaNameLength" minlength="@EccpElevatorQrCodeConsts.MinAreaNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpElevatorQrCode_ElevatorNum">@L("ElevatorNum")</label>
+                <input class="form-control" id="EccpElevatorQrCode_ElevatorNum" value="@Model.EccpElevatorQrCode.ElevatorNum" type="text" name="elevatorNum" required maxlength="@EccpElevatorQrCodeConsts.MaxElevatorNumLength" minlength="@EccpElevatorQrCodeConsts.MinElevatorNumLength"/>
+            </div>
+
+            @*<div class="m-checkbox-list">
+                    <label for="EccpElevatorQrCode_IsInstall" class="m-checkbox">
+                        <input id="EccpElevatorQrCode_IsInstall" type="checkbox" name="isInstall" value="true" @Html.Raw(Model.EccpElevatorQrCode.IsInstall ?"checked=\"checked\"":"") />
+                        @L("IsInstall")
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="m-checkbox-list">
+                    <label for="EccpElevatorQrCode_IsGrant" class="m-checkbox">
+                        <input id="EccpElevatorQrCode_IsGrant" type="checkbox" name="isGrant" value="true" @Html.Raw(Model.EccpElevatorQrCode.IsGrant ?"checked=\"checked\"":"") />
+                        @L("IsGrant")
+                        <span></span>
+                    </label>
+                </div>*@
+
+
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

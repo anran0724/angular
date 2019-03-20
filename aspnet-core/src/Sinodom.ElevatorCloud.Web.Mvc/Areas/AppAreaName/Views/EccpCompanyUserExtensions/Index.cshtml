@@ -1,0 +1,79 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Common.EccpCompanyUserExtensions;
+}
+
+@section Styles
+{
+    <link rel="stylesheet" abp-href="/view-resources/Areas/AppAreaName/Views/Users/Index.css" asp-append-version="true"/>
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpCompanyUserExtensions/Index.js" asp-append-version="true"></script>
+}
+
+<div class="m-subheader">
+    <div class="row align-items-center">
+        <div class="mr-auto col-sm-12 col-md-6">
+            <h3 class="m-subheader__title m-subheader__title--separator">
+                <span>@L("EccpCompanyUserExtensions")</span>
+            </h3>
+            <span class="m-section__sub">
+                @L("EccpCompanyUserExtensionsHeaderInfo")
+            </span>
+        </div>
+        <div class="col-sm-12 col-md-6 text-right">
+
+        </div>
+    </div>
+</div>
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="m-form m-form--label-align-right">
+                <div class="row align-items-center m--margin-bottom-10">
+                    <div class="col-xl-6">
+                        <div class="form-group m-form__group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="UsersTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="">
+                                <span class="input-group-btn">
+                                    <button id="GetUsersButton" class="btn btn-primary" type="submit">
+                                        <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">                        
+                        <select class="form-control edited" id="CheckState" name="CheckState">                           
+                            <option value="0">未审核</option>
+                            <option value="1">已审核</option>
+                            <option value="2">未通过</option>                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="UsersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>@L("Actions")</th>
+                        <th>@L("UserName")</th>
+                        <th>@L("Name")</th>
+                        <th>@L("Surname")</th>
+                        <th>@L("EmailAddress")</th>
+                        <th>@L("Mobile")</th>
+                        <th>@L("CompanyName")</th>
+                        <th>@L("CompanyType")</th>
+                        <th>@L("CheckState")</th>
+                        <th>@L("CreationTime")</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

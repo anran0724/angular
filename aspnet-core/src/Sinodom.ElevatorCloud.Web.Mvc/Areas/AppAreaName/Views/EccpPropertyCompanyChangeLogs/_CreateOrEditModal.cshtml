@@ -1,0 +1,63 @@
+@using Sinodom.ElevatorCloud.ECCPBasePropertyCompanies
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpPropertyCompanyChangeLogs.CreateOrEditEccpPropertyCompanyChangeLogViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpPropertyCompanyChangeLog") : L("CreateNewEccpPropertyCompanyChangeLog")))
+
+<div class="modal-body">
+    <div id="EccpPropertyCompanyChangeLogInformationsTab">
+        <form name="EccpPropertyCompanyChangeLogInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpPropertyCompanyChangeLog.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBasePropertyCompanyName">@L("ECCPBasePropertyCompany")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBasePropertyCompanyName" name="eCCPBasePropertyCompanyName" value="@Model.EccpBasePropertyCompanyName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBasePropertyCompanyLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBasePropertyCompanyNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpPropertyCompanyChangeLog.PropertyCompanyId" type="text" name="propertyCompanyId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="propertyCompanyId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpPropertyCompanyChangeLog_FieldName">@L("FieldName")</label>
+                <input class="form-control" id="EccpPropertyCompanyChangeLog_FieldName" value="@Model.EccpPropertyCompanyChangeLog.FieldName" type="text" name="fieldName" required maxlength="@EccpPropertyCompanyChangeLogConsts.MaxFieldNameLength" minlength="@EccpPropertyCompanyChangeLogConsts.MinFieldNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpPropertyCompanyChangeLog_OldValue">@L("OldValue")</label>
+                <input class="form-control" id="EccpPropertyCompanyChangeLog_OldValue" value="@Model.EccpPropertyCompanyChangeLog.OldValue" type="text" name="oldValue" required maxlength="@EccpPropertyCompanyChangeLogConsts.MaxOldValueLength" minlength="@EccpPropertyCompanyChangeLogConsts.MinOldValueLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpPropertyCompanyChangeLog_NewValue">@L("NewValue")</label>
+                <input class="form-control" id="EccpPropertyCompanyChangeLog_NewValue" value="@Model.EccpPropertyCompanyChangeLog.NewValue" type="text" name="newValue" required maxlength="@EccpPropertyCompanyChangeLogConsts.MaxNewValueLength" minlength="@EccpPropertyCompanyChangeLogConsts.MinNewValueLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

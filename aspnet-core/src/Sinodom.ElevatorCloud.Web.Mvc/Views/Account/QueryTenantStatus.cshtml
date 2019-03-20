@@ -1,0 +1,27 @@
+﻿@using Abp.Authorization.Users
+@using Abp.MultiTenancy
+@using Sinodom.ElevatorCloud.MultiTenancy
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Account/QueryTenantStatus.js" asp-append-version="true"></script>
+}
+<div class="m-login__signin">
+    <div class="m-login__head">
+        <h3 class="m-login__title">
+            @L("QueryTenantStatus")
+        </h3>
+    </div>
+    <form class="m-login__form m-form query-tenant-form" asp-action="QueryTenantStatus" method="post">
+        <p>
+            @L("QueryTenantStatus_Information")
+        </p>
+        <div class="form-group m-form__group">
+            <input class="form-control placeholder-no-fix" type="text" placeholder="@L("TenancyName")" id="tenancyName" name="TenancyName" required maxlength="@AbpTenantBase.MaxTenancyNameLength" />
+        </div>
+        
+        <div class="m-login__form-action">
+            <a asp-action="Login"><button type="button" id="back-btn" class="btn btn-outline-primary  m-btn m-btn--pill m-btn--custom">@L("Back")</button></a>
+            <button type="submit" class="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--air">@L("Submit")</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,27 @@
+@using Sinodom.ElevatorCloud.Editions
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ECCPEditionsTypes.CreateOrEditECCPEditionsTypeViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditECCPEditionsType") : L("CreateNewECCPEditionsType")))
+
+<div class="modal-body">
+    <div id="ECCPEditionsTypeInformationsTab">
+        <form name="ECCPEditionsTypeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpEditionsType.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="ECCPEditionsType_Name">@L("Name")</label>
+                <input class="form-control" id="ECCPEditionsType_Name" value="@Model.EccpEditionsType.Name" type="text" name="name" required maxlength="@ECCPEditionsTypeConsts.MaxNameLength" minlength="@ECCPEditionsTypeConsts.MinNameLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

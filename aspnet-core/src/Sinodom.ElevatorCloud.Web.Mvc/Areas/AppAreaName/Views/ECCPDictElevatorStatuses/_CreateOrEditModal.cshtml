@@ -1,0 +1,32 @@
+@using Sinodom.ElevatorCloud.EccpDict
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ECCPDictElevatorStatuses.CreateOrEditECCPDictElevatorStatusViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditECCPDictElevatorStatus") : L("CreateNewECCPDictElevatorStatus")))
+
+<div class="modal-body">
+    <div id="ECCPDictElevatorStatusInformationsTab">
+        <form name="ECCPDictElevatorStatusInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpDictElevatorStatus.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="ECCPDictElevatorStatus_Name">@L("Name")</label>
+                <input class="form-control" id="ECCPDictElevatorStatus_Name" value="@Model.EccpDictElevatorStatus.Name" type="text" name="name" required maxlength="@ECCPDictElevatorStatusConsts.MaxNameLength" minlength="@ECCPDictElevatorStatusConsts.MinNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPDictElevatorStatus_ColorStyle">@L("ColorStyle")</label>
+                <input class="form-control" id="ECCPDictElevatorStatus_ColorStyle" value="@Model.EccpDictElevatorStatus.ColorStyle" type="text" name="colorStyle" maxlength="@ECCPDictElevatorStatusConsts.MaxColorStyleLength" minlength="@ECCPDictElevatorStatusConsts.MinColorStyleLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

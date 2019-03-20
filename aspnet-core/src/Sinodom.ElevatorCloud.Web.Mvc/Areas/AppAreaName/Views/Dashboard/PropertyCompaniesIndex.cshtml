@@ -1,0 +1,278 @@
+﻿@using System.Threading.Tasks
+@using Sinodom.ElevatorCloud.Tenants.Dashboard.Dto
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Tenant.Dashboard;
+}
+@section Styles {
+    <link rel="stylesheet" href="~/lib/morris.js/morris.css" asp-append-version="true" />
+    <link rel="stylesheet" abp-href="/view-resources/Areas/AppAreaName/Views/Dashboard/Index.css" asp-append-version="true" />
+}
+
+@section Scripts {
+    @*<script abp-src="/view-resources/Areas/AppAreaName/Views/_Bundles/tenant-dashboard-libs.js" asp-append-version="true"></script>*@
+    <script src="~/view-resources/Areas/AppAreaName/Views/Dashboard/PropertyCompaniesIndex.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=nSRkLovUkrPf8Nxv8ESy0L83"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+}
+
+
+<div id="HostDashboard">
+    <div class="m-subheader">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    <span>@L("Dashboard")</span>
+                </h3>
+                <span class="m-section__sub d-none d-sm-inline-block">
+                    @L("HostDashboardHeaderInfo")
+                </span>
+            </div>
+            <div>
+                <button name="RefreshButton" class="btn btn-primary">
+                    <i class="la la-refresh"></i>
+                    <span class="d-none d-sm-inline-block">
+                        @L("Refresh")
+                    </span>
+                </button>              
+            </div>
+        </div>
+    </div>
+
+    <div class="m-content">
+        <div class="m-portlet">
+            <div class="m-portlet__body  m-portlet__body--no-padding">
+                <div class="row m-row--no-padding m-row--col-separator-xl">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="m-widget24 new-subscription-statistics">
+                            <div class="m-widget24__item">
+                                <h4 class="m-widget24__title">
+                                    @L("ElevatorCountZ")
+                                </h4>
+                                <br>
+                                <span class="m-widget24__desc">
+                                    @L("Elevator")
+                                </span>
+                                <span class="m-widget24__stats m--font-brand">
+                                    <span class="new-subscription-amount counterup elevatorCountZ">...</span>
+                                </span>
+                                <div class="m--space-10"></div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="m-widget24 new-tenants-statistics">
+                            <div class="m-widget24__item">
+                                <h4 class="m-widget24__title">
+                                    @L("ElevatorCount")
+                                </h4>
+                                <br>
+                                <span class="m-widget24__desc">
+                                    @L("Elevator")
+                                </span>
+                                <span class="m-widget24__stats m--font-info new-tenants-count  elevatorCount counterup">
+                                    ...
+                                </span>
+                                <div class="m--space-10"></div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="m-widget24 dashboard-statistics1">
+                            <div class="m-widget24__item">
+                                <h4 class="m-widget24__title">
+                                    @L("ExceedMaintenanceCount")
+                                </h4>
+                                <br>
+                                <span class="m-widget24__desc">
+                                    @L("Maintenance")
+                                </span>
+                                <span class="m-widget24__stats m--font-warning   exceedMaintenanceCount counterup">
+                                    ...
+                                </span>
+                                <div class="m--space-10"></div>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="m-portlet m-portlet--full-height expiring-tenants col-xl-12">
+                <div class="row m-row--no-padding m-row--col-separator-xl">
+                    <div class="col-md-12 col-lg-6 col-xl-6">
+                        <div class="m-widget24 new-subscription-statistics">
+                            <div class="m-widget24__item">
+                                <h4 class="m-widget24__title">
+                                    @L("FaultElevatorCount")
+                                </h4>
+                                <br>
+                                <span class="m-widget24__desc">
+                                    @L("Elevator")
+                                </span>
+                                <span class="m-widget24__stats m--font-brand">
+                                    <span class="new-subscription-amount  faultElevatorCount   counterup">...</span>
+                                </span>
+                                <div class="m--space-10"></div>
+                             
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-lg-6 col-xl-6">
+                        <div class="m-widget24 new-tenants-statistics">
+                            <div class="m-widget24__item">
+                                <h4 class="m-widget24__title">
+                                    @L("PeriodElevatorCount")
+                                </h4>
+                                <br>
+                                <span class="m-widget24__desc">
+                                    @L("Elevator")
+                                </span>
+                                <span class="m-widget24__stats m--font-info new-tenants-count periodElevatorCount   counterup">
+                                    ...
+                                </span>
+                                <div class="m--space-10"></div>
+                          
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="col-md-12 col-lg-6 col-xl-4">
+                        <div class="m-widget24 dashboard-statistics1">
+                            <div class="m-widget24__item">
+                                <h4 class="m-widget24__title">
+                                    @L("ExceedElevatorCount")
+                                </h4>
+                                <br>
+                                <span class="m-widget24__desc">
+                                    @L("Elevator")
+                                </span>
+                                <span class="m-widget24__stats m--font-warning   exceedElevatorCount counterup">
+                                    ...
+                                </span>
+                                <div class="m--space-10"></div>
+                               
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-xs-12 col-sm-12">
+                <div class="m-portlet m-portlet--full-height expiring-tenants">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <i class="icon-graduation font-red-pink"></i>
+                                    <span class="caption-subject font-red-pink bold uppercase">@L("ECCPBaseMaintenanceCompanies")</span><br />
+                                    <small>
+                                        <span class="caption-helper"></span>
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="scroller chart m-scrollable" data-always-visible="1" data-rail-visible="0" data-scrollable="true">
+                            <table class="expiring-tenants-table display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>@L("ECCPBaseMaintenanceCompanyName")</th>
+                                        <th>@L("ElevatorCount")</th>
+                                        <th>@L("PeriodElevatorCount")</th>
+                                        <th>@L("ExceedMaintenanceCount")</th>
+                                        <th>@L("CompleteMaintenanceCount")</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="scroller-footer">
+                            <div class="btn-arrow-link pull-right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-lg-6 col-xs-12 col-sm-12">
+                <div class="m-portlet m-portlet--full-height recent-tenants">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <i class="icon-user-follow font-purple-soft"></i>
+                                    <span class="caption-subject font-purple-soft">@L("ECCPBaseCommunities")</span><br />
+                                    <small>
+                                        <span class="caption-helper"></span>
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="scroller chart m-scrollable" data-always-visible="1" data-rail-visible="0" data-scrollable="true">
+                            <table class="maintenancePlan-table display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>@L("ECCPBaseCommunityName")</th>
+                                        <th>@L("ElevatorCount")</th>
+                                        <th>@L("PeriodElevatorCount")</th>
+                                        <th>@L("ExceedMaintenanceCount")</th>
+                                        <th>@L("CommunitiesElevatorCount")</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="scroller-footer">
+                            <div class="btn-arrow-link pull-right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+
+
+        
+
+
+        
+
+        <div class="row">
+            <div class="col-lg-12 col-xs-12 col-sm-12">
+                <div class="m-portlet m-portlet--full-height expiring-tenants">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <i class="icon-graduation font-red-pink"></i>
+                                    <span class="caption-subject font-red-pink bold uppercase">@L("MaintenanceLift")</span><br />
+                                    <small>
+                                        <span class="caption-helper"></span>
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body" style="height:600px" id="allmap">
+                        <div class="scroller-footer">
+                            <div class="btn-arrow-link pull-right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

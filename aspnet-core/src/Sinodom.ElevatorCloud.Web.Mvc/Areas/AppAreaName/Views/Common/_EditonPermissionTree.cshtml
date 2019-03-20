@@ -1,0 +1,6 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common
+@model IEditionPermissionsEditViewModel
+
+<div class="permission-tree">
+    @(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/_EditionPermissionTreeItem.cshtml", new EditionPermissionTreeItemModel(Model, null)))
+</div>

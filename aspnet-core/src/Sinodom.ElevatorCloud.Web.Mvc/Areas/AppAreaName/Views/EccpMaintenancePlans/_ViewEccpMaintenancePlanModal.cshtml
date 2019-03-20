@@ -1,0 +1,65 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenancePlans.EccpMaintenancePlanViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+        <li class="nav-item m-tabs__item">
+            <a href="#EccpMaintenancePlanInformationsTab" class="nav-link m-tabs__link active" data-toggle="tab" role="tab">
+                @L("ElevatorsInfo")
+            </a>
+        </li>
+        <li class="nav-item m-tabs__item">
+            <a href="#EccpMaintenancePlanSubsidiaryInfoTab" class="nav-link m-tabs__link" data-toggle="tab" role="tab">
+                @L("ElevatorSubsidiaryInfo")
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="EccpMaintenancePlanInformationsTab" class="tab-pane active" role="tabpanel">
+
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("PollingPeriod") :</h6>
+                    <label> @Model.EccpMaintenancePlan.PollingPeriod</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("RemindHour") :</h6>
+                    <label> @Model.EccpMaintenancePlan.RemindHour</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>(@L("EccpBaseElevator")) @L("Num") :</h6>
+                    <label> @Model.EccpBaseElevatorNum</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("IsClose") :</h6>
+                    <label> @(Model.IsClose ? L("Yes") : L("No"))</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+            </div>
+
+        </div>
+        <div class="tab-pane" id="EccpMaintenancePlanSubsidiaryInfoTab" role="tabpanel">
+            <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("EccpBaseElevator") :</h6>
+                    <label id="EccpElevatorName"> @Model.ElevatorNames</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                    <h6>@L("MaintenanceUserName") :</h6>
+                    <label id="UserName"> @Model.MaintenanceUserNames</label>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

@@ -1,0 +1,61 @@
+
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpAppVersions
+@model CreateOrEditEccpAppVersionModalViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditEccpAppVersion")) : L("CreateNewEccpAppVersion")))
+
+<div class="modal-body">
+    <div id="EccpAppVersionInformationsTab">
+        <form id="EccpAppVersionInformationsForm" role="form" novalidate class="form-validation" method="post" action="@(ApplicationPath + "ProfileAppVersion/UploadProfilePicture")">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpAppVersion.Id" />
+            }
+
+
+
+
+            <div class="form-group">
+                <label for="EccpAppVersion_VersionName">@L("VersionName")</label>
+                <input class="form-control" id="EccpAppVersion_VersionName" value="@Model.EccpAppVersion.VersionName" type="text" name="versionName" required maxlength="@Sinodom.ElevatorCloud.EccpAppVersions.EccpAppVersionConsts.MaxVersionNameLength" minlength="@Sinodom.ElevatorCloud.EccpAppVersions.EccpAppVersionConsts.MinVersionNameLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpAppVersion_VersionCode">@L("VersionCode")</label>
+                <input class="form-control" id="EccpAppVersion_VersionCode" value="@Model.EccpAppVersion.VersionCode" type="number" name="versionCode" required maxlength="@Sinodom.ElevatorCloud.EccpAppVersions.EccpAppVersionConsts.MaxVersionCodeLength" minlength="@Sinodom.ElevatorCloud.EccpAppVersions.EccpAppVersionConsts.MinVersionCodeLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpAppVersion_UpdateLog">@L("UpdateLog")</label>
+                <input class="form-control" id="EccpAppVersion_UpdateLog" value="@Model.EccpAppVersion.UpdateLog" type="text" name="updateLog" maxlength="@Sinodom.ElevatorCloud.EccpAppVersions.EccpAppVersionConsts.MaxUpdateLogLength" minlength="@Sinodom.ElevatorCloud.EccpAppVersions.EccpAppVersionConsts.MinUpdateLogLength" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpAppVersion_DownloadUrl">@L("DownloadUrl")</label>
+                <input type="file" name="DownloadUrl" />
+                <input type="hidden" name="fileToken" value="DownloadUrl" />
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" value="@Model.EccpAppVersion.DownloadUrl" type="text" name="_downloadUrl" required hidden />
+                }
+                else
+                {
+                    <input class="form-control" value="" type="text" name="_downloadUrl" required hidden />
+                }
+                <span id="showResult"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpAppVersion_VersionType">@L("VersionType")</label>
+                <select class="form-control" name="versionType" id="EccpAppVersion_VersionType">
+                    <option value="android" selected="@(Model.EccpAppVersion.VersionType=="android"?true:false)">android</option>
+                    <option value="ios" selected="@(Model.EccpAppVersion.VersionType=="ios"?true:false)">ios</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,104 @@
+@using Sinodom.ElevatorCloud.EccpBaseElevatorLabels
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseElevatorLabelBindLogs.CreateOrEditEccpBaseElevatorLabelBindLogViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpBaseElevatorLabelBindLog") : L("CreateNewEccpBaseElevatorLabelBindLog")))
+
+<div class="modal-body">
+    <div id="EccpBaseElevatorLabelBindLogInformationsTab">
+        <form name="EccpBaseElevatorLabelBindLogInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBaseElevatorLabelBindLog.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpBaseElevatorName">@L("EccpBaseElevator")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpBaseElevatorName" name="eccpBaseElevatorName" value="@Model.EccpBaseElevatorName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpBaseElevatorLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseElevatorLabelBindLog.ElevatorId" type="text" name="elevatorId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorId" hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpDictLabelStatusName">@L("EccpDictLabelStatus")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictLabelStatusName" name="eccpDictLabelStatusName" value="@Model.EccpDictLabelStatusName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictLabelStatusLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictLabelStatusNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseElevatorLabelBindLog.LabelStatusId" type="text" name="labelStatusId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="labelStatusId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabelBindLog_LabelName">@L("LabelName")</label>
+                <input class="form-control" id="EccpBaseElevatorLabelBindLog_LabelName" value="@Model.EccpBaseElevatorLabelBindLog.LabelName" type="text" name="labelName" required maxlength="@EccpBaseElevatorLabelBindLogConsts.MaxLabelNameLength" minlength="@EccpBaseElevatorLabelBindLogConsts.MinLabelNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabelBindLog_LocalInformation">@L("LocalInformation")</label>
+                <input class="form-control" id="EccpBaseElevatorLabelBindLog_LocalInformation" value="@Model.EccpBaseElevatorLabelBindLog.LocalInformation" type="text" name="localInformation" maxlength="@EccpBaseElevatorLabelBindLogConsts.MaxLocalInformationLength" minlength="@EccpBaseElevatorLabelBindLogConsts.MinLocalInformationLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabelBindLog_BindingTime">@L("BindingTime")</label>
+                <input class="form-control m-input date-picker" id="EccpBaseElevatorLabelBindLog_BindingTime" type="text" name="bindingTime" value="@Model.EccpBaseElevatorLabelBindLog.BindingTime"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabelBindLog_BinaryObjectsId">@L("BinaryObjectsId")</label>
+                <input class="form-control" id="EccpBaseElevatorLabelBindLog_BinaryObjectsId" value="@Model.EccpBaseElevatorLabelBindLog.BinaryObjectsId" type="text" name="binaryObjectsId"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabelBindLog_Remark">@L("Remark")</label>
+                <input class="form-control" id="EccpBaseElevatorLabelBindLog_Remark" value="@Model.EccpBaseElevatorLabelBindLog.Remark" type="text" name="remark" maxlength="@EccpBaseElevatorLabelBindLogConsts.MaxRemarkLength" minlength="@EccpBaseElevatorLabelBindLogConsts.MinRemarkLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorLabelBindLog_ElevatorLabelId">@L("ElevatorLabelId")</label>
+                <input class="form-control m-input" id="EccpBaseElevatorLabelBindLog_ElevatorLabelId" value="@Model.EccpBaseElevatorLabelBindLog.ElevatorLabelId" type="number" name="elevatorLabelId"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

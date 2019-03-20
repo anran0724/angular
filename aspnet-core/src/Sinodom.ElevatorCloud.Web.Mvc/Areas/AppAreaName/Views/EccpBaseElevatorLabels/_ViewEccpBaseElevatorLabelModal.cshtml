@@ -1,0 +1,57 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseElevatorLabels.EccpBaseElevatorLabelViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="modal-body">
+    <div id="EccpBaseElevatorLabelInformationsTab">
+
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("LabelName") :</h6>
+                <label> @Model.EccpBaseElevatorLabel.LabelName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("UniqueId") :</h6>
+                <label> @Model.EccpBaseElevatorLabel.UniqueId</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("LocalInformation") :</h6>
+                <label> @Model.EccpBaseElevatorLabel.LocalInformation</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("BindingTime") :</h6>
+                <label> @Model.EccpBaseElevatorLabel.BindingTime</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("BinaryObjectsId") :</h6>
+                <img id="BinaryObjectsIdResize" class="img-responsive" src="/Profile/GetProfilePictureById?id=@Model.EccpBaseElevatorLabel.BinaryObjectsId"/>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("EccpBaseElevator")) @L("Name") :</h6>
+                <label> @Model.EccpBaseElevatorName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("EccpDictLabelStatus")) @L("Name") :</h6>
+                <label> @Model.EccpDictLabelStatusName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>(@L("User")) @L("Name") :</h6>
+                <label> @Model.UserName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+        </div>
+
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

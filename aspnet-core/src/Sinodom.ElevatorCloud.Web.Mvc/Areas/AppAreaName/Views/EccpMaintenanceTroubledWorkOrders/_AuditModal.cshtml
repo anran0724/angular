@@ -1,0 +1,33 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceWorkOrders
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTroubledWorkOrders.CreateOrEditEccpMaintenanceTroubledWorkOrderViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceTroubledWorkOrder") : L("CreateNewEccpMaintenanceTroubledWorkOrder")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceTroubledWorkOrderInformationsTab">
+        <form name="EccpMaintenanceTroubledWorkOrderInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceTroubledWorkOrder.Id"/>
+            }
+
+            <div class="form-group">
+                <label for="IsAuditFilterId">@L("Audit")</label>
+                <select class="form-control" name="IsAuditFilter" id="IsAuditFilterId">
+                    <option value="1">@L("Through")</option>
+                    <option value="2">@L("NoThrough")</option>
+                </select>
+            </div>
+
+            <div id="remark" class="form-group" style="display: none;">
+                <label for="EccpMaintenanceTroubledWorkOrder_Remarks">@L("Remarks")</label>
+                <input class="form-control" id="EccpMaintenanceTroubledWorkOrder_Remarks" value="@Model.EccpMaintenanceTroubledWorkOrder.Remarks" type="text" name="remarks" maxlength="@EccpMaintenanceTroubledWorkOrderConsts.MaxTroubledDescLength" minlength="@EccpMaintenanceTroubledWorkOrderConsts.MinTroubledDescLength"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

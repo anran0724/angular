@@ -1,0 +1,20 @@
+﻿@using Abp.MultiTenancy
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Views.Shared.Components.TenantChange
+@model ChangeModalViewModel
+@{
+    Layout = null;
+}
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("ChangeTenant"))))
+<div class="modal-body">
+    <form name="TenantChangeForm" role="form" novalidate class="form-validation">
+        <div class="form-group">
+            <label>@L("TenancyName")</label>
+            <div class="m-typeahead">
+                <input class="form-control m-input tt-input" type="text" name="TenancyName" id="m_typeahead" maxlength="@AbpTenantBase.MaxTenancyNameLength" value="@Model.TenancyName" autocomplete="off" data-provide="typeahead">
+            </div>
+            <span class="m-form__help">@L("LeaveEmptyToSwitchToHost")</span>
+        </div>
+    </form>
+</div>
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

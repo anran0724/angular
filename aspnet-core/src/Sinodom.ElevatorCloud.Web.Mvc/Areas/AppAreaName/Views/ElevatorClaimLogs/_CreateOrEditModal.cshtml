@@ -1,0 +1,49 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ElevatorClaimLogs.CreateOrEditElevatorClaimLogViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditElevatorClaimLog") : L("CreateNewElevatorClaimLog")))
+
+<div class="modal-body">
+    <div id="ElevatorClaimLogInformationsTab">
+        <form name="ElevatorClaimLogInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.ElevatorClaimLog.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpBaseElevatorName">@L("EccpBaseElevator")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpBaseElevatorName" name="eccpBaseElevatorName" value="@Model.EccpBaseElevatorName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpBaseElevatorLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.ElevatorClaimLog.ElevatorId" type="text" name="elevatorId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorId" required hidden/>
+            }
+
+
+
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

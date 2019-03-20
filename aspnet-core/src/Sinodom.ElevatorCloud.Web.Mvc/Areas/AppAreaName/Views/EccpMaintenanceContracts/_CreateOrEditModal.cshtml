@@ -1,0 +1,131 @@
+@using Sinodom.ElevatorCloud
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceContracts.CreateOrEditEccpMaintenanceContractViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceContract") : L("CreateNewEccpMaintenanceContract")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceContractInformationsTab">
+        <form id="EccpMaintenanceContractInformationsForm" role="form" novalidate class="m-form m-form--label-align-left m-form--state" method="post" action="@(ApplicationPath + "Profile/UploadProfilePicture")">
+
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceContract.Id" />
+            }
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBaseMaintenanceCompanyName">@L("EccpBaseElevators")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpBaseElevatorsNames" name="eccpBaseElevatorsNames" value="@Model.EccpBaseElevatorsNames" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpBaseElevatorsLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorsNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseElevatorsIds" type="text" name="eccpBaseElevatorsIds" required hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="eccpBaseElevatorsIds" required hidden />
+            }
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBaseMaintenanceCompanyName">@L("ECCPBaseMaintenanceCompany")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBaseMaintenanceCompanyName" name="eCCPBaseMaintenanceCompanyName" value="@Model.EccpBaseMaintenanceCompanyName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBaseMaintenanceCompanyLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBaseMaintenanceCompanyNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceContract.MaintenanceCompanyId" type="text" name="maintenanceCompanyId" required hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="maintenanceCompanyId" required hidden />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ECCPBasePropertyCompanyName">@L("ECCPBasePropertyCompany")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ECCPBasePropertyCompanyName" name="eCCPBasePropertyCompanyName" value="@Model.EccpBasePropertyCompanyName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenECCPBasePropertyCompanyLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearECCPBasePropertyCompanyNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceContract.PropertyCompanyId" type="text" name="propertyCompanyId" required hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="propertyCompanyId" required hidden />
+            }
+
+
+            <div class="form-group">
+                <label for="EccpMaintenanceContract_StartDate">@L("StartDate")</label>
+                <input class="form-control m-input date-picker" id="EccpMaintenanceContract_StartDate" type="text" name="startDate" value="@Model.EccpMaintenanceContract.StartDate" />
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceContract_EndDate">@L("EndDate")</label>
+                <input class="form-control m-input date-picker" id="EccpMaintenanceContract_EndDate" type="text" name="endDate" value="@Model.EccpMaintenanceContract.EndDate" />
+            </div>
+            <div class="form-group">
+                <label for="EccpMaintenanceContract_ContractPictureId">@L("PickContractPicture")</label>
+                <input type="file" name="ContractPictureId" />
+                <input type="hidden" name="fileToken" value="ContractPictureId" />
+                <span class="help-block m-b-none">@L("ContractPictureId_Change_Info", AppConsts.MaxProfilPictureBytesUserFriendlyValue)</span>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceContract.ContractPictureId" type="text" name="_contractPictureId" required hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="_contractPictureId" required hidden />
+            }
+
+            <div class="form-group">
+                <label for="EccpMaintenanceContract_ContractPictureDesc">@L("ContractPictureDesc")</label>
+                <input class="form-control" id="EccpMaintenanceContract_ContractPictureDesc" type="text" name="contractPictureDesc" value="@Model.EccpMaintenanceContract.ContractPictureDesc" />
+            </div>
+        </form>
+        <img id="ContractPictureIdResize" class="img-responsive" style="width: 100%;" src="/Profile/GetProfilePictureById?id=@Model.EccpMaintenanceContract.ContractPictureId" />
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

@@ -1,0 +1,43 @@
+{
+  "IsRegenerate": true,
+  "MenuPosition": "",
+  "RelativeNamespace": "EccpMaintenancePlan_PropertyUser_Links",
+  "EntityName": "EccpMaintenancePlan_PropertyUser_Link",
+  "EntityNamePlural": "EccpMaintenancePlan_PropertyUser_Links",
+  "TableName": "EccpMaintenancePlan_PropertyUser_Links",
+  "PrimaryKeyType": "long",
+  "BaseClass": "FullAuditedEntity",
+  "AutoMigration": true,
+  "UpdateDatabase": true,
+  "CreateUserInterface": false,
+  "CreateViewOnly": true,
+  "CreateExcelExport": false,
+  "PagePermission": {
+    "Host": false,
+    "Tenant": true
+  },
+  "Properties": [],
+  "NavigationProperties": [
+    {
+      "Namespace": "Sinodom.ElevatorCloud.Authorization.Users",
+      "ForeignEntityName": "User",
+      "IdType": "long",
+      "IsNullable": false,
+      "PropertyName": "UserId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.EccpMaintenancePlans",
+      "ForeignEntityName": "EccpMaintenancePlan",
+      "IdType": "int",
+      "IsNullable": false,
+      "PropertyName": "MaintenancePlanId",
+      "DisplayPropertyName": "PollingPeriod",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    }
+  ],
+  "EnumDefinitions": []
+}

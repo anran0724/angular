@@ -1,0 +1,114 @@
+﻿
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpDictMaintenanceItems
+@model EccpDictMaintenanceItemPrintViewModel
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("")))
+
+<div class="modal-body">
+    <!--startprint-->
+    <div id="EccpDictMaintenanceItemInformationsTab">
+
+        @if (Model?.GetEccpDictMaintenanceItemPrintForViews == null || Model.GetEccpDictMaintenanceItemPrintForViews.Count == 0)
+        {
+            <div>
+                <label class="control-label">未查到维保详细</label>
+            </div>
+        }
+        else
+        {
+            <style type="text/css">
+                html, body {
+                    padding: 10px 0;
+                    box-sizing: border-box;
+                }
+
+                h4 {
+                    font-size: 24px;
+                    font-weight: 700;
+                    width: 100%;
+                    line-height: 42px;
+                    text-align: center;
+                    margin: 0 auto;
+                }
+
+                p {
+                    width: 100%;
+                    margin: 0 auto;
+                    line-height: 42px;
+                }
+
+                    p span {
+                        display: inline-block;
+                        width: 50%;
+                        font-size: 16px;
+                    }
+
+                table {
+                    width: 100%;
+                    margin: 0 auto;
+                    text-align: center;
+                }
+
+                    table tr {
+                        line-height: 32px;
+                    }
+
+                .shuoming .firstSpan {
+                    display: inline-block;
+                    width: 14%;
+                }
+
+                .shuoming .secondSpan {
+                    display: inline-block;
+                    width: 86%;
+                }
+
+                .shuoming .thirdSpan {
+                    display: inline-block;
+                    width: 86%;
+                    margin-left: 14%;
+                }
+
+                #mainTable {
+                    width: 100%;
+                    font-size: 16px;
+                }
+
+                    #mainTable td, #mainTable th {
+                        border: 1px solid black;
+                        padding: 5px 0px 5px 5px;
+                    }
+
+                    #mainTable th {
+                        text-align: left;
+                    }
+            </style>
+            <div class="row-fluid" style="width:100%;font-size:26px;text-align:center;font-weight:bold;height:30px">@(Model.GetEccpDictMaintenanceItemPrintForViews.FirstOrDefault().MaintenanceTypeName)保养记录</div>
+            <div class="row-fluid">
+                <table style="width: 100%;"><tr><td style="text-align: left; font-size: 14px">&nbsp;维保人：@Model.GetEccpDictMaintenanceItemPrintForViews.FirstOrDefault().MaintenanceUserName</td><td style="text-align: right; font-size: 14px">维保日期：@Model.GetEccpDictMaintenanceItemPrintForViews.FirstOrDefault().MaintenanceComplateDate.Value.ToString("yyyy-MM-dd")&nbsp;</td></tr><tr><td style="text-align: left; font-size: 14px">&nbsp;注册代码：@Model.GetEccpDictMaintenanceItemPrintForViews.FirstOrDefault().CertificateNum</td><td style="text-align: right; font-size: 14px">安装地址：@Model.GetEccpDictMaintenanceItemPrintForViews.FirstOrDefault().InstallationAddress&nbsp;</td></tr></table>
+                <table id="mainTable">
+                    <tr><th style="width: 80px">序号</th><th>维保项目（内容）</th><th>维保基本要求</th><th style="width: 80px">结果</th></tr>
+                    @{
+                        int i = 1;
+                        foreach (var item in Model.GetEccpDictMaintenanceItemPrintForViews)
+                        {
+                            <tr><td>@(i++)</td><td>@item.Name</td><td>@item.TermDesc</td><td>@(item.MaintenanceStatus == 0 ? "√" : item.MaintenanceStatus == 1 ? "×" : "△")</td></tr>
+                        }
+
+                    }
+                    <tr>
+                        <td>备注</td>
+                        <td colspan="3">@string.Join(";", Model.GetEccpDictMaintenanceItemPrintForViews.Where(e => !string.IsNullOrWhiteSpace(e.Remark)).Select(e => e.Remark))</td>
+                    </tr>
+                </table>
+                <p class="shuoming"><span class="firstSpan">备注说明：</span><span class="secondSpan">1.维保人员按以上项目维保，每次维保后认真填写记录。 </span><span class="thirdSpan">2.维保人员认可部位打√，否则打×，无此项目部位打△</span></p>
+                <p><span>维保人员：(签字)</span></p>
+                <p><span>使用单位安全管理员：(签字)</span><span>日期：</span></p>
+            </div>
+        }
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithPrintAndClose.cshtml"))
+

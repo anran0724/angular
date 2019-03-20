@@ -1,0 +1,122 @@
+﻿@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseElevators.EccpBaseElevatorsViewModel
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Common.EccpBaseElevatorsClaim;
+}
+
+@section Scripts
+    {
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpBaseElevatorsClaim/Index.js" asp-append-version="true"></script>
+}
+
+<div class="m-subheader">
+    <div class="row align-items-center">
+        <div class="mr-auto col-sm-12 col-md-6">
+            <h3 class="m-subheader__title m-subheader__title--separator">
+                <span>@L("EccpBaseElevatorsClaim")</span>
+            </h3>
+            <span class="m-section__sub">
+                @L("EccpBaseElevatorsClaimHeaderInfo")
+            </span>
+        </div>
+        <div class="col-sm-12 col-md-6 text-right">
+            @*@if (IsGranted(AppPermissions.Pages_EccpElevator_EccpBaseElevators_Create))
+                {
+                <button id="CreateNewEccpBaseElevatorButton" class="btn btn-primary blue"><i class="fa fa-plus"></i> @L("CreateNewEccpBaseElevator")</button>
+                }*@
+        </div>
+    </div>
+</div>
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="m-form m-form--label-align-right">
+                <div class="row align-items-center m--margin-bottom-10">
+                    <div class="col-xl-12">
+                        <div class="form-group m-form__group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="EccpBaseElevatorsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetEccpBaseElevatorsButton" class="btn btn-primary" type="submit">
+                                        <i class="flaticon-search-1"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row m--margin-bottom-10">
+                <div class="col-md-12">
+                    <div class="m-separator m-separator--dashed"></div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="CertificateNumFilterId">@L("CertificateNum")</label>
+                        <input type="text" class="form-control" name="certificateNumFilter" id="CertificateNumFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="MachineNumFilterId">@L("MachineNum")</label>
+                        <input type="text" class="form-control" name="machineNumFilter" id="MachineNumFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="InstallationAddressFilterId">@L("InstallationAddress")</label>
+                        <input type="text" class="form-control" name="installationAddressFilter" id="InstallationAddressFilterId">
+                    </div>
+                </div>
+            </div>
+            <div class="row m--margin-bottom-10">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                        <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")
+                    </span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                        <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")
+                    </span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="input-group-append">
+                    <button class="btn btn-primary blue" id="BatchClaimButton" type="button">
+                         @L("BatchClaim")
+                    </button>
+                </div>
+
+                <table id="EccpBaseElevatorsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                                    <input type="checkbox" id="all_checked" value="" class="m-group-checkable">
+                                    <span style="background: #3546b9;"></span>
+                                </label>
+                            </th>
+                            <th>@L("Actions")</th>
+                            <th>@L("Name")</th>
+                            <th>@L("CertificateNum")</th>
+                            <th>@L("MachineNum")</th>
+                            <th>@L("InstallationAddress")</th>
+                            <th>@L("ECCPBasePropertyCompany")</th>
+                            <th>@L("ECCPBaseMaintenanceCompanyName")</th>
+                            <th>@L("Province")</th>
+                            <th>@L("City")</th>
+                            <th>@L("Area")</th>
+                            <th>@L("Street")</th>
+                            <th>@L("ECCPBaseCommunityName")</th>
+                            <th>@L("ECCPDictElevatorStatusName")</th>
+                            <th>@L("EccpDictElevatorTypeName")</th>
+                            <th>@L("EccpBaseElevatorBrandName")</th>
+                            <th>@L("EccpBaseElevatorModelName")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

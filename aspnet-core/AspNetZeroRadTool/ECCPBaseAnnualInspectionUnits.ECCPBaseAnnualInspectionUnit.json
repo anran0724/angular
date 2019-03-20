@@ -1,0 +1,140 @@
+{
+  "IsRegenerate": true,
+  "MenuPosition": "admin",
+  "RelativeNamespace": "ECCPBaseAnnualInspectionUnits",
+  "EntityName": "ECCPBaseAnnualInspectionUnit",
+  "EntityNamePlural": "ECCPBaseAnnualInspectionUnits",
+  "TableName": "ECCPBaseAnnualInspectionUnits",
+  "PrimaryKeyType": "long",
+  "BaseClass": "FullAuditedEntity",
+  "AutoMigration": true,
+  "UpdateDatabase": true,
+  "CreateUserInterface": true,
+  "CreateViewOnly": true,
+  "CreateExcelExport": true,
+  "PagePermission": {
+    "Host": true,
+    "Tenant": false
+  },
+  "Properties": [
+    {
+      "Name": "Name",
+      "Type": "string",
+      "MaxLength": 32,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Addresse",
+      "Type": "string",
+      "MaxLength": 128,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Telephone",
+      "Type": "string",
+      "MaxLength": 36,
+      "MinLength": 1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": true,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": true,
+        "List": true,
+        "CreateOrUpdate": true
+      }
+    },
+    {
+      "Name": "Summary",
+      "Type": "string",
+      "MaxLength": -1,
+      "MinLength": -1,
+      "Range": {
+        "IsRangeSet": false,
+        "MinimumValue": 0,
+        "MaximumValue": 0
+      },
+      "Required": false,
+      "Nullable": false,
+      "Regex": "",
+      "UserInterface": {
+        "AdvancedFilter": false,
+        "List": false,
+        "CreateOrUpdate": true
+      }
+    }
+  ],
+  "NavigationProperties": [
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "ProvinceId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 0,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "CityId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 2,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "DistrictId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 3,
+      "RelationType": "single"
+    },
+    {
+      "Namespace": "Sinodom.ElevatorCloud.ECCPBaseAreas",
+      "ForeignEntityName": "ECCPBaseArea",
+      "IdType": "int",
+      "IsNullable": true,
+      "PropertyName": "StreetId",
+      "DisplayPropertyName": "Name",
+      "DuplicationNumber": 4,
+      "RelationType": "single"
+    }
+  ],
+  "EnumDefinitions": []
+}

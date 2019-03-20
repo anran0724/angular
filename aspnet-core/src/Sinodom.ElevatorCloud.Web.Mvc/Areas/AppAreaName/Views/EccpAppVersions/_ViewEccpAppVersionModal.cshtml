@@ -1,0 +1,45 @@
+
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpAppVersions
+@model EccpAppVersionViewModel
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(""))
+
+<div class="modal-body">
+    <div id="EccpAppVersionInformationsTab">
+        
+        <div class="m-stack m-stack--hor m-stack--general m-stack--demo">
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("VersionName") :</h6>
+                <label> @Model.EccpAppVersion.VersionName</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("VersionCode") :</h6>
+                <label> @Model.EccpAppVersion.VersionCode</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("UpdateLog") :</h6>
+                <label> @Model.EccpAppVersion.UpdateLog</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("DownloadUrl") :</h6>
+                <label> @Model.EccpAppVersion.DownloadUrl</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+            <div class="m-stack__item m-stack__item--center m-stack__item--middle">
+                <h6>@L("VersionType") :</h6>
+                <label> @Model.EccpAppVersion.VersionType</label>
+            </div>
+            <div class="m-separator m-separator--dashed"></div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@Html.Partial("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

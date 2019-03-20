@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "noEmit": true,
+        "target": "es5",
+        "disableSizeLimit": true
+    },
+    "include": [
+        "**/*", "../Sinodom.ElevatorCloud.Core/EccpDict/EccpDictMaintenanceItem.cs", "../Sinodom.ElevatorCloud.Core.Shared/EccpDict/EccpDictMaintenanceItemConsts.cs", "../Sinodom.ElevatorCloud.Application.Shared/EccpDict/IEccpDictMaintenanceItemsAppService.cs", "../Sinodom.ElevatorCloud.Application/ECCPBaseAnnualInspectionUnits/Exporting/EccpBaseAnnualInspectionUnitsExcelExporter.cs", "../Sinodom.ElevatorCloud.Web.Core/Controllers/ProfileAppVersionsControllerBase.cs", "../Sinodom.ElevatorCloud.Application.Shared/EccpAppVersions/Dtos/UploadCreateOrEditEccpAppVersionDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/EccpMaintenancePlans/Dtos/EccpMaintenanceWorkOrderPlanDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/EccpMaintenanceContracts/Dtos/ECCPBaseProblemElevatoDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/EccpMaintenanceContracts/Dtos/UploadRecoveryContractEccpMaintenanceContractDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/Statistics/Dtos/AppMaintenanceStatisticsDataDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/Statistics/Dtos/GetElevatorMaintenanceHistorysDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/Statistics/Dtos/GetEccpBaseElevatorDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/Statistics/Dtos/GetEccpBaseElevatorSubsidiaryInfoDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/Statistics/Dtos/GetTaskListDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/ECCPBaseMaintenanceCompanies/Dtos/CreateECCPBaseMaintenanceCompanyDto.cs", "../Sinodom.ElevatorCloud.Application.Shared/ECCPBaseMaintenanceCompanies/Dtos/EditECCPBaseMaintenanceCompanyDto.cs"
+    ],
+    "exclude": [
+        "bin",
+        "node_modules",
+        "obj",
+        "wwwroot/assets",
+        "wwwroot/lib",
+        "wwwroot/metronic",
+        "wwwroot/**/_Bundles"
+    ],
+    "typeAcquisition": {
+        "enable": false,
+        "exclude": [ "node" ]
+    }
+}

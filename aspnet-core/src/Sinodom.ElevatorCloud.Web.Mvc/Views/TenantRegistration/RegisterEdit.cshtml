@@ -1,0 +1,173 @@
+﻿@using Abp.AspNetZeroCore.Timing
+@using Abp.Configuration.Startup
+@using Abp.Web.Security.AntiForgery
+@using Sinodom.ElevatorCloud
+@using Sinodom.ElevatorCloud.UiCustomization.Dto
+@using Sinodom.ElevatorCloud.Url
+@using Sinodom.ElevatorCloud.Web.Resources
+@using CultureHelper = Sinodom.ElevatorCloud.Localization.CultureHelper
+@inject ScriptPaths ScriptPaths
+@inject AppTimes AppTimes
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IMultiTenancyConfig MultiTenancyConfig
+@inject IWebResourceManager WebResourceManager
+@inject IWebUrlService WebUrlService
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie(Context);
+    UiCustomizationSettingsDto theme = await GetTheme();
+}
+<!DOCTYPE html>
+<html lang="en" dir=@(CultureHelper.IsRtl ? "rtl" : "")>
+<head>
+    <meta charset="utf-8" />
+    <title>ElevatorCloud</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    @* Fill these meta tags upon your project specification *@
+    <meta content="ElevatorCloud" name="description" />
+    <meta content="ElevatorCloud" name="keywords">
+    <meta content="ElevatorCloud" name="author" />
+
+    <link rel="shortcut icon" href="~/favicon.ico" />
+
+    <link rel="stylesheet" abp-href="/view-resources/Areas/AppAreaName/Views/_Bundles/vendors.bundle.css" asp-append-version="true" />
+    <link rel="stylesheet" href="@(ApplicationPath)metronic/dist/html/@theme.BaseSettings.Layout.ThemeColor/assets/demo/@theme.BaseSettings.Layout.ThemeColor/base/style.bundle@(CultureHelper.IsRtl ? ".rtl":"").css" asp-append-version="true" />
+    <link rel="stylesheet" abp-href="/view-resources/Areas/AppAreaName/Views/_Bundles/account-layout-libs.css" asp-append-version="true" />
+
+    <link rel="stylesheet" abp-href="/view-resources/Areas/AppAreaName/Views/_Bundles/common-styles.css" asp-append-version="true" />
+    <link rel="stylesheet" abp-href="/view-resources/Views/TenantRegistration/_Layout.css" asp-append-version="true" />
+
+    @if (CultureHelper.IsRtl)
+    {
+        <link rel="stylesheet" href="/Common/Styles/abp-zero-template-rtl.css" asp-append-version="true" />
+    }
+
+    <script type="text/javascript">
+        @* This is used to get the application's root path from javascript.
+        It's useful if you're running application in a virtual directory under IIS. *@
+        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+    </script>
+
+</head>
+<!-- begin::Body -->
+<body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+
+
+
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+
+
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(/metronic/src/media/app/img/bg/bg-3.jpg);">
+            <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
+                <div id="m_login" class="m-login__container">
+                    <div class="m-login__logo">
+                        <a href="#">
+                            <vc:account-logo></vc:account-logo>
+                        </a>
+                    </div>
+                    <div class="m-login__signin">
+                        <div class="m-login__head">
+                            <h3 class="m-login__title">@this.L("RegisterEdit")</h3>
+                        </div>
+                        <form class="m-login__form m-form query-tenant-form" asp-action="CheckTenancyName">
+                            <div class="form-group m-form__group">
+                                <input id="TenancyName" name="TenancyName" type="hidden" />
+                                <input class="form-control m-input m-login__form-input--last" type="password" placeholder="@this.L("AdminPassword")" name="AdminPassword">
+                            </div>
+                            <div class="m-login__form-action">
+                                <button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">@this.L("RegisterEdit_Login")</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="m-login__signup">
+                        <div class="m-login__head">
+                            <h3 class="m-login__title">@this.L("RegisterEdit")</h3>
+                            <div class="m-login__desc"></div>
+                        </div>
+                        <form class="m-login__form m-form" action="">
+                            <input type="hidden" name="BusinessLicenseIdFileToken" value="BusinessLicenseId" />
+                            <input type="hidden" name="AptitudePhotoIdFileToken" value="AptitudePhotoId" />
+                            @if (@ViewBag.ErrorMessage != null)
+                            {
+                                <div class="alert alert-danger">
+                                    <i class="fa fa-exclamation-triangle"></i> @ViewBag.ErrorMessage
+                                </div>
+                            }
+                            <h4 class="m-login__title">
+                                @L("TenantInformations")
+                            </h4>
+                            <div class="form-group m-form__group">
+                                <input class="form-control form-control m-input" type="text" placeholder="@L("Name")" name="Name" required maxlength="@Sinodom.ElevatorCloud.Authorization.Users.User.MaxNameLength" />
+                            </div>
+                            <div class="form-group m-form__group">
+                                <input class="form-control form-control m-input" type="text" placeholder="@L("LegalPerson")" name="LegalPerson" required maxlength="10" />
+                            </div>
+                            <div class="form-group m-form__group">
+                                <input class="form-control form-control m-input" type="text" placeholder="@L("Mobile")" name="Mobile" required maxlength="11" />
+                            </div>
+                            <div class="row m-login__form-sub">
+                                <div class="col m--align-left">
+                                    <label class="m-checkbox m-checkbox--primary">
+                                        <input type="checkbox" name="IsMember">
+                                        @L("IAmMember")
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="m-login__form m-form" id="businessLicenseForm" method="post" action="@(ApplicationPath + "Profile/UploadProfilePicture")">
+                            <h4 class="m-login__title">
+                                @L("CompanyPicture")
+                            </h4>
+                            <div class="form-group m-form__group">
+                                <label class="col-form-label" for="BusinessLicenseId">@L("BusinessLicenseId")</label>
+                                <input type="file" name="BusinessLicenseId" />
+                                <span class="help-block m-b-none">@L("BusinessLicenseId_Change_Info", AppConsts.MaxProfilPictureBytesUserFriendlyValue)</span>
+                            </div>
+                            <img id="BusinessLicenseIdResize" class="img-responsive" style="width: 100%" src="" />
+                        </form>
+                        <form class="m-login__form m-form" id="aptitudePhotoForm" method="post" action="@(ApplicationPath + "Profile/UploadProfilePicture")">
+                            <div class="form-group m-form__group">
+                                <label class="col-form-label" for="AptitudePhotoId">@L("AptitudePhotoId")</label>
+                                <input type="file" name="AptitudePhotoId" />
+                                <span class="help-block m-b-none">@L("AptitudePhotoId_Change_Info", AppConsts.MaxProfilPictureBytesUserFriendlyValue)</span>
+                            </div>
+                            <img id="AptitudePhotoIdResize" class="img-responsive" style="width: 100%" src="" />
+                        </form>
+                        <form class="m-login__form m-form">
+                            <div class="m-login__form-action">
+                                <button id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">@this.L("RegisterEdit_Submit")</button>&nbsp;&nbsp;
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- end:: Page -->
+
+    <!--begin::Base Scripts -->
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/_Bundles/account-layout-libs.js" asp-append-version="true"></script>
+
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+    <script src="~/AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/_Bundles/common-scripts.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/TenantRegistration/RegisterEdit.js" asp-append-version="true"></script>
+
+    @WebResourceManager.RenderScripts();
+
+    <script>
+        jQuery(document).ready(function () {
+            if (window.CurrentPage) {
+                CurrentPage.init();
+            }
+        });
+    </script>
+</body>
+</html>

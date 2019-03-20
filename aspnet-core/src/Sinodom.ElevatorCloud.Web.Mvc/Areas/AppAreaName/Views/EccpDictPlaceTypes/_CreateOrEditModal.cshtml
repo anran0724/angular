@@ -1,0 +1,27 @@
+@using Sinodom.ElevatorCloud.EccpDict
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpDictPlaceTypes.CreateOrEditEccpDictPlaceTypeViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpDictPlaceType") : L("CreateNewEccpDictPlaceType")))
+
+<div class="modal-body">
+    <div id="EccpDictPlaceTypeInformationsTab">
+        <form name="EccpDictPlaceTypeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpDictPlaceType.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpDictPlaceType_Name">@L("Name")</label>
+                <input class="form-control" id="EccpDictPlaceType_Name" value="@Model.EccpDictPlaceType.Name" type="text" name="name" required maxlength="@EccpDictPlaceTypeConsts.MaxNameLength" minlength="@EccpDictPlaceTypeConsts.MinNameLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

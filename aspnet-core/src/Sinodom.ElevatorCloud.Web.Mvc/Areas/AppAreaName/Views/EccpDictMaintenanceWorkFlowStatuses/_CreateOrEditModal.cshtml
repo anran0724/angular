@@ -1,0 +1,27 @@
+@using Sinodom.ElevatorCloud.EccpDict
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpDictMaintenanceWorkFlowStatuses.CreateOrEditEccpDictMaintenanceWorkFlowStatusViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpDictMaintenanceWorkFlowStatus") : L("CreateNewEccpDictMaintenanceWorkFlowStatus")))
+
+<div class="modal-body">
+    <div id="EccpDictMaintenanceWorkFlowStatusInformationsTab">
+        <form name="EccpDictMaintenanceWorkFlowStatusInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpDictMaintenanceWorkFlowStatus.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpDictMaintenanceWorkFlowStatus_Name">@L("Name")</label>
+                <input class="form-control" id="EccpDictMaintenanceWorkFlowStatus_Name" value="@Model.EccpDictMaintenanceWorkFlowStatus.Name" type="text" name="name" required maxlength="@EccpDictMaintenanceWorkFlowStatusConsts.MaxNameLength" minlength="@EccpDictMaintenanceWorkFlowStatusConsts.MinNameLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

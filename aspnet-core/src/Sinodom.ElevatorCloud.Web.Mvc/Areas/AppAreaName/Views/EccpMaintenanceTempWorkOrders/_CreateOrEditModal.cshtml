@@ -1,0 +1,112 @@
+@using Sinodom.ElevatorCloud.EccpMaintenanceTempWorkOrders
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceTempWorkOrders.CreateOrEditEccpMaintenanceTempWorkOrderViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpMaintenanceTempWorkOrder") : L("CreateNewEccpMaintenanceTempWorkOrder")))
+
+<div class="modal-body">
+    <div id="EccpMaintenanceTempWorkOrderInformationsTab">
+        <form name="EccpMaintenanceTempWorkOrderInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpMaintenanceTempWorkOrder.Id"/>
+            }
+            
+            <div class="form-group m-form__group">
+                <label for="EccpBaseElevatorName">@L("EccpBaseElevator")</label>
+                <div class="input-group">
+                    <input class="form-control" id="elevatorName" name="elevatorName" value="@Model.EccpBaseElevatorName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpBaseElevatorLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")
+                        </button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTempWorkOrder.ElevatorId" type="text" name="elevatorId" required hidden />
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorId" required hidden />
+            }
+
+            <div class="form-group m-form__group">
+                <label for="UserName">@L("EccpDictTempWorkOrderTypeName")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpDictTempWorkOrderTypeName" name="EccpDictTempWorkOrderTypeName" value="@Model.EccpDictTempWorkOrderTypeName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpDictTempWorkOrderTypLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpDictTempWorkOrderTypNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTempWorkOrder.TempWorkOrderTypeId" type="text" name="TempWorkOrderTypeId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="TempWorkOrderTypeId" hidden/>
+            }
+            <div class="form-group m-form__group">
+                <label for="UserName">@L("User")</label>
+                <div class="input-group">
+                    <input class="form-control" id="UserName" name="userName" value="@Model.UserName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenUserLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearUserNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpMaintenanceTempWorkOrder.UserId" type="text" name="userId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="userId" hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTempWorkOrder_Title">@L("WorkOrderTitle")</label>
+                <input class="form-control" id="EccpMaintenanceTempWorkOrder_Title" value="@Model.EccpMaintenanceTempWorkOrder.Title" type="text" name="title" required maxlength="@EccpMaintenanceTempWorkOrderConsts.MaxTitleLength" minlength="@EccpMaintenanceTempWorkOrderConsts.MinTitleLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTempWorkOrder_Describe">@L("Describe")</label>
+                <input class="form-control" id="EccpMaintenanceTempWorkOrder_Describe" value="@Model.EccpMaintenanceTempWorkOrder.Describe" type="text" name="describe" maxlength="@EccpMaintenanceTempWorkOrderConsts.MaxDescribeLength" minlength="@EccpMaintenanceTempWorkOrderConsts.MinDescribeLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpMaintenanceTempWorkOrder_Priority">@L("Priority")</label>
+                <input class="form-control m-input" id="EccpMaintenanceTempWorkOrder_Priority" value="@Model.EccpMaintenanceTempWorkOrder.Priority" type="number" name="priority"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

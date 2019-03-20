@@ -1,0 +1,53 @@
+@using Sinodom.ElevatorCloud.EccpBaseElevatorModels
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpBaseElevatorModels.CreateOrEditEccpBaseElevatorModelViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpBaseElevatorModel") : L("CreateNewEccpBaseElevatorModel")))
+
+<div class="modal-body">
+    <div id="EccpBaseElevatorModelInformationsTab">
+        <form name="EccpBaseElevatorModelInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBaseElevatorModel.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="EccpBaseElevatorBrandName">@L("EccpBaseElevatorBrand")</label>
+                <div class="input-group">
+                    <input class="form-control" id="EccpBaseElevatorBrandName" name="eccpBaseElevatorBrandName" value="@Model.EccpBaseElevatorBrandName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenEccpBaseElevatorBrandLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearEccpBaseElevatorBrandNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseElevatorModel.ElevatorBrandId" type="text" name="elevatorBrandId" required hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="elevatorBrandId" required hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpBaseElevatorModel_Name">@L("Name")</label>
+                <input class="form-control" id="EccpBaseElevatorModel_Name" value="@Model.EccpBaseElevatorModel.Name" type="text" name="name" required maxlength="@EccpBaseElevatorModelConsts.MaxNameLength" minlength="@EccpBaseElevatorModelConsts.MinNameLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

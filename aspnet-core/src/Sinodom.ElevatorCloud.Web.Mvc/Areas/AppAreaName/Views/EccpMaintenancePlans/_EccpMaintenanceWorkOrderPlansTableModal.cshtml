@@ -1,0 +1,62 @@
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpMaintenanceWorkOrders.EccpMaintenanceWorkOrdersViewModel
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Tenant.EccpMaintenanceWorkOrders;
+}
+
+@section Scripts
+    {
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/EccpMaintenancePlans/_EccpMaintenanceWorkOrderPlansTableModal.js" asp-append-version="true"></script>
+}
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(string.Empty)))
+
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="row m--margin-bottom-10">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EccpDictMaintenanceStatusNameFilterId">(@L("EccpDictMaintenanceStatus")) @L("Name")</label>
+                        <input type="text" class="form-control" name="eccpDictMaintenanceStatusNameFilter" id="EccpDictMaintenanceStatusNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EccpElevatorNameFilterId">@L("EccpElevatorName")</label>
+                        <input type="text" class="form-control" name="eccpElevatorNameFilter" id="EccpElevatorNameFilterId">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group" style="margin-top: 26px;">
+                        <button id="GetEccpMaintenanceWorkOrdersButton" class="btn btn-primary" type="submit">
+                            <i class="flaticon-search-1"></i>@L("Search")
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="EccpMaintenanceWorkOrdersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            @*<th>@L("IsPassed")</th>
+                                <th>@L("Longitude")</th>
+                                <th>@L("Latitude")</th>*@
+                            <th>@L("EccpDictMaintenanceTypeName")</th>
+                            <th>@L("EccpElevatorName")</th>
+                            <th>@L("PlanCheckDate")</th>
+                            <th>@L("EccpMaintenancePlanPollingPeriod")</th>
+                            <th>@L("EccpDictMaintenanceStatusName")</th>
+                            <th>@L("EccpMaintenanceUserNameList")</th>
+                            <th>@L("IsClose")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithClose.cshtml"))

@@ -1,0 +1,84 @@
+@using Sinodom.ElevatorCloud.Authorization
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Startup
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ElevatorClaimLogs.ElevatorClaimLogsViewModel
+@{
+    ViewBag.CurrentPageName = AppAreaNamePageNames.Tenant.ElevatorClaimLogs;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/AppAreaName/Views/ElevatorClaimLogs/Index.js" asp-append-version="true"></script>
+}
+
+<div class="m-subheader">
+    <div class="row align-items-center">
+        <div class="mr-auto col-sm-12 col-md-6">
+            <h3 class="m-subheader__title m-subheader__title--separator">
+                <span>@L("ElevatorClaimLogs")</span>
+            </h3>
+            <span class="m-section__sub">
+                @L("ElevatorClaimLogsHeaderInfo")
+            </span>
+        </div>
+        <div class="col-sm-12 col-md-6 text-right">
+            @if (IsGranted(AppPermissions.Pages_EccpElevator_ElevatorClaimLogs_Create))
+            {
+                <button id="CreateNewElevatorClaimLogButton" class="btn btn-primary blue">
+                    <i class="fa fa-plus"></i> @L("CreateNewElevatorClaimLog")</button>
+            }
+        </div>
+    </div>
+</div>
+<div class="m-content">
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__body">
+            <div class="m-form m-form--label-align-right">
+                <div class="row align-items-center m--margin-bottom-10">
+                    <div class="col-xl-12">
+                        <div class="form-group m-form__group align-items-center">
+                            <div class="input-group">
+                                <input type="text" id="ElevatorClaimLogsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                <span class="input-group-btn">
+                                    <button id="GetElevatorClaimLogsButton" class="btn btn-primary" type="submit">
+                                        <i class="flaticon-search-1"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="AdvacedAuditFiltersArea" style="display: none" class="row m--margin-bottom-10">
+                <div class="col-md-12">
+                    <div class="m-separator m-separator--dashed"></div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EccpBaseElevatorNameFilterId">(@L("EccpBaseElevator")) @L("Name")</label>
+                        <input type="text" class="form-control" name="eccpBaseElevatorNameFilter" id="EccpBaseElevatorNameFilterId">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row m--margin-bottom-10">
+                <div class="col-xl-12">
+                    <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                        <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                    <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                        <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <table id="ElevatorClaimLogsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th>@L("Actions")</th>
+                        <th>@L("EccpBaseElevatorName")</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

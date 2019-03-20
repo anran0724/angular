@@ -1,0 +1,346 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <Import Project="..\..\common.props"></Import>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>Sinodom.ElevatorCloud.Web.Mvc</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Sinodom.ElevatorCloud.Web.Mvc</PackageId>
+    <UserSecretsId>Sinodom-ElevatorCloud-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
+    <RootNamespace>Sinodom.ElevatorCloud.Web</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="App_Data\**" />
+    <Content Remove="App_Data\**" />
+    <EmbeddedResource Remove="App_Data\**" />
+    <None Remove="App_Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\AppAreaName\Views\EccpElevatorQrCodes\_CreateOrEditModal1.cshtml" />
+    <Content Remove="wwwroot\metronic\src\js\demo\theme2\base\layout.min.js" />
+    <Content Remove="wwwroot\metronic\src\js\demo\theme3\base\layout.min.js" />
+    <Content Remove="wwwroot\metronic\src\js\demo\theme8\base\layout.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Common\Modals\_LookupModal.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Common\_PermissionTree.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Dashboard\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseAreas\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseCommunities\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseElevatorModels\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseElevators\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseMaintenanceCompanies\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseProductionCompanies\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseRegisterCompanies\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseSaicUnits\_CreateOrEditModal.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpCompanyAudits\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpCompanyUserExtensions\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPDictElevatorStatuses\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictLabelStatuses\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceItems\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceStatuses\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceWorkFlowStatuses\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictNodeTypes\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictTempWorkOrderTypes\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictWorkOrderTypes\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpElevatorChangeLogs\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpElevatorQrCodes\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceContractsStop\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceContracts\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenancePeriodWorkOrders\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceReportGeneration\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTemplateNodes\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTemplates\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTempWorkOrders\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkFlows\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderEvaluations\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrders\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpPropertyCompanyChangeLogs\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Editions\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ElevatorClaimLogs\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\HostSettings\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Languages\_CreateOrEditModal.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\OrganizationUnits\_AddMemberModal.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Profile\_LinkAccountModal.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\SubscriptionManagement\Index.min.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\_Bundles\common-scripts.js" />
+    <Content Remove="wwwroot\view-resources\Areas\AppAreaName\Views\_Bundles\common-scripts.min.js" />
+    <Content Remove="wwwroot\view-resources\Views\Account\QueryTenantStatus.min.js" />
+    <Content Remove="wwwroot\view-resources\Views\Account\ResetPassword.min.js" />
+    <Content Remove="wwwroot\view-resources\Views\Account\VerifySecurityCode.min.js" />
+    <Content Remove="wwwroot\view-resources\Views\Payment\Payment.min.js" />
+    <Content Remove="wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="npm-debug.log" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Scripts\Datatables\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\abp-zero-template-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\blue\datatables.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\default\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\green\datatables.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\pink\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\pink\datatables.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme11\datatables.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme2\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme3\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme7\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme7\datatables.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme8\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\yellow\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\fonts\fonts-asap-condensed.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\fonts\fonts-montserrat.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\fonts\fonts-poppins.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\metronic\src\js\demo\theme2\base\layout.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\metronic\src\js\demo\theme3\base\layout.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\metronic\src\js\demo\theme8\base\layout.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Common\Modals\_LookupModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Common\_FeaturesTree.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Common\_PermissionTree.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Dashboard\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseAreas\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseCommunities\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseElevatorModels\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseElevators\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseMaintenanceCompanies\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseProductionCompanies\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseRegisterCompanies\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseSaicUnits\_CreateOrEditModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpCompanyAudits\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpCompanyUserExtensions\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPDictElevatorStatuses\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictLabelStatuses\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceItems\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceStatuses\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceWorkFlowStatuses\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictNodeTypes\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictTempWorkOrderTypes\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictWorkOrderTypes\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpElevatorChangeLogs\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpElevatorQrCodes\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceContracts\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenancePeriodWorkOrders\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceReportGeneration\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTemplateNodes\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTemplates\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTempWorkOrders\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkFlows\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderEvaluations\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrders\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\EccpPropertyCompanyChangeLogs\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Editions\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\ElevatorClaimLogs\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\HostSettings\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Languages\_CreateOrEditModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Layout\_ChatBar.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Layout\_Layout.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Maintenance\Index.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\OrganizationUnits\_AddMemberModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\Profile\_LinkAccountModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\SubscriptionManagement\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\_Bundles\common-scripts.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\AppAreaName\Views\_Bundles\common-scripts.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Account\QueryTenantStatus.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Account\ResetPassword.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Account\VerifySecurityCode.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Account\_Layout.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Payment\Payment.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Payment\Payment.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\Shared\_Layout.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\TenantRegistration\SelectEdition.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\TenantRegistration\_Layout.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="package-mapping-config.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\Index.cshtml" />
+    <None Include="Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\_MaintenanceWorkOrderTransfersAuditLogsTableModel.cshtml" />
+    <None Include="Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\_ViewMaintenanceWorkOrderTransfersModel.cshtml" />
+    <None Include="wwwroot\metronic\src\js\demo\theme2\base\layout.min.js" />
+    <None Include="wwwroot\metronic\src\js\demo\theme3\base\layout.min.js" />
+    <None Include="wwwroot\metronic\src\js\demo\theme8\base\layout.min.js" />
+    <None Include="wwwroot\Plugins\.gitkeep" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\Common\Modals\_LookupModal.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\Common\_PermissionTree.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\Dashboard\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseAreas\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseCommunities\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseElevatorModels\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseElevators\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseMaintenanceCompanies\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseProductionCompanies\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPBaseRegisterCompanies\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpBaseSaicUnits\_CreateOrEditModal.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpCompanyAudits\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpCompanyUserExtensions\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\ECCPDictElevatorStatuses\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictLabelStatuses\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceItems\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceStatuses\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictMaintenanceWorkFlowStatuses\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictNodeTypes\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictTempWorkOrderTypes\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpDictWorkOrderTypes\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpElevatorChangeLogs\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpElevatorQrCodes\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceContractsStop\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceContracts\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenancePeriodWorkOrders\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceReportGeneration\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTemplateNodes\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTemplates\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceTempWorkOrders\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkFlows\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderEvaluations\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrders\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpPropertyCompanyChangeLogs\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\Editions\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\ElevatorClaimLogs\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\HostSettings\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\Languages\_CreateOrEditModal.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\OrganizationUnits\_AddMemberModal.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\Profile\_LinkAccountModal.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\SubscriptionManagement\Index.min.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\_Bundles\common-scripts.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\Index.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceWorkOrderTransfers\_MaintenanceWorkOrderTransfersAuditLogsTableModel.js" />
+    <None Include="wwwroot\view-resources\Areas\AppAreaName\Views\_Bundles\common-scripts.min.js" />
+    <None Include="wwwroot\view-resources\Views\Account\QueryTenantStatus.min.js" />
+    <None Include="wwwroot\view-resources\Views\Account\ResetPassword.min.js" />
+    <None Include="wwwroot\view-resources\Views\Account\VerifySecurityCode.min.js" />
+    <None Include="wwwroot\view-resources\Views\Payment\Payment.min.js" />
+    <None Include="wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.min.js" />
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="wwwroot\**\*;Areas\**\*;Views\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sinodom.ElevatorCloud.Web.Core\Sinodom.ElevatorCloud.Web.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFrameworkProfiler.Appender" Version="5.0.5031" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.WsFederation" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.1" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="BundlerMinifier.Core" Version="2.8.391" />
+    <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.8.391" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.Castle.Log4Net" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\AppAreaName\Views\Common\Modals\_ModalFooterWithPrintAndClose.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\Common\Modals\_ModalFooterWithStep.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\Common\Modals\_ModalFooterWithConfirmAndClose.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\ECCPBaseAreas\_ECCPBaseAreaLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpBaseElevators\_ECCPBasePropertyCompanyLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpBaseElevators\_EccpMaintenanceWorkOrdersTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpBaseElevators\_EccpMaintenanceWorkOrderEvaluationsTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenanceContractsStop\_EccpBaseElevatorLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenanceContracts\_EccpBaseElevatorLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenancePlans\_EccpBaseElevatorsLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenancePlans\_GuideCreateModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenancePlans\_MaintenanceTemplatesLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenancePlans\_MaintenanceUserLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenancePlans\_PropertyUserLookupTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenanceTroubledWorkOrders\_AuditModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\AppAreaName\Views\EccpMaintenanceWorkOrders\_EccpMaintenanceWorkOrderEvaluationsTableModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="wwwroot\view-resources\Areas\AppAreaName\Views\EccpMaintenanceContractsStop\Index.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PreBuild" AfterTargets="PreBuildEvent">
+    <Exec Command="dotnet bundle clean" />
+    <Exec Command="dotnet bundle" />
+  </Target>
+
+</Project>

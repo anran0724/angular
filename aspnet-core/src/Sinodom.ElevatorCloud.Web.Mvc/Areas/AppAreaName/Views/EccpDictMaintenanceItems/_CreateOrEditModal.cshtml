@@ -1,0 +1,42 @@
+@using Sinodom.ElevatorCloud.EccpDict
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.EccpDictMaintenanceItems.CreateOrEditEccpDictMaintenanceItemViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditEccpDictMaintenanceItem") : L("CreateNewEccpDictMaintenanceItem")))
+
+<div class="modal-body">
+    <div id="EccpDictMaintenanceItemInformationsTab">
+        <form name="EccpDictMaintenanceItemInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpDictMaintenanceItem.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="EccpDictMaintenanceItem_Name">@L("Name")</label>
+                <input class="form-control" id="EccpDictMaintenanceItem_Name" value="@Model.EccpDictMaintenanceItem.Name" type="text" name="name" maxlength="@EccpDictMaintenanceItemConsts.MaxNameLength" minlength="@EccpDictMaintenanceItemConsts.MinNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpDictMaintenanceItem_TermCode">@L("TermCode")</label>
+                <input class="form-control" id="EccpDictMaintenanceItem_TermCode" value="@Model.EccpDictMaintenanceItem.TermCode" type="text" name="termCode" maxlength="@EccpDictMaintenanceItemConsts.MaxTermCodeLength" minlength="@EccpDictMaintenanceItemConsts.MinTermCodeLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpDictMaintenanceItem_DisOrder">@L("DisOrder")</label>
+                <input class="form-control m-input" id="EccpDictMaintenanceItem_DisOrder" value="@Model.EccpDictMaintenanceItem.DisOrder" type="number" name="disOrder"/>
+            </div>
+
+            <div class="form-group">
+                <label for="EccpDictMaintenanceItem_TermDesc">@L("TermDesc")</label>
+                <input class="form-control" id="EccpDictMaintenanceItem_TermDesc" value="@Model.EccpDictMaintenanceItem.TermDesc" type="text" name="termDesc" maxlength="@EccpDictMaintenanceItemConsts.MaxTermDescLength" minlength="@EccpDictMaintenanceItemConsts.MinTermDescLength"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))

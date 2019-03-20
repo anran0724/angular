@@ -1,0 +1,146 @@
+@using Sinodom.ElevatorCloud.ECCPBaseAnnualInspectionUnits
+@using Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.Common.Modals
+@model Sinodom.ElevatorCloud.Web.Areas.AppAreaName.Models.ECCPBaseAnnualInspectionUnits.CreateOrEditECCPBaseAnnualInspectionUnitViewModel
+
+@await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? L("EditECCPBaseAnnualInspectionUnit") : L("CreateNewECCPBaseAnnualInspectionUnit")))
+
+<div class="modal-body">
+    <div id="ECCPBaseAnnualInspectionUnitInformationsTab">
+        <form name="ECCPBaseAnnualInspectionUnitInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.EccpBaseAnnualInspectionUnit.Id"/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="ProvinceName">@L("Province")</label>
+                <div class="input-group">
+                    <input class="form-control" id="ProvinceName" name="provinceName" value="@Model.ProvinceName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenProvinceNameLookupTableButton" data-child="OpenCityNameLookupTableButton" type="button">
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearProvinceNameButton" data-child="OpenCityNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseAnnualInspectionUnit.ProvinceId" type="text" name="provinceId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="provinceId" hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="CityName">@L("City")</label>
+                <div class="input-group">
+                    <input class="form-control" id="CityName" name="cityName" value="@Model.CityName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenCityNameLookupTableButton" data-child="OpenDistrictNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseAnnualInspectionUnit.ProvinceId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearCityNameButton" data-child="OpenDistrictNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseAnnualInspectionUnit.CityId" type="text" name="cityId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="cityId" hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="DistrictName">@L("Area")</label>
+                <div class="input-group">
+                    <input class="form-control" id="DistrictName" name="districtName" value="@Model.DistrictName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenDistrictNameLookupTableButton" data-child="OpenStreetNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseAnnualInspectionUnit.CityId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearDistrictNameButton" data-child="OpenStreetNameLookupTableButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseAnnualInspectionUnit.DistrictId" type="text" name="districtId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="districtId" hidden/>
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="StreetName">@L("Street")</label>
+                <div class="input-group">
+                    <input class="form-control" id="StreetName" name="streetName" value="@Model.StreetName" type="text" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary blue" id="OpenStreetNameLookupTableButton" type="button" @(Model.IsEditMode && Model.EccpBaseAnnualInspectionUnit.DistrictId.HasValue ? string.Empty : "disabled")>
+                            <i class="fa fa-search"></i> @L("Pick")</button>
+                    </div>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-danger" type="button" id="ClearStreetNameButton">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" value="@Model.EccpBaseAnnualInspectionUnit.StreetId" type="text" name="streetId" hidden/>
+            }
+            else
+            {
+                <input class="form-control" value="" type="text" name="streetId" hidden/>
+            }
+
+
+            <div class="form-group">
+                <label for="ECCPBaseAnnualInspectionUnit_Name">@L("Name")</label>
+                <input class="form-control" id="ECCPBaseAnnualInspectionUnit_Name" value="@Model.EccpBaseAnnualInspectionUnit.Name" type="text" name="name" required maxlength="@ECCPBaseAnnualInspectionUnitConsts.MaxNameLength" minlength="@ECCPBaseAnnualInspectionUnitConsts.MinNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseAnnualInspectionUnit_Addresse">@L("Addresse")</label>
+                <input class="form-control" id="ECCPBaseAnnualInspectionUnit_Addresse" value="@Model.EccpBaseAnnualInspectionUnit.Addresse" type="text" name="addresse" required maxlength="@ECCPBaseAnnualInspectionUnitConsts.MaxAddresseLength" minlength="@ECCPBaseAnnualInspectionUnitConsts.MinAddresseLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseAnnualInspectionUnit_Telephone">@L("Telephone")</label>
+                <input class="form-control" id="ECCPBaseAnnualInspectionUnit_Telephone" value="@Model.EccpBaseAnnualInspectionUnit.Telephone" type="text" name="telephone" required maxlength="@ECCPBaseAnnualInspectionUnitConsts.MaxTelephoneLength" minlength="@ECCPBaseAnnualInspectionUnitConsts.MinTelephoneLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="ECCPBaseAnnualInspectionUnit_Summary">@L("Summary")</label>
+                <input class="form-control" id="ECCPBaseAnnualInspectionUnit_Summary" value="@Model.EccpBaseAnnualInspectionUnit.Summary" type="text" name="summary"/>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@(await Html.PartialAsync("~/Areas/AppAreaName/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml"))
